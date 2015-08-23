@@ -1,0 +1,76 @@
+.bitbucket-after, .bitbucket-before, .email-after, .email-before, .facebook-after, .facebook-before, .github-after, .github-before, .linkedin-after, .linkedin-before, .twitter-after, .twitter-before{
+	background: url(sprites.png) no-repeat;
+}
+
+.bitbucket-after{
+	background-position: 0 0;
+	width: 72px;
+	height: 73px;
+}
+
+.bitbucket-before{
+	background-position: 0 -100px ;
+	width: 72px;
+	height: 73px;
+}
+
+.email-after{
+	background-position: -100px 0;
+	width: 72px;
+	height: 73px;
+}
+
+.email-before{
+	background-position: -100px -100px ;
+	width: 72px;
+	height: 73px;
+}
+
+.facebook-after{
+	background-position: -200px 0;
+	width: 72px;
+	height: 73px;
+}
+
+.facebook-before{
+	background-position: -200px -100px ;
+	width: 72px;
+	height: 73px;
+}
+
+.github-after{
+	background-position: -300px 0;
+	width: 72px;
+	height: 73px;
+}
+
+.github-before{
+	background-position: -300px -100px ;
+	width: 72px;
+	height: 73px;
+}
+
+.linkedin-after{
+	background-position: -400px 0;
+	width: 72px;
+	height: 73px;
+}
+
+.linkedin-before{
+	background-position: -400px -100px ;
+	width: 72px;
+	height: 73px;
+}
+
+.twitter-after{
+	background-position: -500px 0;
+	width: 72px;
+	height: 73px;
+}
+
+.twitter-before{
+	background-position: -500px -100px ;
+	width: 72px;
+	height: 73px;
+}
+

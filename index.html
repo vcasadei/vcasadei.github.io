@@ -1,20 +1,14 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Vitor Casadei - Software Engineer</title>
 	<!--fonts-->
-		<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
 	<!--//fonts-->
 		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link rel="stylesheet" href="css/social/css/fontello.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<!-- for-mobile-apps -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -34,7 +28,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){
 					event.preventDefault();
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},600);
 				});
 			});
 		</script>
@@ -49,37 +43,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="top-header row">
 				<script src="js/classie.js"></script>
 				<!--top-nav---->
-				<div class="logo">
-					<!-- <a href="index.html"><img src="images/logo.png" alt=""/></a> -->
-					<a href="#">MY RESUME</a>
-				</div>
-				<div class="top-nav">
+				<nav id="nav_main">
 
-						<div class="nav-icon">
-							<a href="#" class="right_bt" id="activator" title="Menu"><span></span></a>
-						</div>
+		      <ul>
+		        <li><a href="#home" id="menu-home" class="scroll selected">Home</a></li>
+		        <li><a href="#about" id="menu-about" class="scroll">About me</a></li>
+		        <li><a href="#services" id="menu-services" class="scroll">Services</a></li>
+		        <li><a href="#portfolio" id="menu-portfolio" class="scroll">My Work</a></li>
+		        <li><a target="_blank" href="files/resume.pdf" id="menu-resume">Resume</a></li>
+		      </ul>
 
-
-					<div class="box menu-hidden" id="box">
-						<div class="box_content">
-							<div class="box_content_center">
-								<div class="form_content">
-									<div class="menu_box_list">
-										<ul>
-											<li><a class="scroll" href="#home"><span>home</span></a></li>
-											<li><a class="scroll" href="#about"><span>about</span></a></li>
-											<li><a class="scroll" href="#services"><span>services</span></a></li>
-											<li><a class="scroll" href="#portfolio"><span>portfolio</span></a></li>
-
-											<li><a class="scroll" href="#contact"><span>Contact</span></a></li>
-											<div class="clearfix"> </div>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+		    </nav>
 				<div class="clearfix"> </div>
 			</div>
 			<div class="banner-info">
@@ -87,7 +61,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<img src="images/1.png" alt=""/>
 				</div>
 				<div class="banner-right">
-					<h1><span class="wine">Hi,</span><br><span class="wine">I'm Casadei,</span><br> VITOR CASADEI</h1>
+					<h1><span class="wine">Hey,</span><br><span class="wine">I'm Casadei,</span><br> VITOR CASADEI</h1>
 
 				</div>
 				<div class="clearfix"></div>
@@ -103,198 +77,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<h3>ABOUT ME</h3>
 		<div class="strip text-center"><img src="images/about.png" alt=" "/></div>
 
-		<p>Dyin' ain't much of a livin', boy. here. put that in your report!" and "i may have found
-		a way out of here. you want a guarantee, buy a toaster. here. put that in your report!" and
-		"i may have found a way out of here. this is the ak-47 assault rifle, the preferred weapon of
-		your enemy; and it makes a distinctive sound when fired at you, so remember it. this is the ak-47
-		assault rifle, the preferred weapon of your enemy; and it makes a distinctive sound when fired at
-		you, so remember it. don't p!ss down my back and tell me it's raining. this is the ak-47 assault
-		rifle, the preferred weapon of your enemy; and it makes a distinctive sound when fired at you,
-		so remember it. don't p!ss down my back and tell me it's raining. this is my gun, clyde! man's
-		gotta know his limitations. ever notice how sometimes you come across somebody you shouldn't have
-		f**ked with? well, i'm that guy.</p>
+		<p style="text-align: justify;">Hi, my name is Vitor Casadei. I'm a 22 years old Computer Scientist from Sorocaba, São Paulo area in Brazil. I'm passionate with design and beautiful code and I like to accept challenges!<br/>
+		I'm always building or learning something new and my research field is Web/Mobile Accessibility, HCI and User Interaction (check some of my <a target="_blank" href="https://www.researchgate.net/profile/Vitor_Casadei">papers</a>!).<br/>
+		I've also studied in Munich, Germany at the Technische Universität München and I write at <a target="_blank" href="http://diariodoverde.com/author/vitor-casadei/">Diário do Verde</a> about the relationship between the environment and technology and at <a target="_blank" href="http://codetalk.me">CodeTalk</a> about coding and programming experiences.</p>
+		<p>So, check my <a target="_blank" href="files/resume.pdf">Resume</a>, my social media bellow and <a target="_blank" href="mailto:vitor@casadei.io">get in touch</a>!</p>
 
 
 
-		<ul>
-			<li><a class="fb" href="#"></a></li>
-			<li><a class="twit" href="#"></a></li>
-			<li><a class="in" href="#"></a></li>
-			<li><a class="drib" href="#"></a></li>
-			<li><a class="goog" href="#"></a></li>
-			<li><a class="pin" href="#"></a></li>
+		<ul class="social-icons icon-circle list-unstyled list-inline">
+
+			<li><a title="E-mail me!" class="email" target="_blank" href="mailto:vitor@casadei.io"><span></span></a></li>
+			<li><a title="Linkedin" class="linkedin" target="_blank" href="https://br.linkedin.com/in/vitorcasadei/en"><span></span></a></li>
+			<li><a title="GitHub" class="github" target="_blank" href="https://github.com/vcasadei/"><span></span></a></li>
+			<li><a title="BitBucket" class="bitbucket" target="_blank" href="https://bitbucket.org/vcasadei"><span></span></a></li>
+			<li><a title="Facebook" class="facebook" target="_blank" href="https://www.facebook.com/vitor.casadei"><span></span></a></li>
+			<li><a title="Twitter" class="twitter" target="_blank" href="https://twitter.com/vcasadei"><span></span></a></li>
+			<li><a title="Diário do Verde | Sustentabilidade, em 1° Lugar!" class="dv" target="_blank" href="http://diariodoverde.com/author/vitor-casadei/"><span></span></a></li>
+			<li><a title="CodeTalk - A blog about Code and Technology" class="codeTalk" target="_blank" href="http://codetalk.me"><span></span></a></li>
+
 		</ul>
 	</div>
 </div>
 <!--//about-->
-<div class="about-back"></div>
-<!--my skill-->
-<div class="my-skills text-center">
-	<div class="container">
-		<h3>MY SKILLS</h3>
-		<div class="strip text-center"><img src="images/skill.png" alt=" "/></div>
-		<div class="skill-grids">
-					<div class="col-md-2 skills-grid text-center">
-						<div class="circle" id="circles-1"></div>
-						<p>Photoshop</p>
-					</div>
-					<div class="col-md-2 skills-grid text-center">
-						<div class="circle" id="circles-2"></div>
-						<p>Illustrator</p>
-					</div>
-					<div class="col-md-2 skills-grid text-center">
-						<div class="circle" id="circles-3"></div>
-						<p>Photography</p>
-					</div>
-					<div class="col-md-2 skills-grid text-center">
-						<div class="circle" id="circles-4"></div>
-						<p>Html 5 / CSS 3</p>
-					</div>
-					<div class="col-md-2 skills-grid text-center">
-						<div class="circle" id="circles-5"></div>
-						<p>C4D</p>
-					</div>
-					<div class="col-md-2 skills-grid text-center">
-						<div class="circle" id="circles-6"></div>
-						<p>After Effect</p>
-					</div>
-					<div class="clearfix"> </div>
-				 <script type="text/javascript" src="js/circles.js"></script>
-					         <script>
-								var colors = [
-										['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff'], ['#6ed4c0', '#ffffff']
-									];
-								for (var i = 1; i < 7; i++) {
-									var child = document.getElementById('circles-' + i),
-										percentage = 30 + (i * 10);
-
-									Circles.create({
-										id:         child.id,
-										percentage: percentage,
-										radius:     80,
-										width:      10,
-										number:   	percentage / 1,
-										text:       '%',
-										colors:     colors[i - 1]
-									});
-								}
-
-				</script>
-		</div>
-	</div>
-</div>
-<!--//my skill-->
-<div class="my-skill-back"></div>
-<!--education-->
-<div class="education text-center">
-	<div class="container">
-		<div class="edu-info">
-			<h3>EDUCATION</h3>
-		</div>
-		<div class="strip text-center"><img src="images/edu.png" alt=" "/></div>
-		<div class="edu-grids">
-			<div class="col-md-4 edu-grid">
-				<p>2012 - 2013</p><span>Graduated</span>
-				<img src="images/arrow.png" alt=""/>
-				<div class="edu-border">
-					<div class="edu-grid-master">
-						<h3>MASTER DEGREE OF COMPUTER SCIENCE</h3>
-						<h4>Oxford University</h4>
-					</div>
-					<div class="edu-grid-info">
-						<h5>This is Photoshop's version Lorem Ipsum.
-						Well, the way they make shows is, they make one show.</h5>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 edu-grid">
-				<p>2012 - 2013</p><span>Graduated</span>
-				<img src="images/arrow.png" alt=""/>
-				<div class="edu-border">
-					<div class="edu-grid-master">
-						<h3>MASTER DEGREE OF COMPUTER SCIENCE</h3>
-						<h4>Oxford University</h4>
-					</div>
-					<div class="edu-grid-info">
-						<h5>This is Photoshop's version Lorem Ipsum.
-						Well, the way they make shows is, they make one show.</h5>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 edu-grid">
-				<p>2012 - 2013</p><span>Graduated</span>
-				<img src="images/arrow.png" alt=""/>
-				<div class="edu-border">
-					<div class="edu-grid-master">
-						<h3>MASTER DEGREE OF COMPUTER SCIENCE</h3>
-						<h4>Oxford University</h4>
-					</div>
-					<div class="edu-grid-info">
-						<h5>This is Photoshop's version Lorem Ipsum.
-						Well, the way they make shows is, they make one show.</h5>
-					</div>
-				</div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-
-</div>
-<!--//education-->
-<div class="strip-border"><p></p></div>
-<!--work-->
-<div class="work-experience text-center">
-
-	<div class="container">
-		<div class="work-info">
-			<h3>WORK EXPERIENCE</h3>
-		</div>
-		<div class="strip text-center"><img src="images/work.png" alt=" "/></div>
-		<div class="work-grids">
-			<div class="col-md-4 w-grid">
-				<div class="work-grid">
-					<h3>2013 - Now</h3>
-					<div class="work-grid-info">
-						<h4>Google</h4>
-						<h5>Visual Designer</h5>
-						<p>Now that there is the Tec-9, a crappy spray gun from South Miami.
-						This gun is advertised as the most popular gun in American crime.
-						Do you believe that shit? It actually says that in the little book
-						that comes with it: the most popular gun in</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 w-grid">
-				<div class="work-grid">
-					<h3>2013 - Now</h3>
-					<div class="work-grid-info">
-						<h4>Google</h4>
-						<h5>Visual Designer</h5>
-						<p>Now that there is the Tec-9, a crappy spray gun from South Miami.
-						This gun is advertised as the most popular gun in American crime.
-						Do you believe that shit? It actually says that in the little book
-						that comes with it: the most popular gun in</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 w-grid">
-				<div class="work-grid">
-					<h3>2013 - Now</h3>
-					<div class="work-grid-info">
-						<h4>Google</h4>
-						<h5>Visual Designer</h5>
-						<p>Now that there is the Tec-9, a crappy spray gun from South Miami.
-						This gun is advertised as the most popular gun in American crime.
-						Do you believe that shit? It actually says that in the little book
-						that comes with it: the most popular gun in</p>
-					</div>
-				</div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-</div>
-<!--//work-->
 <div class="services-back"></div>
 
 <!--services-->
@@ -305,33 +109,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<div class="strip text-center"><img src="images/ser.png" alt=" "/></div>
 		<div class="ser-grids">
-			<div class="col-md-3 ser-grid">
+			<div class="col-md-4 ser-grid">
 				<div class="ser-imagea"></div>
 				<h3>Web Design</h3>
-				<p>I'm gonna shoot you in the head
-				then and there. Then I'm gonna shoot
-				that bitch in the kneecaps.</p>
+				<p>Page Design and Optimization is what people see first. So it got to be Awesome!</p>
 			</div>
-			<div class="col-md-3 ser-grid">
+			<div class="col-md-4 ser-grid">
 				<div class="ser-imageb"></div>
-				<h3>Graphic Design</h3>
-				<p>I'm gonna shoot you in the head
-				then and there. Then I'm gonna shoot
-				that bitch in the kneecaps.</p>
+				<h3>Brand Design</h3>
+				<p>Design is Art and I'm an artist. Your brand should be should reflect your work.</p>
 			</div>
-			<div class="col-md-3 ser-grid">
-				<div class="ser-imagec"></div>
-				<h3>Content Writer</h3>
-				<p>I'm gonna shoot you in the head
-				then and there. Then I'm gonna shoot
-				that bitch in the kneecaps.</p>
-			</div>
-			<div class="col-md-3 ser-grid">
+			<div class="col-md-4 ser-grid">
 				<div class="ser-imaged"></div>
-				<h3>Development</h3>
-				<p>I'm gonna shoot you in the head
-				then and there. Then I'm gonna shoot
-				that bitch in the kneecaps.</p>
+				<h3>Coding</h3>
+				<p>I like to code and do great things, coding is passion, is functionality, is your motion!</p>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -341,147 +132,78 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--portfolio-->
 <div class="gallery-section text-center" id="portfolio">
 	<div class="container">
-		<h3>PORTFOLIO</h3>
+		<h3>MY WORK</h3>
 		<div class="strip text-center"><img src="images/port.png" alt=" "/></div>
-		<p>You think water moves fast? You should see ice. It moves like it has a mind.
-		Like it knows it killed the world once and got a taste for murder. After the avalanche,
-		it took us a week to climb out. Now, I don't know exactly when we turned on each other,
-		but I know that seven of us survived the slide and only five made it out. Now we took an
-		oath, that I'm breaking now. We said we'd say it was the snow that killed the other two,
-		but it wasn't. Nature is lethal but it doesn't hold a candle to man.</p>
+		<p>These are my selected work, what I do with passion and love to do. Of course that every work and every idea is different and also not everything is here. Enjoy!</p>
 		<div class="gallery-grids">
 			<div class="top-gallery">
 				<div class="col-md-4 gallery-grid gallery1">
-					<a href="images/p1.jpg" class="swipebox"><img src="images/p1.jpg" class="img-responsive" alt="/">
+					<img src="images/portifolio/happybrink.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-							<h4>Project Name</h4>
-							<p>WEB DESIGN</p>
-							<div class="button"><a href="images/p1.jpg" class="swipebox">VIEW</a></div>
+							<h4><b>HappyBrink | Events and Entertainment</b></h4>
+							<p>Brand Design, Programming, Brand Identity, Maintenance</p>
+							<p class="year">2012</p>
+							<a href="images/portifolio/happybrink.jpg" class=""><div class="button">SITE OFFLINE</div></a>
 						</div>
-				</div></a>
+				</div>
 				<div class="col-md-4 gallery-grid gallery1">
-					<a href="images/p2.jpg" class="swipebox"><img src="images/p2.jpg" class="img-responsive" alt="/">
+					<img src="images/portifolio/ccbeu.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-							<h4>Project Name</h4>
-							<p>WEB DESIGN</p>
-							<div class="button"><a href="images/p2.jpg" class="swipebox">VIEW</a></div>
+							<h4><b>CCBEU - Sorocaba</b></h4>
+							<p>Maintenance, SEO, Programming</p>
+							<p class="year">2010-2014</p>
+							<a target="_blank" href="http://www.ccbeusorocaba.com.br" class=""><div class="button">VIEW SITE</div></a>
 						</div>
-				</div></a>
+				</div>
 				<div class="col-md-4 gallery-grid gallery1">
-					<a href="images/p3.jpg" class="swipebox"><img src="images/p3.jpg" class="img-responsive" alt="/">
+					<img src="images/portifolio/codetalk.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-							<h4>Project Name</h4>
-							<p>WEB DESIGN</p>
-							<div class="button"><a href="images/p3.jpg" class="swipebox">VIEW</a></div>
+							<h4><b>CodeTalk.me</b></h4>
+							<p class="year">2015</p>
+							<p>Brand Design, Programming, SEO, Maintenance</p>
+							<a target="_blank" href="http://www.codetalk.me" class=""><div class="button">VIEW SITE</div></a>
 						</div>
-				</div></a>
+				</div>
 				<div class="col-md-4 gallery-grid gallery1">
-					<a href="images/p4.jpg" class="swipebox"><img src="images/p4.jpg" class="img-responsive" alt="/">
+					<img src="images/portifolio/dv.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-							<h4>Project Name</h4>
-							<p>WEB DESIGN</p>
-							<div class="button"><a href="images/p4.jpg" class="swipebox">VIEW</a></div>
+							<h4>Diário do Verde</h4>
+							<p>Maintenance, Programming</p>
+							<p class="year">2010-2015</p>
+							<a target="_blank" href="http://www.diariodoverde.com" class=""><div class="button">VIEW SITE</div></a>
 						</div>
-				</div></a>
+				</div>
 				<div class="col-md-4 gallery-grid gallery1">
-					<a href="images/p5.jpg" class="swipebox"><img src="images/p5.jpg" class="img-responsive" alt="/">
+					<img src="images/portifolio/pfc.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-							<h4>Project Name</h4>
-							<p>WEB DESIGN</p>
-							<div class="button"><a href="images/p5.jpg" class="swipebox">VIEW</a></div>
+							<h4>Future Cientist Program</h4>
+							<p>Page Design, Maintenance, Programming</p>
+							<p class="year">2012-2014</p>
+							<a target="_blank" href="http://futurocientista.net/" class=""><div class="button">VIEW SITE</div></a>
 						</div>
-				</div></a>
+				</div>
 				<div class="col-md-4 gallery-grid gallery1">
-					<a href="images/p6.jpg" class="swipebox"><img src="images/p6.jpg" class="img-responsive" alt="/">
+					<img src="images/portifolio/nano.jpg" class="img-responsive" alt="/">
 						<div class="textbox">
-							<h4>Project Name</h4>
-							<p>WEB DESIGN</p>
-							<div class="button"><a href="images/p6.jpg" class="swipebox">VIEW</a></div>
+							<h4>NanoNeuroBioPhysics Group</h4>
+							<p>Brand Design, Programming, SEO</p>
+							<p class="year">2012-2014</p>
+							<a target="_blank" href="http://www.nanoneurobiophysics.net/" class=""><div class="button">VIEW SITE</div></a>
 						</div>
-				</div></a>
+				</div>
 				<div class="clearfix"> </div>
 			</div>
-				<link rel="stylesheet" href="css/swipebox.css">
-				<script src="js/jquery.swipebox.min.js"></script>
-					<script type="text/javascript">
-						jQuery(function($) {
-							$(".swipebox").swipebox();
-						});
-					</script>
 		</div>
 	</div>
 </div>
 <!--//portfolio-->
-
-<div class="contact-back"></div>
-<!--contact-->
-<div class="contact" id="contact">
-	<div class="container">
-		<div class="contact-info text-center">
-			<h3>CONTACT</h3>
-			<div class="strip text-center"><img src="images/con1.png" alt=" "/></div>
-		</div>
-		<div class="contact-grids">
-			<div class="col-md-5 contact-left">
-				<h3>Say Hi to Me</h3>
-				<div class="stripb"></div>
-				<ul>
-					<li>Orchard Park, Long Bennington, </li>
-					<li>Newark, Lincolnshire </li>
-					<li>NG23 5DQ, United Kingdom</li>
-					<li>9876543210</li>
-					<li><a href="mailto:info@example.com">Sebastian@mail.com</a></li>
-					<li><a href="#">www.sebasti.an</a></li>
-				</ul>
-			</div>
-			<div class="col-md-7 contact-right">
-				<h3>Drop Me A Line</h3>
-				<div class="stripb"></div>
-				<form>
-					<input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-					<input type="text" value="E-mail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail';}" required="">
-					<textarea type="text" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}" required="">Message</textarea>
-					<input type="submit" value="SEND">
-				</form>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-</div>
-<!--//contact-->
-<div class="footer-top"></div>
-<!--resume-->
-<div class="resume text-center">
-	<div class="container">
-		<div class="strip text-center"><a href="#"><img src="images/down.png" alt=" "/></a></div>
-		<div class="down"><a href="#">Download My Resume</a></div>
-	</div>
-</div>
-<!--//resume-->
-
 <!--footer-->
 <div class="footer">
 	<div class="container">
-		<p>Copyright &copy; 2015 Kong. Template by <a href="http://w3layouts.com/"> W3layouts</a></p>
+		<p>Made in Brazil |  2015</p>
 	</div>
 </div>
 <!--//footer-->
-<!-- here stars scrolling icon -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear'
-				};
-			*/
 
-			$().UItoTop({ easingType: 'easeOutQuart' });
-
-			});
-	</script>
-<!-- //here ends scrolling icon -->
 </body>
 </html>
