@@ -200,7 +200,7 @@ $(document).ready(function(){
     var element = document.getElementById("final-text");
     var bodyRect = document.body.getBoundingClientRect(),
     elemRect = element.getBoundingClientRect(),
-    offset   = (elemRect.top - bodyRect.top) + 70;
+    offset   = (elemRect.top - bodyRect.top) + 120;
     $('.banner').css({ "min-height":offset, height: $(window).innerHeight() });
     $(window).resize(function(){
       $('.banner').css({ "min-height":offset, height: $(window).innerHeight() });
