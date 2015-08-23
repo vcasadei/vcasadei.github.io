@@ -201,10 +201,10 @@
 $(document).ready(function(){
 
   $(function(){
-    var element = document.getElementById("final-text");
+    var element = document.getElementById("about");
     var bodyRect = document.body.getBoundingClientRect(),
     elemRect = element.getBoundingClientRect(),
-    offset   = (elemRect.top - bodyRect.top) + 120;
+    offset   = (elemRect.top - bodyRect.top);
     $('.banner').css({ "min-height":offset, height: $(window).innerHeight() });
     $(window).resize(function(){
       $('.banner').css({ "min-height":offset, height: $(window).innerHeight() });
