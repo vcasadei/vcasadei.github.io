@@ -87,12 +87,16 @@
             var li = $('<li/>', {
               class: ($(this).hasClass(s.activeClass)) ? s.activeClass : ''
             });
+            var nClass = "";
+            if (x != 4) {
+              nClass = "scroll";
+            }
 
             li.addClass('item-'+x);
             $('<a/>', {
               href: url,
               html: $(this).children('a').text(),
-              class: "scroll",
+              class: nClass,
             }).appendTo(li);
 
             li.appendTo(tabBarNav);
