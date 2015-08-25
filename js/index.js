@@ -7,10 +7,9 @@
     // Settings
     var s = $.extend({
       tabBarNavWrapper:	'tab_bar_wrapper',
-      fullNavWrapper:	'tab_bar_full_wrapper',
       siteWrapper:	'site_wrapper',
       siteOverlay: 'site_overlay',
-      tabBarNavItems: [0,1,2,3],
+      tabBarNavItems: [0,1,2,3,4],
     }, options);
 
     // Init and localize variables
@@ -18,54 +17,9 @@
         tabBarNavWrapper,
         tabBarNav,
         tabBarMore,
-        fullNavWrapper,
-        fullNav,
-        fullNavClose,
         siteWrapper,
         siteOverlay;
 
-
-    function createFullNav (element, fullNav, add) {
-
-      add = add || '';
-
-      var li = $('<li/>', {
-        class: 'item-close',
-      });
-
-      fullNavClose = $('<a/>', {
-        href: '#',
-        html: 'Close'
-      }).appendTo(li);
-
-      li.appendTo(fullNav);
-
-      // add all elements to the fullMenu
-      $(element).children('li').each(function () {
-
-        var url = $(this).children('a').attr('href');
-
-        if (url === undefined || url === false || url.length === 0) {
-          url = '';
-        }
-
-        var li = $('<li/>');
-
-        $('<a/>', {
-          href: url,
-          html: add + $(this).children('a').text(),
-        }).appendTo(li);
-
-        li.appendTo(fullNav);
-
-        // Submenu
-        if ($(this).children('ul').length > 0) {
-          createFullNav($(this).children('ul'), fullNav, add + "  ");
-        }
-
-      });
-
-    }
 
     function createTabBarNav (element, tabBarNav) {
 
@@ -135,18 +89,7 @@
 
         $('body').prepend(siteOverlay);
 
-        // Full Nav
-        fullNavWrapper = $('<nav/>', {
-          id: s.fullNavWrapper
-        });
 
-        fullNav = $('<ul/>');
-
-        createFullNav($(element), fullNav);
-
-        $(fullNavWrapper).append(fullNav);
-
-        $('body').prepend(fullNavWrapper);
 
         // Tab Bar Nav
         tabBarNavWrapper = $('<nav/>', {
@@ -160,23 +103,6 @@
         $(tabBarNavWrapper).append(tabBarNav);
 
         $('body').prepend(tabBarNavWrapper);
-
-        // Open Full Nav
-        $(tabBarMore).click(function(event){
-          event.preventDefault();
-          event.stopPropagation();
-          $('body').addClass('tabbar-more');
-        });
-
-        // Close Full Nav
-        $(siteOverlay).click(function(event) {
-          $('body').removeClass('tabbar-more');
-        });
-
-        $(fullNavClose).click(function(event) {
-          event.preventDefault();
-          $('body').removeClass('tabbar-more');
-        });
 
         // Adjust siteWrapper position on resize
         on_resize(function() {
@@ -214,7 +140,6 @@ $(document).ready(function(){
   // Initialize tabBarNav
   $('#nav_main > ul').tabBarNav({
     tabBarNavWrapper:	'tab_bar_wrapper',
-    fullNavWrapper:	'tab_bar_full_wrapper',
     siteWrapper:	'site_wrapper',
     siteOverlay: 'site_overlay',
     tabBarNavItems:		[0,1,2,3,4],

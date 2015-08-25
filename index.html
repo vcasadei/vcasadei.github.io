@@ -45,7 +45,11 @@
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){
 					event.preventDefault();
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},600);
+					if (this.hash == "#home"){
+						$('html,body').animate({scrollTop:$('body,html').offset().top},600);
+					} else {
+						$('html,body').animate({scrollTop:$(this.hash).offset().top},600);
+					}
 				});
 			});
 		</script>
