@@ -22,13 +22,13 @@ url     : https://www.vcasadei.com
 baseurl : # does not include hostname
 title   : Vitor Casadei's Blog
 description: > # this means to ignore newlines until "Language & timezone"
-  A compilation of my ideas
+  AI, Computer Vision and Accessibility
 
 
 ## => Language and Timezone
 ##############################
 lang: en
-timezone: #
+timezone: America/Sao_Paulo
 
 
 ## => Author and Social
@@ -36,9 +36,9 @@ timezone: #
 author:
   type      : # "person" (default), "organization"
   name      : Vitor Casadei
-  url       :
+  url       : www.vcasadei.com
   avatar    : # path or url of avatar image (square)
-  bio       : Machine Learning Specialist and Manager
+  bio       : Machine Learning Specialist
   email     : vitor.casadei2@gmail.com
   facebook  : vitor.casadei
   twitter   : vcasadei
