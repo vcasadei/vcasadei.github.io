@@ -6,6 +6,8 @@
 }
 
 .item__image {
+  text-align: center;
+  display: flex;
   margin-right: map-get($spacers, 3);
   & + .item__content {
     & > :first-child {
@@ -17,6 +19,9 @@
   }
   @include media-breakpoint-down(md) {
     margin-right: 0;
+  }
+  .image {
+    margin: auto;
   }
 }
 
