@@ -31,7 +31,7 @@ Finally, I had 3 generic Chinese [IP WiFi HD 5MP Camera with Yoosee app](https:/
 
 You can see the general disposition of the cameras, router and repeaters on a Google Maps screenshot:
 
-![Image](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/d1d3b31f-67a9-4bfd-9a4d-a00463d7fbe5_813x190.webp "Aerial view with the previous setup")
+![Image](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/d1d3b31f-67a9-4bfd-9a4d-a00463d7fbe5_813x1902.webp "Aerial view with the previous setup")
 
 This setup was cheap and worked reliably enough for years (in the last 6 years I had to replace some things, mainly one or two cameras and SDCards that went bad or became faulty. Also, we could monitor the house when we were away and were also able to record some events and checkout later.
 
