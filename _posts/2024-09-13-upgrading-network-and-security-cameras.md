@@ -31,7 +31,7 @@ Finally, I had 3 generic Chinese [IP WiFi HD 5MP Camera with Yoosee app](https:/
 
 You can see the general disposition of the cameras, router and repeaters on a Google Maps screenshot:
 
-![Image](/assets/images/1d3b31f-67a9-4bfd-9a4d-a00463d7fbe5_813x1902.jpg "Aerial view with the previous setup")
+![Image](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/1d3b31f-67a9-4bfd-9a4d-a00463d7fbe5_813x1902.jpg "Aerial view with the previous setup")
 
 This setup was cheap and worked reliably enough for years (in the last 6 years I had to replace some things, mainly one or two cameras and SDCards that went bad or became faulty. Also, we could monitor the house when we were away and were also able to record some events and checkout later.
 
@@ -48,6 +48,6 @@ Now, I have more cameras, they are extremely reliable, I also have good WiFi any
 
 I also have gone one step further and added a Frigate server to record events based on Object Detection. I will talk about this in a next post though.
 
-![Image](/assets/images/e176889e-6c2a-43f5-94a7-f250ea22f3aa_840x1896.webp "Aerial view with the new setup")
+![Image](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/e176889e-6c2a-43f5-94a7-f250ea22f3aa_840x1896.webp "Aerial view with the new setup")
 
 If you have any questions or suggestions, please, leave a comment below.

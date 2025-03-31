@@ -159,8 +159,8 @@ As you can see, the computer is pretty busy, however, I could change some settin
 
 For those curious for more, I also am adding some screenshots containing some System and Storage metrics and also a simple view of events and cameras.
 
-| ![Image](assets\images\home-security-ai\1.jpg "Image 1"){:.rounded} | ![Image](assets/images/home-security-ai/2.jpg "Image 2"){:.rounded} |
-| ![Image](assets/images/home-security-ai/3.jpg "Image 3"){:.rounded} | ![Image](assets/images/home-security-ai/4.jpg "Image 4"){:.rounded} |
+| ![Image](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/home-security-ai/1.jpg "Image 1"){:.rounded} | ![Image](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/home-security-ai/2.jpg "Image 2"){:.rounded} |
+| ![Image](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/home-security-ai/3.jpg "Image 3"){:.rounded} | ![Image](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/home-security-ai/4.jpg "Image 4"){:.rounded} |
 
 # Real Time CCTV Monitor
 
@@ -172,13 +172,13 @@ For this purpose, I bought a [cheap 11” monitor](https://s.click.aliexpress.co
 
 Also, I wanted to have a custom layout where I would have a main camera and other cameras in smaller sections, such as the image below. That lead me to a rabbit hole trying to find the perfect software that would run on a [Raspberry Pi 3B+](https://s.click.aliexpress.com/e/_DDs3cCb) that I had laying around and would display RTSP streams with different encodings.
 
-![Image](assets\images\home-security-ai\1.jpg "Grid for 5 cameras"){:.rounded}
+![Image](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/home-security-ai\camera-grid.jpg "Grid for 5 cameras"){:.rounded}
 
 I ended up testing a lot of options (VLC, Moonfire NVR, RPISurv, CamPlayer, Motion, Frigate Birdseye, Camera.ui and more), however, they either did not offer the option to run the layout I wanted, or they ran on an older version of Debian, or would not be enough optimized to run several streams of a Pi 3B+.
 
 Finally, the solution came with a software called Agent DVR. This solution has the possibility of recording and live viewing of cameras, and even has some AI capabilities, however, I disabled everything but the live viewing and it allowed me to create a custom layout and run 5 cameras on the Pi.
 
-![Image](assets\images\home-security-ai\cctv-grid.jpg "Agent DVR interface with camera feeds on 5-camera Grid"){:.rounded}
+![Image](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/home-security-ai\cctv-grid.jpg "Agent DVR interface with camera feeds on 5-camera Grid"){:.rounded}
 
 In the end, the Pi can run the 5 feeds, but that’s it. I even tried 6, but it would start to drop frames or streams. But I am ok with only 5 feeds, and if I ever want more, I can just use a Pi 4 or 5.
 
