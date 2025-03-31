@@ -37,7 +37,7 @@ var render = function () {
 
   if (hero.dead){
     ctx.fillStyle = "rgb(250, 0, 0)";
-    ctx.font = "48px Helvetica";
+    ctx.font = "48px Courier New";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
     ctx.fillText("Game Over", canvas.width / 2, canvas.height/ 2);

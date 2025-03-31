@@ -1,7 +1,7 @@
 // Handle keyboard controls
 var keysDown = {};
 
-var KEY_UP =38, KEY_DOWN =40, KEY_LEFT =37, KEY_RIGHT =39;
+var KEY_UP =38, KEY_DOWN =40, KEY_LEFT =37, KEY_RIGHT =39, KEY_R=82;
 
 addEventListener("keydown", function (e) {
 	keysDown[e.keyCode] = true;
@@ -23,7 +23,9 @@ addEventListener("click", function(evt) {
       var now = new Date().getTime();
       if (lastShot  +SHOT_DELAY < now  ) {
         lastShot = now;
-        playerShots.push({x:evt.pageX, y: hero.y});
+        console.log(evt.pageX)
+        console.log(hero.y)
+        playerShots.push({x:evt.pageX - 24, y: hero.y});
       }
     }
 }, false);

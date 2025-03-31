@@ -21,9 +21,9 @@ var loadEnemy = function(offset, json){
 loadJSON('enemies.json',
    function(data) {
 
-       loadEnemy({ x: 50, y: 50 }, data.four);
-       loadEnemy({ x: 180, y: 50 }, data.zero);
-       loadEnemy({ x: 300, y: 50 }, data.four);
+       loadEnemy({ x: 50, y: 10 }, data.four);
+       loadEnemy({ x: 180, y: 10 }, data.zero);
+       loadEnemy({ x: 300, y: 10 }, data.four);
      },
    function(xhr) { console.error(xhr); }
 );

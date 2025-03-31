@@ -5,10 +5,29 @@ show_title: false
 ---
 <div class="layout--404">
   <div class="sign">
-    <p>404 - The page you look for doesn't exist :(</p>
+    <p style="text-align: center;">404 - The page you look for doesn't exist :(</p>
+    <div class="grid-container">
+      <div class="grid grid--py-2">
+        <div class="cell cell--12" style="text-align: center;">
+          <iframe src="assets/space-invaders" id='404-game'
+          width="512" height="500" scrolling="no" frameborder="0"></iframe>
+        </div>
+        <div class="cell cell--12" style="text-align: center;">
+          <div class="button button--outline-warning button--pill my-2" id="reload-game"><i class="fas fa-space-shuttle"></i> Reload Game</div>
+        </div>
+      </div>
+    </div>
 
-    <iframe src="assets/space-invaders" id='404-game'
-        width="512" height="500" scrolling="no" frameborder="0"></iframe>
+    
+
+        
+
+        <script>
+          var element = document.getElementById("reload-game"); //grab the element
+          element.onclick = function() { //asign a function
+            document.getElementById("404-game").contentWindow.location.reload();
+          }
+      </script>
   </div>
 </div>
 
