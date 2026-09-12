@@ -34,3 +34,14 @@ The site SHALL build using a pinned, version-locked set of gem dependencies, so 
 #### Scenario: Dependency versions are pinned
 - **WHEN** the automated build installs gem dependencies
 - **THEN** it resolves them from a committed lockfile rather than re-resolving latest-compatible versions on every run
+
+### Requirement: No CI configuration targets an unrelated site config
+The repository SHALL NOT contain CI/CD configuration that builds or deploys a Jekyll config other than this blog's own (root `_config.yml`, or a config that is explicitly a variant of it).
+
+#### Scenario: No Travis configuration deploying the theme demo site
+- **WHEN** the repository's root is inspected for CI configuration
+- **THEN** no `.travis.yml` (or equivalent) exists that builds `docs/_config.yml` (the vendored theme's demo/documentation site) and deploys it to `gh-pages`
+
+#### Scenario: GitHub Pages remains the sole publishing path
+- **WHEN** a commit is pushed to `master`
+- **THEN** the only automated publish that occurs is GitHub Pages' own build of the repository's root `_config.yml` — no secondary CI system also attempts to build or deploy a different config
