@@ -1,6 +1,7 @@
 ---
 layout: article
 title: Improving Home Security using AI
+title_pt: Melhorando a Segurança Residencial usando IA
 key: improving-home-security-using-ai
 cover: /assets/images/improving-home-security-using-ai.jpeg 
 show_excerpt: false

@@ -22,6 +22,8 @@ header:
       fr-FR   : *FR
       fr-LU   : *FR
       tr      : &TR       Arşivdekiler
+      pt-BR   : &PT_BR    Arquivo
+      pt      : *PT_BR
       # @end locale config
     url: /archive.html
 
@@ -48,5 +50,7 @@ header:
       fr-FR   : *FR
       fr-LU   : *FR
       tr      : &TR       Hakkında
+      pt-BR   : &PT_BR    Sobre
+      pt      : *PT_BR
       # @end locale config
     url: /about.html

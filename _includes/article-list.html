@@ -13,6 +13,8 @@
   {%- assign _sorted_list = _sorted_list | reverse -%}
 {%- endif -%}
 
+{%- assign _page_lang = page.lang | default: 'en' -%}
+
 {%- if include.type == 'item' -%}
 <div class="article-list items items--divided">
 {%- elsif include.type == 'brief' -%}
@@ -26,7 +28,34 @@
 {%- endif -%}
 
   {%- for _article in _sorted_list -%}
-    {%- if _article.hide_from_index -%}{%- continue -%}{%- endif -%}
+    {%- assign _article_lang = _article.lang | default: 'en' -%}
+
+    {%- comment -%} Language scoping: English listings show only English-flagged
+    posts. Non-English listings (e.g. Portuguese) show every post - using a
+    translated title where available - except an English post whose
+    translation_key is already represented by a same-language sibling post,
+    which would otherwise duplicate that entry. {%- endcomment -%}
+    {%- assign _show_article = false -%}
+    {%- if _page_lang == 'en' -%}
+      {%- if _article_lang == 'en' -%}
+        {%- assign _show_article = true -%}
+      {%- endif -%}
+    {%- else -%}
+      {%- assign _show_article = true -%}
+      {%- if _article_lang == 'en' and _article.translation_key -%}
+        {%- for _candidate in site.posts -%}
+          {%- if _candidate.lang == _page_lang and _candidate.translation_key == _article.translation_key -%}
+            {%- assign _show_article = false -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- unless _show_article -%}{%- continue -%}{%- endunless -%}
+
+    {%- assign _article_title = _article.title -%}
+    {%- if _page_lang != 'en' and _article.title_pt -%}
+      {%- assign _article_title = _article.title_pt -%}
+    {%- endif -%}
 
     {%- include snippets/prepend-baseurl.html path=_article.url -%}
     {%- assign _article_url = __return -%}
@@ -56,7 +85,7 @@
           </div>
         {%- endif -%}
         <div class="item__content">
-          <header><a href="{{ _article_url }}"><h2 itemprop="headline" class="item__header">{{ _article.title }}</h2></a></header>
+          <header><a href="{{ _article_url }}"><h2 itemprop="headline" class="item__header">{{ _article_title }}</h2></a></header>
           <div class="item__description">
             {%- if _article.excerpt and include.show_excerpt -%}
               <div class="article__content" itemprop="description articleBody">
@@ -105,7 +134,7 @@
           {%- if include.show_info -%}
             <span class="item__meta">{{ _article.date | date: __return }}</span>
           {%- endif -%}
-          <a itemprop="headline" class="item__header" href="{{ _article_url }}">{{ _article.title }}</a></div>
+          <a itemprop="headline" class="item__header" href="{{ _article_url }}">{{ _article_title }}</a></div>
       </li>
 
     {%- elsif include.type == 'grid' -%}
@@ -117,7 +146,7 @@
                 <img class="image" src="{{ _article_cover }}" />
                 <div class="overlay overlay--bottom">
                   <header>
-                    <a href="{{ _article_url }}"><h2 class="card__header">{{ _article.title }}</h2></a>
+                    <a href="{{ _article_url }}"><h2 class="card__header">{{ _article_title }}</h2></a>
                   </header>
                 </div>
               </div>
@@ -133,7 +162,7 @@
             {%- endif -%}
               <div class="card__content">
                 <header>
-                  <a href="{{ _article_url }}"><h2 class="card__header">{{ _article.title }}</h2></a>
+                  <a href="{{ _article_url }}"><h2 class="card__header">{{ _article_title }}</h2></a>
                 </header>
               </div>
           </div>

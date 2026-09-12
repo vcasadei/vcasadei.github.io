@@ -1,6 +1,7 @@
 ---
 layout: article
 title: Scrum for Applied Research
+title_pt: Scrum para Pesquisa Aplicada
 permalink: /scrum4research.html
 key: scrum4research
 cover: /assets/images/scrum4research.jpeg

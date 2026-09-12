@@ -2,6 +2,7 @@
 layout: article
 title: Building a Personal Assistant with Local, Independent AI
 key: local-personal-assistant-hacktown-2026
+translation_key: local-personal-assistant-hacktown-2026
 cover: /assets/images/local-personal-assistant-hacktown-2026/local-personal-assistant-hacktown-2026.jpeg
 show_excerpt: false
 mode: immersive
@@ -19,8 +20,6 @@ article_header:
 Continuing the Discussion from the HackTown 2026 Talk.
 
 <!--more-->
-
-🇧🇷 *This article is also available in [Portuguese](/2026/09/11/assistente-pessoal-local-hacktown-2026.html).*
 
 This article aims to provide a candid account of my personal experience and practical efforts in creating a personal assistant pipeline powered by local, independent AI—something I have been developing and refining over the past few years for both my daily workflow and professional life.
 

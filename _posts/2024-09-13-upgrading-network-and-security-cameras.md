@@ -1,6 +1,7 @@
 ---
 layout: article
 title: Upgrading Network and Security Cameras on a Rural Property (on a budget)
+title_pt: Atualizando Rede e Câmeras de Segurança em uma Propriedade Rural (com orçamento reduzido)
 key: upgrading-network-and-security-cameras
 cover: /assets/images/upgrade-network.jpeg
 show_excerpt: false
