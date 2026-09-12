@@ -1,6 +1,7 @@
 ---
 layout: article
 title: Hello World!
+title_pt: Olá, Mundo!
 permalink: /page/hello-world.html
 key: hello-world
 cover: /assets/images/hello-world.jpeg

@@ -166,4 +166,29 @@ tr: &TR
   EMAIL_US                : "Bize email ile ulaşın."
   COPYRIGHT_DATES         : "2025"
 
+## => Brazilian Portuguese
+########################
+pt-BR: &PT_BR
+  SUBSCRIBE               : "Inscrever-se"
+  READMORE                : "Leia mais"
+  SEARCH                  : "Buscar"
+  CANCEL                  : "Cancelar"
+  VIEWS                   : "visualizações"
+  LAST_UPDATED            : "Última atualização"
+  PREVIOUS                : "ANTERIOR"
+  NEXT                    : "PRÓXIMO"
+  ARTICLE_DATE_FORMAT     : "%d de %b de %Y"
+  ARTICLE_LIST_DATE_FORMAT: "%d de %b"
+  STATISTICS              : "[POST_COUNT] publicações, [PAGE_COUNT] páginas."
+  LICENSE_ANNOUNCE        : "Este trabalho está licenciado sob a licença [LICENSE]."
+  POST_ON_GITHUB          : "Editar no Github"
+  FOLLOW_ME               : "Me siga no [NAME]."
+  FOLLOW_US               : "Siga-nos no [NAME]."
+  EMAIL_ME                : "Me envie um e-mail."
+  EMAIL_US                : "Envie-nos um e-mail."
+  COPYRIGHT_DATES         : "2025"
+
+pt:
+  <<: *PT_BR
+
 # @end locale config

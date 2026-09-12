@@ -4,7 +4,6 @@ window.TEXT_SEARCH_DATA={
     '{{ _collection.label }}':[
       {%- assign _printed = false -%}
       {%- for _article in _collection.docs -%}
-      {%- if _article.hide_from_index -%}{%- continue -%}{%- endif -%}
       {%- if _printed -%},{%- endif -%}
       {'title':{{ _article.title | jsonify }},
       {%- include snippets/prepend-baseurl.html path=_article.url -%}

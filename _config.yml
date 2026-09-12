@@ -133,7 +133,6 @@ comments:
     repo_id: R_kgDON0X3bQ
     category: Announcements
     category_id: DIC_kwDON0X3bc4DFc7k
-    mapping: pathname
     strict: 0
     reactions_enabled: 1
     emit_metadata: 0
@@ -216,6 +215,12 @@ defaults:
       show_edit_on_github: false
       show_subscribe: true
       pageview: true
+  - scope:
+      path: "_posts/pt"
+      type: posts
+    values:
+      lang: pt-BR
+      permalink: /pt/:year/:month/:day/:title.html
 
 
 ## => Plugins
