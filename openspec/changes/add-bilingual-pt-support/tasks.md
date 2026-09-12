@@ -37,7 +37,7 @@
 
 ## 7. Shared comments across paired posts
 
-- [x] 7.1 Change `_includes/comments-providers/custom.html`'s `data-mapping` from `{{ site.comments.giscus.mapping | default: 'pathname' }}` to `"specific"`, and add `data-term="{{ page.translation_key | default: page.key }}"`
+- [x] 7.1 Change `_includes/comments-providers/custom.html`'s `data-mapping` from `{{ site.comments.giscus.mapping | default: 'pathname' }}` to `"specific"`, and add a `data-term` — **finding**: a real build showed pages without front-matter `key` (404.html, archive/home layouts) rendered `data-term=""` under `page.translation_key | default: page.key`, an empty-term regression versus the old `pathname` mapping which needed no term. Fixed with a further `| default: page.url` fallback, so every page keeps a non-empty, unique term unless it deliberately shares one via `translation_key`
 - [x] 7.2 Update `_config.yml`'s `comments.giscus.mapping` value (or remove it, since it's no longer read) to avoid dead/misleading config — removed the now-unused `mapping: pathname` line; verified `_config.yml` still parses
 - [ ] 7.3 Verify via a test build that the English and Portuguese HackTown posts both compute the same `data-term`, and an unpaired post (e.g. `hello-world`) computes its own unique term unaffected by this change — deferred to task group 8's real build verification
 
