@@ -10,6 +10,6 @@
 
 ## 3. Ship it
 
-- [ ] 3.1 Commit and push; confirm the `build`/`deploy` GitHub Actions job succeeds
-- [ ] 3.2 Load the live About page and confirm it shows the final content, not the old placeholder
-- [ ] 3.3 Confirm `openspec validate finish-about-page --strict` passes
+- [x] 3.1 Commit and push; confirm the `build`/`deploy` GitHub Actions job succeeds — pushed directly to `master` (commit `9eb1207`, content-only change); both jobs passed
+- [x] 3.2 Load the live About page and confirm it shows the final content, not the old placeholder — confirmed at `https://vcasadei.com/about.html` and `https://vcasadei.com/pt/about.html`
+- [x] 3.3 Confirm `openspec validate finish-about-page --strict` passes
