@@ -12,7 +12,7 @@
 ## 3. Cut over the Pages deploy source
 
 - [ ] 3.1 Push the workflow to `master` (or merge via PR) and verify the `build` job succeeds in the Actions tab (build verified passing on PR #1 as of this run: https://github.com/vcasadei/vcasadei.github.io/actions/runs/34660223507 — not yet merged to master)
-- [ ] 3.2 In repo Settings → Pages, switch the source from "Deploy from a branch" to "GitHub Actions"; verify the setting is saved
+- [x] 3.2 In repo Settings → Pages, switch the source from "Deploy from a branch" to "GitHub Actions"; verify the setting is saved (`gh api repos/vcasadei/vcasadei.github.io/pages` now reports `"build_type": "workflow"`)
 - [ ] 3.3 Trigger a push to `master` (e.g. a trivial content change) and verify the `deploy` job runs and completes successfully
 - [ ] 3.4 Load the live site URL and confirm it reflects the latest pushed commit, with no console/build errors
 
