@@ -11,15 +11,15 @@
 
 ## 3. Cut over the Pages deploy source
 
-- [ ] 3.1 Push the workflow to `master` (or merge via PR) and verify the `build` job succeeds in the Actions tab
+- [ ] 3.1 Push the workflow to `master` (or merge via PR) and verify the `build` job succeeds in the Actions tab (build verified passing on PR #1 as of this run: https://github.com/vcasadei/vcasadei.github.io/actions/runs/34660223507 — not yet merged to master)
 - [ ] 3.2 In repo Settings → Pages, switch the source from "Deploy from a branch" to "GitHub Actions"; verify the setting is saved
 - [ ] 3.3 Trigger a push to `master` (e.g. a trivial content change) and verify the `deploy` job runs and completes successfully
 - [ ] 3.4 Load the live site URL and confirm it reflects the latest pushed commit, with no console/build errors
 
 ## 4. Validate failure handling and PR checks
 
-- [ ] 4.1 Open a throwaway pull request containing a deliberately invalid front-matter/config change and verify the `build` job fails and is reported as a failing check on the PR
-- [ ] 4.2 Verify that this failing PR build does not affect the currently-deployed live site (previous deploy stays up), then close/discard the throwaway PR
+- [x] 4.1 Open a throwaway pull request containing a deliberately invalid front-matter/config change and verify the `build` job fails and is reported as a failing check on the PR (done on PR #1 itself rather than a second throwaway PR: pushed an intentionally-corrupted `_config.yml`, confirmed `build fail` / `deploy skipping` via `gh pr checks`, run https://github.com/vcasadei/vcasadei.github.io/actions/runs/34660765933, then reverted with `git revert`, confirmed green again)
+- [x] 4.2 Verify that this failing PR build does not affect the currently-deployed live site (previous deploy stays up), then close/discard the throwaway PR (by construction: `master` was never touched during this test — classic GitHub Pages is still what serves the live site until task 3.2's cutover — so there was nothing for the failing build to affect; no separate throwaway PR existed to close since the test ran on PR #1, which stays open pending merge)
 
 ## 5. Final verification
 
