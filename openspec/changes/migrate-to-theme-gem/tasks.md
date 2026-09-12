@@ -19,6 +19,6 @@
 
 ## 4. Merge and confirm live
 
-- [ ] 4.1 Merge to `master`; confirm the `deploy` job succeeds
-- [ ] 4.2 Load the live site and spot-check the same pages verified in 3.4/3.5
-- [ ] 4.3 Confirm `openspec validate migrate-to-theme-gem --strict` passes
+- [x] 4.1 Merge to `master`; confirm the `deploy` job succeeds (run https://github.com/vcasadei/vcasadei.github.io/actions/runs/34718679776)
+- [x] 4.2 Load the live site and spot-check the same pages verified in 3.4/3.5 (homepage 200, license notice present on hello-world post, Space Invaders loads on 404, giscus embed present)
+- [x] 4.3 Confirm `openspec validate migrate-to-theme-gem --strict` passes
