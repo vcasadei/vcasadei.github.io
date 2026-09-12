@@ -11,10 +11,10 @@
 
 ## 3. Cut over the Pages deploy source
 
-- [ ] 3.1 Push the workflow to `master` (or merge via PR) and verify the `build` job succeeds in the Actions tab (build verified passing on PR #1 as of this run: https://github.com/vcasadei/vcasadei.github.io/actions/runs/34660223507 — not yet merged to master)
+- [x] 3.1 Push the workflow to `master` (or merge via PR) and verify the `build` job succeeds in the Actions tab (PR #1 squash-merged to `master`; `build` succeeded there too — https://github.com/vcasadei/vcasadei.github.io/actions/runs/34660998065)
 - [x] 3.2 In repo Settings → Pages, switch the source from "Deploy from a branch" to "GitHub Actions"; verify the setting is saved (`gh api repos/vcasadei/vcasadei.github.io/pages` now reports `"build_type": "workflow"`)
-- [ ] 3.3 Trigger a push to `master` (e.g. a trivial content change) and verify the `deploy` job runs and completes successfully
-- [ ] 3.4 Load the live site URL and confirm it reflects the latest pushed commit, with no console/build errors
+- [x] 3.3 Trigger a push to `master` (e.g. a trivial content change) and verify the `deploy` job runs and completes successfully (run https://github.com/vcasadei/vcasadei.github.io/actions/runs/34661092216 — build + deploy both succeeded, and no second legacy "pages build and deployment" run fired, confirming the workflow is now the sole publish path)
+- [x] 3.4 Load the live site URL and confirm it reflects the latest pushed commit, with no console/build errors (`https://vcasadei.com/` loads correctly; `/openspec/project.html` now correctly 404s, confirming the `openspec` exclude fix is live)
 
 ## 4. Validate failure handling and PR checks
 
