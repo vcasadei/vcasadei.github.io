@@ -6,7 +6,7 @@
 ## 2. Verify via a real build (branch + PR)
 
 - [x] 2.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes (PR #6, run https://github.com/vcasadei/vcasadei.github.io/actions/runs/34719608393)
-- [ ] 2.2 Download the built artifact and confirm both meta tags appear in the `<head>` of a sample page, and that `theme-color` no longer says `#ffffff`
+- [x] 2.2 Download the built artifact and confirm both meta tags appear in the `<head>` of a sample page, and that `theme-color` no longer says `#ffffff` (first pass found a duplicate `theme-color` tag — see the correction above; after fixing, confirmed exactly one `theme-color` tag with `#121212` plus `color-scheme: dark`)
 - [ ] 2.3 Merge to `master`; confirm the `deploy` job succeeds
 
 ## 3. Confirm the fix live
