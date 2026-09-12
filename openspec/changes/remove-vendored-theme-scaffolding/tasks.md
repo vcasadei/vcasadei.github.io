@@ -11,6 +11,6 @@
 
 ## 3. Verify nothing broke
 
-- [ ] 3.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check still passes
-- [ ] 3.2 Download the built artifact from that PR run (or check the live site after merge) and confirm the homepage, archive, and at least one post still render correctly
+- [x] 3.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check still passes (PR #4, run https://github.com/vcasadei/vcasadei.github.io/actions/runs/34708134331)
+- [x] 3.2 Download the built artifact from that PR run (or check the live site after merge) and confirm the homepage, archive, and at least one post still render correctly (confirmed: `index.html`, `archive.html` with 6 posts listed, `about.html`, `page/hello-world.html` all present and correct)
 - [ ] 3.3 Merge to `master` and confirm the `deploy` job succeeds and the live site is unaffected
