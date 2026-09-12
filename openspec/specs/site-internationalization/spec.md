@@ -1,8 +1,10 @@
+# site-internationalization Specification
+
 ## Purpose
 
 Defines the site's bilingual (English default, Portuguese/pt-BR secondary) structure: per-page language declaration, language-scoped listings, pairing an English post with its Portuguese counterpart (with fallback to English when no counterpart exists), a language switcher, and shared comments across a paired post's language versions.
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: Every page and post declares a language
 Every page and post SHALL have an effective language (`en` by default, `pt-BR` when explicitly set), used to select UI strings and to scope listings.
@@ -27,15 +29,15 @@ The site SHALL provide Portuguese-language versions of its structural pages (hom
 - **THEN** they see the corresponding page rendered in Portuguese
 
 ### Requirement: Listings are scoped to the current page's language
-A page listing posts (home, archive, tag search, pagination stats) SHALL only include posts whose effective language matches the listing page's own language.
+A page listing posts (home, archive, tag search, pagination stats) SHALL scope its included posts by the listing page's own language: an English listing includes only posts whose effective language is `en`; a Portuguese listing includes every post (per the English-fallback requirement below), except it SHALL omit an English post whose `translation_key` is already represented by a Portuguese sibling post in that same listing, to avoid listing the same content twice.
 
 #### Scenario: English listings show only English-flagged posts
 - **WHEN** the English archive or home page is viewed
 - **THEN** it lists only posts with effective language `en`
 
-#### Scenario: Portuguese listings show only Portuguese-flagged posts
+#### Scenario: Portuguese listings show every post, deduplicating paired posts
 - **WHEN** `/pt/archive.html` or `/pt/` is viewed
-- **THEN** it lists only posts with effective language `pt-BR`
+- **THEN** it lists every post (English posts using their English-fallback title/link per the requirement below), but for a post pair sharing a `translation_key` it shows only the Portuguese member, not both
 
 ### Requirement: An English post can be paired with a Portuguese counterpart
 The system SHALL support an optional `translation_key` front-matter field; when an English post and a Portuguese post both declare the same `translation_key` value, they SHALL be treated as the same content in two languages.
