@@ -20,9 +20,9 @@ Notably, the repository *is* a fork of the **[jekyll-TeXt-theme](https://github.
 
 ## Deployment
 
-- Publishing runs through a GitHub Actions workflow (`.github/workflows/deploy.yml`): every push to `master` builds the Jekyll site (via `actions/jekyll-build-pages`) and deploys the result to GitHub Pages (via `actions/deploy-pages`); pull requests get the same build step as a check, without deploying. `Gemfile.lock` is committed so this build resolves the same gem versions every run. (Cutover note: the repo's Settings → Pages source must be switched from "Deploy from a branch" to "GitHub Actions" for this workflow to actually control the live deploy — see the `add-github-actions-deploy` change for status.)
+- Publishing runs through a GitHub Actions workflow (`.github/workflows/deploy.yml`): every push to `master` builds the Jekyll site (via `actions/jekyll-build-pages`) and deploys the result to GitHub Pages (via `actions/deploy-pages`); pull requests get the same build step as a check, without deploying. `Gemfile.lock` is committed so this build resolves the same gem versions every run. The repo's Settings → Pages source is set to "GitHub Actions" (cut over from the old "Deploy from a branch" mode), so this workflow is the sole publish path.
 - `CNAME` points the custom domain `vcasadei.com` at GitHub Pages.
-- A legacy `.travis.yml` exists that builds `docs/_config.yml` (the *theme's demo/docs site*) and deploys it to a `gh-pages` branch. This is inherited from the upstream theme project and is **not** how the actual blog is published — it's vestigial and targets the wrong config for this site's own content. (Slated for removal by the separate `security-hygiene-cleanup` change.)
+- The legacy `.travis.yml` (which built the *theme's demo/docs site*, `docs/_config.yml`, and deployed it to a `gh-pages` branch — never how this blog was actually published) has been removed.
 - `Dockerfile.dev` and `docker/docker-compose.*.yml` provide containerized dev/build/serve environments (Ruby 2.7 + Jekyll + optional Nginx). These are optional local-preview tooling only — publishing no longer depends on a local Docker build.
 
 ## Content model
@@ -64,8 +64,7 @@ The site currently uses the **stock TeXt theme look**, unmodified: `_sass/custom
 
 ## Things worth knowing / current-state notes
 
-- **Gitalk client secret is committed in plaintext** in `_config.yml` (`comments.gitalk.clientSecret`). This is a known pattern for classic Gitalk setups (it's a client-side-only flow), but it's still a real GitHub OAuth App secret sitting in a public repo — worth being aware of if rotating credentials or auditing exposure.
+- Comments now run on **giscus** (GitHub Discussions-backed, via the theme's `comments.provider: custom` hook). The previous Gitalk setup committed a live OAuth App client secret in plaintext in `_config.yml`; that secret has been removed from config and the backing GitHub OAuth App revoked (see the `security-hygiene-cleanup` change). `_includes/comments-providers/gitalk.html` still exists as inert, unused theme scaffolding (same as the unused `disqus.html`/`valine.html` provider templates) — harmless since nothing includes it while `provider: custom` is active.
 - **`docs/`, `test/`, `screenshots/`, `tools/`, `README.md`/`README-zh.md`, `CHANGELOG.md`, `HOW_TO_RELEASE.md`, `jekyll-text-theme.gemspec`** are all upstream theme project artifacts (demo site, theme test fixtures, theme release tooling/docs) rather than content about vcasadei.com. `_config.yml`'s `exclude:` list keeps most of these out of the built site, but they still add significant repo weight/noise when navigating or reasoning about "the blog" vs. "the theme".
 - **`about.md`** has no real content yet ("Soon").
-- No CI/CD workflow currently validates builds before GitHub Pages publishes (`.github/` only has issue templates; `.travis.yml` is stale/misconfigured for this use case).
 - `openspec/` in this repo is the OpenSpec spec-driven workflow scaffold (this file included) — unrelated to the blog's runtime.
