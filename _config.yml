@@ -118,21 +118,28 @@ sharing:
 ## => Comments
 ##############################
 comments:
-  provider: gitalk # false (default), "disqus", "gitalk", "valine", "custom"
+  provider: custom # false (default), "disqus", "gitalk", "valine", "custom"
 
   ## Disqus
   disqus:
     shortname: # the Disqus shortname for the site
 
-  ## Gitalk
-  # please refer to https://github.com/gitalk/gitalk for more info.
-  gitalk:
-    clientID    : Ov23lin6IyLAkbPd4m3v
-    clientSecret: 171b48e6cc30515ce167fc214e3b9de266c78c97
-    repository  : comments
-    owner       : vcasadei
-    admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
-      - vcasadei
+  ## Giscus
+  # GitHub Discussions-backed comments, rendered via the `custom` provider hook
+  # below (_includes/comments-providers/custom.html). No secret required.
+  # please refer to https://giscus.app for more info.
+  giscus:
+    repo: vcasadei/vcasadei.github.io
+    repo_id: R_kgDON0X3bQ
+    category: Announcements
+    category_id: DIC_kwDON0X3bc4DFc7k
+    mapping: pathname
+    strict: 0
+    reactions_enabled: 1
+    emit_metadata: 0
+    input_position: bottom
+    theme: dark
+    lang: en
 
   ## Valine
   # please refer to https://valine.js.org/en/ for more info.
