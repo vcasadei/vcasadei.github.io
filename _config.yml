@@ -197,6 +197,7 @@ exclude:
   - package.json
   - /docs
   - /node_modules
+  - /openspec
   - /screenshots
   - /test
   - /vendor
