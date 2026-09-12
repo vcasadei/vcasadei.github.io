@@ -2,7 +2,7 @@
 layout: article
 title: Building a Personal Assistant with Local, Independent AI
 key: local-personal-assistant-hacktown-2026
-cover: /assets/images/local-personal-assistant-hacktown-2026/hacktown-2026-logo-10anos-branco.png
+cover: /assets/images/local-personal-assistant-hacktown-2026/local-personal-assistant-hacktown-2026.jpeg
 show_excerpt: false
 mode: immersive
 header:
@@ -13,7 +13,7 @@ article_header:
   background_color: '#203028'
   background_image:
     gradient: 'linear-gradient(135deg, rgba(97, 4, 109, 0.69), rgba(98, 3, 3, 0.64))'
-    src: /assets/images/local-personal-assistant-hacktown-2026/hacktown-2026-logo-10anos-branco.png
+    src: /assets/images/local-personal-assistant-hacktown-2026/local-personal-assistant-hacktown-2026.jpeg
 ---
 
 Continuing the Discussion from the HackTown 2026 Talk.
