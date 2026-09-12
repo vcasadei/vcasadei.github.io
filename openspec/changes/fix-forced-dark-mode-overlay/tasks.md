@@ -1,7 +1,7 @@
 ## 1. Add the color-scheme declaration
 
-- [ ] 1.1 Create `_includes/head/custom.html` with `<meta name="color-scheme" content="dark">` and `<meta name="theme-color" content="#121212">` (matching the dark skin's actual background color)
-- [ ] 1.2 Verify the file is picked up as a local override (not shadowed by the remote theme's own empty `head/custom.html`)
+- [x] 1.1 Create `_includes/head/custom.html` with `<meta name="color-scheme" content="dark">` and `<meta name="theme-color" content="#121212">` (matching the dark skin's actual background color)
+- [x] 1.2 Verify the file is picked up as a local override (not shadowed by the remote theme's own empty `head/custom.html`) — relies on the same local-file-takes-precedence-over-remote_theme rule already proven during the `migrate-to-theme-gem` change; actual proof (the meta tags appearing in the built HTML) is confirmed in task 2.2
 
 ## 2. Verify via a real build (branch + PR)
 
