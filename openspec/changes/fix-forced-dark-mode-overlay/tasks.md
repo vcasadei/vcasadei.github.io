@@ -1,0 +1,16 @@
+## 1. Add the color-scheme declaration
+
+- [ ] 1.1 Create `_includes/head/custom.html` with `<meta name="color-scheme" content="dark">` and `<meta name="theme-color" content="#121212">` (matching the dark skin's actual background color)
+- [ ] 1.2 Verify the file is picked up as a local override (not shadowed by the remote theme's own empty `head/custom.html`)
+
+## 2. Verify via a real build (branch + PR)
+
+- [ ] 2.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes
+- [ ] 2.2 Download the built artifact and confirm both meta tags appear in the `<head>` of a sample page, and that `theme-color` no longer says `#ffffff`
+- [ ] 2.3 Merge to `master`; confirm the `deploy` job succeeds
+
+## 3. Confirm the fix live
+
+- [ ] 3.1 Load the live site and confirm both meta tags are present in the page source
+- [ ] 3.2 If possible, verify on a browser/device with a force-dark or "dark mode for web contents" setting that the page no longer shows the over-darkened rendering (best-effort — depends on having access to an affected browser to re-test)
+- [ ] 3.3 Confirm `openspec validate fix-forced-dark-mode-overlay --strict` passes
