@@ -18,7 +18,7 @@
 - [x] 4.1 Remove the `<style id="style1">@media (prefers-color-scheme: light) {...} @media (prefers-color-scheme: dark) {...}</style>` block from `_includes/svg/logo.svg`; confirm the rest of the SVG markup is untouched (confirmed: zero remaining matches for `prefers-color-scheme`/`brightness(` in the file, all path/shape markup unchanged)
 - [x] 4.2 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes (PR #7, run https://github.com/vcasadei/vcasadei.github.io/actions/runs/34720395687)
 - [x] 4.3 Download the built artifact and grep the full site output for `prefers-color-scheme` and `brightness(` — confirm zero matches anywhere (previously found in the inlined logo SVG on every page) — confirmed zero matches in any actual page HTML. Two other files with the same broken pattern (`assets/favicon.svg`, `assets/images/logo/logo.svg`) still exist but are confirmed unreferenced by any page (dead static files, not inlined/linked anywhere) — flagged separately below, not part of this bug's fix
-- [ ] 4.4 Merge to `master`; confirm the `deploy` job succeeds
-- [ ] 4.5 Confirm live: grep the live homepage HTML for `prefers-color-scheme`/`brightness(` — zero matches
+- [x] 4.4 Merge to `master`; confirm the `deploy` job succeeds (run https://github.com/vcasadei/vcasadei.github.io/actions/runs/34720481936)
+- [x] 4.5 Confirm live: grep the live homepage HTML for `prefers-color-scheme`/`brightness(` — zero matches (confirmed)
 - [ ] 4.6 Ask the user to re-verify visually on the setup that reproduced this (macOS Chrome with OS appearance set to Light, and/or the WhatsApp in-app browser on Android) — this is the real confirmation the bug is gone, since grep only proves the CSS is absent, not that rendering looks correct to a human
-- [ ] 4.7 Confirm `openspec validate fix-forced-dark-mode-overlay --strict` passes
+- [x] 4.7 Confirm `openspec validate fix-forced-dark-mode-overlay --strict` passes
