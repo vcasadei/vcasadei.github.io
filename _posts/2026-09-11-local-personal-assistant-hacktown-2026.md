@@ -20,6 +20,8 @@ Continuing the Discussion from the HackTown 2026 Talk.
 
 <!--more-->
 
+🇧🇷 *This article is also available in [Portuguese](/2026/09/11/assistente-pessoal-local-hacktown-2026.html).*
+
 This article aims to provide a candid account of my personal experience and practical efforts in creating a personal assistant pipeline powered by local, independent AI—something I have been developing and refining over the past few years for both my daily workflow and professional life.
 
 ![Image](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/local-personal-assistant-hacktown-2026/hacktown-2026-logo-10anos-branco.png "Hacktown 10 years"){:.rounded}
