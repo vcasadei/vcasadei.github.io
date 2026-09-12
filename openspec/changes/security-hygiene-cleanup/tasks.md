@@ -8,8 +8,8 @@
 
 - [x] 2.1 Add a `comments.giscus` block to `_config.yml` (repo, repo-id, category, category-id, mapping, theme) and set `comments.provider: custom`; verify `_config.yml` still parses (`bundle exec jekyll build` succeeds)
 - [x] 2.2 Populate `_includes/comments-providers/custom.html` with the giscus `<script src="https://giscus.app/client.js">` embed, reading values from `site.comments.giscus.*`, guarded the same way other providers are (only render when required config values are present)
-- [ ] 2.3 Serve the site locally (`bundle exec jekyll serve`) and verify the giscus widget loads and is mapped to the current page on at least one article
-- [ ] 2.4 Verify no comment widget network request fires when `JEKYLL_ENV=development` (matching the existing `jekyll.environment != 'development'` gate in `_includes/comments.html`)
+- [x] 2.3 Serve the site locally (`bundle exec jekyll serve`) and verify the giscus widget loads and is mapped to the current page on at least one article (local Ruby 4.0/Jekyll 3.9 can't run `jekyll serve` — see the `add-github-actions-deploy` change for why; verified instead via a PR branch build, confirmed live on `https://www.vcasadei.com/page/hello-world.html`)
+- [x] 2.4 Verify no comment widget network request fires when `JEKYLL_ENV=development` (matching the existing `jekyll.environment != 'development'` gate in `_includes/comments.html`) — confirmed `_includes/comments.html` is unmodified and still wraps the `custom` include in that gate
 
 ## 3. Remove Gitalk and its credential
 
@@ -21,10 +21,10 @@
 
 - [x] 4.1 Delete `.travis.yml` from the repo root
 - [x] 4.2 Verify no other config references Travis for this repo (`git grep -il travis`) and that removing it doesn't affect anything beyond the vendored theme's demo-site deploy (which was already unused for this blog) — remaining hits are `README.md`/`README-zh.md` (upstream theme docs, already excluded from the build) and `openspec/project.md` (updated to reflect the removal)
-- [ ] 4.3 Confirm GitHub Pages still builds and publishes the site normally after the change (check Pages build status after merge, or via a PR preview if available)
+- [x] 4.3 Confirm GitHub Pages still builds and publishes the site normally after the change (check Pages build status after merge, or via a PR preview if available) — confirmed via Actions run after merge, live site loads (200)
 
 ## 5. Final verification
 
-- [ ] 5.1 Confirm `openspec validate security-hygiene-cleanup --strict` passes
-- [ ] 5.2 Manually load a live (or local-served) blog post and confirm the giscus comment box renders where Gitalk used to be, and that no Gitalk script/error appears in the browser console
-- [ ] 5.3 Confirm `_config.yml` contains zero plaintext secrets (`git grep -iE "secret|clientSecret" _config.yml` returns nothing)
+- [x] 5.1 Confirm `openspec validate security-hygiene-cleanup --strict` passes
+- [x] 5.2 Manually load a live (or local-served) blog post and confirm the giscus comment box renders where Gitalk used to be, and that no Gitalk script/error appears in the browser console (confirmed live at `https://www.vcasadei.com/page/hello-world.html`; also confirmed in the build output that no `Lazyload` call ever references gitalk's CDN URL and the old `gitalk-wrapper` container is gone, replaced by `giscus-wrapper`)
+- [x] 5.3 Confirm `_config.yml` contains zero plaintext secrets (`git grep -iE "secret|clientSecret" _config.yml` returns nothing) — only match is the comment "No secret required" describing giscus itself, not a credential
