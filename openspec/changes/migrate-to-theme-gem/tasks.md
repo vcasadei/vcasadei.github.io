@@ -1,13 +1,13 @@
 ## 1. Switch the theme consumption mechanism
 
-- [ ] 1.1 Add `remote_theme: kitian616/jekyll-TeXt-theme@v2.2.6` to `_config.yml` and add `jekyll-remote-theme` to the `plugins:` list
-- [ ] 1.2 Remove the `gem "jekyll-text-theme"` line from `Gemfile` and regenerate `Gemfile.lock` (`bundle install`); verify `jekyll-remote-theme` is present in the resolved lockfile
+- [x] 1.1 Add `remote_theme: kitian616/jekyll-TeXt-theme@v2.2.6` to `_config.yml` and add `jekyll-remote-theme` to the `plugins:` list
+- [x] 1.2 Remove the `gem "jekyll-text-theme"` line from `Gemfile` and regenerate `Gemfile.lock` (`bundle install`); verify `jekyll-remote-theme` is present in the resolved lockfile
 
 ## 2. Remove confirmed-unmodified vendored theme files
 
-- [ ] 2.1 Delete every file under `_layouts/`, `_includes/`, `_sass/`, `_data/`, `assets/` with zero diff against the installed `jekyll-text-theme` 2.2.6 gem, per the design.md audit
-- [ ] 2.2 Delete `_layouts/page.html` and `assets/css/main.scss` (confirmed non-functional-only diffs: self-closing-tag style, one inactive commented-out `@import`)
-- [ ] 2.3 Verify every file listed in design.md's "genuine customizations to keep" list is still present and untouched: `_layouts/404.html`, `_layouts/home.html`, `_includes/footer.html`, `_includes/article-list.html`, `_includes/tags.html`, `_includes/paginator.html`, `_includes/search-providers/default/search-data.js`, `_includes/comments-providers/custom.html`, `_includes/svg/logo.svg`, `_sass/common/components/_item.scss`, `_data/variables.yml`, `_data/locale.yml`, `_data/navigation.yml`, `_layouts/archive.html`, and the branding assets (`assets/images/logo/logo.svg`, `assets/favicon*`, `assets/apple-touch-icon.png`, `assets/mstile-70x70.png`, `assets/site.webmanifest`)
+- [x] 2.1 Delete every file under `_layouts/`, `_includes/`, `_sass/`, `_data/`, `assets/` with zero diff against the installed `jekyll-text-theme` 2.2.6 gem, per the design.md audit (187 files under `_layouts/`/`_includes/`/`_sass/`/`_data/`, plus `assets/search.js` and `assets/browserconfig.xml` found identical during implementation — not in the original design.md list, but confirmed byte-identical via `cmp`, so included)
+- [x] 2.2 Delete `_layouts/page.html` and `assets/css/main.scss` (confirmed non-functional-only diffs: self-closing-tag style, one inactive commented-out `@import`)
+- [x] 2.3 Verify every file listed in design.md's "genuine customizations to keep" list is still present and untouched: `_layouts/404.html`, `_layouts/home.html`, `_includes/footer.html`, `_includes/article-list.html`, `_includes/tags.html`, `_includes/paginator.html`, `_includes/search-providers/default/search-data.js`, `_includes/comments-providers/custom.html`, `_includes/svg/logo.svg`, `_sass/common/components/_item.scss`, `_data/variables.yml`, `_data/locale.yml`, `_data/navigation.yml`, `_layouts/archive.html`, and the branding assets (`assets/images/logo/logo.svg`, `assets/favicon*`, `assets/apple-touch-icon.png`, `assets/mstile-70x70.png`, `assets/site.webmanifest`) — all 19 confirmed present
 
 ## 3. Verify via a real build (branch + PR, not local build)
 
