@@ -14,7 +14,7 @@
 ## 3. Remove Gitalk and its credential
 
 - [x] 3.1 Remove the `comments.gitalk` block (including `clientID`/`clientSecret`) from `_config.yml`; verify `git grep -i clientSecret` and `git grep gitalk _config.yml` return nothing
-- [ ] 3.2 Revoke/delete the GitHub OAuth App backing Gitalk (`clientID: Ov23lin6IyLAkbPd4m3v`) in GitHub Settings → Developer settings → OAuth Apps; verify the app no longer appears in the account's OAuth Apps list
+- [x] 3.2 Revoke/delete the GitHub OAuth App backing Gitalk (`clientID: Ov23lin6IyLAkbPd4m3v`) in GitHub Settings → Developer settings → OAuth Apps; verify the app no longer appears in the account's OAuth Apps list (done by the user)
 - [x] 3.3 Confirm no other file in the repo references `site.comments.gitalk` (`git grep -n "comments.gitalk"`) and remove/update any that do (e.g. leftover references in docs, if any apply to this site rather than the vendored theme docs) — only hits are `_includes/comments-providers/gitalk.html` (inert vendored theme scaffolding, same category as unused `disqus.html`/`valine.html`, left in place) and a stale mention in `openspec/project.md`, now updated to reflect the fix
 
 ## 4. Remove the stale Travis pipeline
