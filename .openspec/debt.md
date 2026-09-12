@@ -17,6 +17,15 @@ Tracks known debt and improvements that aren't currently scheduled as OpenSpec c
 
 - [x] ~~Add a GitHub Actions build-check workflow that runs `bundle exec jekyll build` on PRs~~ — done by the `add-github-actions-deploy` change: every push/PR now builds via Actions, and `master` pushes auto-deploy to GitHub Pages.
 
+## Security
+
+- [ ] **12 open Dependabot alerts** on transitive gem dependencies (surfaced once `Gemfile.lock` was committed by `add-github-actions-deploy` — Dependabot couldn't do version-specific scanning without a lockfile before):
+  - **`activesupport`** (6 alerts, 5 medium + 1 low): possible DoS in number helpers, XSS in `SafeBuffer#%`/`#bytesplice`, ReDoS in `number_to_delimited`/`underscore`, possible disclosure of locally-encrypted files
+  - **`commonmarker`** (5 alerts, 1 high + 4 medium): quadratic-complexity/DoS bugs in Markdown parsing, unbounded resource exhaustion in the autolink extension, integer overflow in table parsing leading to heap memory corruption (the high-severity one)
+  - **`rake`** (1 alert, medium): OS command injection
+  - All three are transitive (pulled in via `github-pages`/`jekyll-text-theme`, not hand-picked), and all are build-time-only tooling — none of them run in a visitor's browser or serve live requests, so real-world exploitability for a single-author personal blog is low (e.g. the Rake command-injection and `commonmarker` parsing bugs need attacker-controlled input at build time, which for this repo just means the posts you write yourself). Still worth patching where the dependency tree allows it, or explicitly accepting/dismissing what can't be bumped without pulling `github-pages` off its Pages-compatible pin.
+  - See https://github.com/vcasadei/vcasadei.github.io/security/dependabot for live status.
+
 ## Nice-to-have / polish
 
 - [ ] **Lean into the Space Invaders 404 game** — it's already the one genuinely custom feature on the site. Ideas: persist a high score via `localStorage`, add a link back home in a game-over state.
