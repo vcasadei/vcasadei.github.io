@@ -26,6 +26,7 @@
 {%- endif -%}
 
   {%- for _article in _sorted_list -%}
+    {%- if _article.hide_from_index -%}{%- continue -%}{%- endif -%}
 
     {%- include snippets/prepend-baseurl.html path=_article.url -%}
     {%- assign _article_url = __return -%}

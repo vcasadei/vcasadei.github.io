@@ -3,6 +3,8 @@ layout: article
 title: Criando um Assistente Pessoal com IA Local e Independente
 key: assistente-pessoal-local-hacktown-2026
 cover: /assets/images/local-personal-assistant-hacktown-2026/local-personal-assistant-hacktown-2026.jpeg
+hide_from_index: true
+sitemap: false
 show_excerpt: false
 mode: immersive
 header:
