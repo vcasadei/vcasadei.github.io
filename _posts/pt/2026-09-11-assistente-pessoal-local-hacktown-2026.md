@@ -2,9 +2,8 @@
 layout: article
 title: Criando um Assistente Pessoal com IA Local e Independente
 key: assistente-pessoal-local-hacktown-2026
+translation_key: local-personal-assistant-hacktown-2026
 cover: /assets/images/local-personal-assistant-hacktown-2026/local-personal-assistant-hacktown-2026.jpeg
-hide_from_index: true
-sitemap: false
 show_excerpt: false
 mode: immersive
 header:
@@ -21,8 +20,6 @@ article_header:
 Continuando o assunto da palestra do HackTown 2026.
 
 <!--more-->
-
-🇺🇸 *Este artigo também está disponível em [inglês](/2026/09/11/local-personal-assistant-hacktown-2026.html).*
 
 Este artigo busca trazer um relato sincero sobre a minha experiência pessoal e sobre os meus esforços práticos para a criação de uma pipeline de assistente pessoal com IA local e independente — algo que venho desenvolvendo e refinando nos últimos anos, tanto para o meu fluxo de trabalho cotidiano quanto para a minha vida profissional.
 

@@ -1,6 +1,7 @@
 ---
 layout: article
 title: SCRUM4Research - Lessons Learned and Tips on Sprint Planning
+title_pt: SCRUM4Research - Lições Aprendidas e Dicas sobre Planejamento de Sprint
 key: scrum4research-lessons-learned
 cover: /assets/images/scrum4research-lessons-learned/man-white-board.jpeg
 show_excerpt: false

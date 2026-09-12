@@ -2,6 +2,29 @@
 {%- assign _tag_min_size = 1 -%}
 {%- assign _tag_cur_size = 1 -%}
 {%- assign _tags = site.tags | sort -%}
+
+{%- assign _page_lang = page.lang | default: 'en' -%}
+{%- assign _visible_post_count = 0 -%}
+{%- for _post in site.posts -%}
+  {%- assign _post_lang = _post.lang | default: 'en' -%}
+  {%- if _page_lang == 'en' -%}
+    {%- if _post_lang == 'en' -%}
+      {%- assign _visible_post_count = _visible_post_count | plus: 1 -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign _count_it = true -%}
+    {%- if _post_lang == 'en' and _post.translation_key -%}
+      {%- for _candidate in site.posts -%}
+        {%- if _candidate.lang == _page_lang and _candidate.translation_key == _post.translation_key -%}
+          {%- assign _count_it = false -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- if _count_it -%}
+      {%- assign _visible_post_count = _visible_post_count | plus: 1 -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
 {%- for _tag in _tags -%}
   {%- assign _tag_cur_size = _tag[1].size -%}
   {%- if _tag_cur_size > _tag_max_size -%}
@@ -19,7 +42,7 @@
   <ul class="menu">
     <li>
       <button type="button" class="button button--secondary button--pill tag-button tag-button--all" data-encode="">
-        Show All<div class="tag-button__count">{{ site.posts | where_exp: 'post', 'post.hide_from_index != true' | size }}</div>
+        Show All<div class="tag-button__count">{{ _visible_post_count }}</div>
       </button>
     </li>
     {%- for _tag in _tags -%}
