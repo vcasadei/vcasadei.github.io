@@ -224,3 +224,5 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
+text_skin: dark
+  bad_indent: [unterminated
