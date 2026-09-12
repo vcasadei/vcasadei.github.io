@@ -15,7 +15,7 @@
 
 ## 4. Fix the actual root cause: strip the stray style block from the logo SVG
 
-- [ ] 4.1 Remove the `<style id="style1">@media (prefers-color-scheme: light) {...} @media (prefers-color-scheme: dark) {...}</style>` block from `_includes/svg/logo.svg`; confirm the rest of the SVG markup is untouched
+- [x] 4.1 Remove the `<style id="style1">@media (prefers-color-scheme: light) {...} @media (prefers-color-scheme: dark) {...}</style>` block from `_includes/svg/logo.svg`; confirm the rest of the SVG markup is untouched (confirmed: zero remaining matches for `prefers-color-scheme`/`brightness(` in the file, all path/shape markup unchanged)
 - [ ] 4.2 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes
 - [ ] 4.3 Download the built artifact and grep the full site output for `prefers-color-scheme` and `brightness(` — confirm zero matches anywhere (previously found in the inlined logo SVG on every page)
 - [ ] 4.4 Merge to `master`; confirm the `deploy` job succeeds
