@@ -7,10 +7,10 @@
 
 - [x] 2.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes (PR #6, run https://github.com/vcasadei/vcasadei.github.io/actions/runs/34719608393)
 - [x] 2.2 Download the built artifact and confirm both meta tags appear in the `<head>` of a sample page, and that `theme-color` no longer says `#ffffff` (first pass found a duplicate `theme-color` tag — see the correction above; after fixing, confirmed exactly one `theme-color` tag with `#121212` plus `color-scheme: dark`)
-- [ ] 2.3 Merge to `master`; confirm the `deploy` job succeeds
+- [x] 2.3 Merge to `master`; confirm the `deploy` job succeeds
 
 ## 3. Confirm the fix live
 
-- [ ] 3.1 Load the live site and confirm both meta tags are present in the page source
+- [x] 3.1 Load the live site and confirm both meta tags are present in the page source (confirmed on `https://www.vcasadei.com/page/hello-world.html`: `theme-color` = `#121212`, `color-scheme` = `dark`)
 - [ ] 3.2 If possible, verify on a browser/device with a force-dark or "dark mode for web contents" setting that the page no longer shows the over-darkened rendering (best-effort — depends on having access to an affected browser to re-test)
-- [ ] 3.3 Confirm `openspec validate fix-forced-dark-mode-overlay --strict` passes
+- [x] 3.3 Confirm `openspec validate fix-forced-dark-mode-overlay --strict` passes
