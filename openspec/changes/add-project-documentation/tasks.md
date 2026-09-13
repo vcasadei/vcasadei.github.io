@@ -28,6 +28,6 @@
 
 ## 6. Confirm live
 
-- [ ] 6.1 Load the repository's GitHub page and confirm the README renders with an accurate, current build-status badge
-- [ ] 6.2 Confirm none of `README.md`/`docs/*.md` are reachable on the live site (e.g. `https://vcasadei.com/README.md` 404s)
-- [ ] 6.3 Confirm `openspec validate add-project-documentation --strict` passes
+- [x] 6.1 Load the repository's GitHub page and confirm the README renders with an accurate, current build-status badge — confirmed via the GitHub API (`repos/.../readme` resolves to `README.md`)
+- [x] 6.2 Confirm none of `README.md`/`docs/*.md` are reachable on the live site (e.g. `https://vcasadei.com/README.md` 404s) — confirmed: both `README.md` and `docs/architecture.md` return 404 live
+- [x] 6.3 Confirm `openspec validate add-project-documentation --strict` passes
