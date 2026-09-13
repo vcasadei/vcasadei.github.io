@@ -117,10 +117,8 @@
     .language-switcher { position: relative; }
     .language-switcher .js-lang-toggle { font-size: 1.1rem; }
     .language-switcher__menu {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      z-index: 100;
+      position: fixed;
+      z-index: 1000;
       margin: 0.25rem 0 0;
       padding: 0.25rem 0;
       list-style: none;
@@ -144,24 +142,48 @@
   </style>
   <script>
     (function () {
+      function closeMenu(menu, toggle) {
+        menu.hidden = true;
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+      function positionMenu(menu, toggle) {
+        var rect = toggle.getBoundingClientRect();
+        menu.style.top = (rect.bottom + 6) + 'px';
+        menu.style.right = (window.innerWidth - rect.right) + 'px';
+      }
       var toggles = document.querySelectorAll('.js-lang-toggle');
       toggles.forEach(function (toggle) {
         var menu = toggle.nextElementSibling;
         toggle.addEventListener('click', function (e) {
           e.stopPropagation();
           var isOpen = !menu.hidden;
-          menu.hidden = isOpen;
-          toggle.setAttribute('aria-expanded', String(!isOpen));
+          if (isOpen) {
+            closeMenu(menu, toggle);
+          } else {
+            positionMenu(menu, toggle);
+            menu.hidden = false;
+            toggle.setAttribute('aria-expanded', 'true');
+          }
         });
       });
       document.addEventListener('click', function (e) {
         document.querySelectorAll('.js-lang-menu').forEach(function (menu) {
-          if (!menu.hidden && !menu.contains(e.target) && !menu.previousElementSibling.contains(e.target)) {
-            menu.hidden = true;
-            menu.previousElementSibling.setAttribute('aria-expanded', 'false');
+          var toggle = menu.previousElementSibling;
+          if (!menu.hidden && !menu.contains(e.target) && !toggle.contains(e.target)) {
+            closeMenu(menu, toggle);
           }
         });
       });
+      // A fixed-position menu doesn't track the page while scrolling
+      // (the header isn't sticky), so just close it on scroll rather
+      // than let it visually detach from its toggle button.
+      window.addEventListener('scroll', function () {
+        document.querySelectorAll('.js-lang-menu').forEach(function (menu) {
+          if (!menu.hidden) {
+            closeMenu(menu, menu.previousElementSibling);
+          }
+        });
+      }, { passive: true });
       document.querySelectorAll('.js-lang-confirm').forEach(function (link) {
         link.addEventListener('click', function (e) {
           var message = link.getAttribute('data-confirm');
