@@ -3,7 +3,12 @@
 {%- comment -%} Auto-redirect a returning visitor to their saved language
 preference, computed the same way as the header language switcher (see
 snippets/language-switch-context.html). Runs early in <head>, before body
-paint, to minimize a flash of wrong-language content. {%- endcomment -%}
+paint, to minimize a flash of wrong-language content. Skipped on the 404
+page: that page always renders with the default (English) language
+regardless of which URL 404'd, so this redirect would otherwise hijack
+every 404 into a silent redirect to a language home page instead of
+showing the visitor the actual error. {%- endcomment -%}
+{%- if page.layout != 404 -%}
 {%- include snippets/language-switch-context.html -%}
 <script>
   (function () {
@@ -16,3 +21,4 @@ paint, to minimize a flash of wrong-language content. {%- endcomment -%}
     } catch (err) { /* localStorage unavailable - do nothing */ }
   })();
 </script>
+{%- endif -%}
