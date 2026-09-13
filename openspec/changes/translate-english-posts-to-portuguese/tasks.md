@@ -43,6 +43,6 @@
 
 ## 9. Confirm live
 
-- [ ] 9.1 Load each of the 5 new Portuguese post URLs live and confirm they render correctly
-- [ ] 9.2 Confirm the language switcher on each pair now links directly to its counterpart (no longer falling back to `/pt/` or `/`)
-- [ ] 9.3 Confirm `openspec validate translate-english-posts-to-portuguese --strict` passes
+- [x] 9.1 Load each of the 5 new Portuguese post URLs live and confirm they render correctly — all 5 confirmed live (200 status, correct Portuguese titles); both home pages confirmed live too (6 posts each, no dangling pagination widget)
+- [x] 9.2 Confirm the language switcher on each pair now links directly to its counterpart (no longer falling back to `/pt/` or `/`) — confirmed live on the Improving Home Security pair, in both directions
+- [x] 9.3 Confirm `openspec validate translate-english-posts-to-portuguese --strict` passes
