@@ -13,10 +13,10 @@
 
 ## 3. Verify via a real build (branch + PR)
 
-- [ ] 3.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes
-- [ ] 3.2 Download the built artifact and check: `/pt/sobre.html` and `/pt/arquivo.html` exist and render correctly; `/pt/about.html` and `/pt/archive.html` are absent from the build output; the Portuguese pages' nav Archive/About links point at the new slugs
-- [ ] 3.3 Confirm no unrelated pages regressed (diff a sample of untouched pages against a master build)
-- [ ] 3.4 Merge to `master`; confirm the `deploy` job succeeds
+- [x] 3.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes — PR #10, `build` passed
+- [x] 3.2 Download the built artifact and check: `/pt/sobre.html` and `/pt/arquivo.html` exist and render correctly; `/pt/about.html` and `/pt/archive.html` are absent from the build output; the Portuguese pages' nav Archive/About links point at the new slugs — all confirmed; also confirmed the switcher on a paired post (HackTown) links directly to its counterpart, not the `/pt/` fallback
+- [x] 3.3 Confirm no unrelated pages regressed (diff a sample of untouched pages against a master build) — diffed index/about/scrum4research/404/feed/sitemap; all diffs were exactly the new switcher markup + sitewide `<style>`/`<script>` block, nothing else
+- [x] 3.4 Merge to `master`; confirm the `deploy` job succeeds
 
 ## 4. Confirm live
 
