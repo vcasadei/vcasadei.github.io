@@ -26,6 +26,7 @@ cover: /assets/images/my-post-title.jpeg
 ## Other front matter fields in common use
 
 - `title_pt` — a Portuguese translation of the title, shown on Portuguese listings for an English post that has no full Portuguese translation yet.
+- `comment: false` — disables the giscus comment section on this specific post. Comments are ON by default for every post; only add this to opt a single post out.
 - `mode: immersive` + `header: { theme: dark }` + `article_header: { type: overlay, theme: dark, background_color: '...', background_image: { gradient: '...', src: /assets/images/... } }` — the theme's full-bleed hero header, used by every post on this site so far. Copy this block from an existing post and swap the image/gradient.
 - `show_excerpt: false` — hides the excerpt/summary preview on listing pages (used on longer posts where the excerpt doesn't add much).
 - `translation_key` — pairs this post with its translation in the other language (see below).
