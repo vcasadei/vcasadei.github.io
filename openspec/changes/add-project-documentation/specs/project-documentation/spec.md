@@ -39,3 +39,11 @@ The repository SHALL document, in `docs/`, every content feature a post body can
 #### Scenario: A reader can find every other enabled content feature
 - **WHEN** a reader opens `docs/post-features.md`
 - **THEN** it also documents Mermaid diagrams, Chart.js charts, syntax-highlighted code blocks, footnotes, tables, the table of contents, and how to embed an image or video, each with a working example
+
+### Requirement: Future changes are prompted to keep documentation current
+The project's OpenSpec configuration SHALL prompt future changes' task lists to include a documentation-update task whenever that change touches architecture, dependencies, or the post-authoring workflow/features.
+
+#### Scenario: A future change's tasks are generated with docs in mind
+- **WHEN** a new OpenSpec change's `tasks.md` is generated for a change that alters the site's architecture, dependencies, or post-authoring workflow/features
+- **THEN** the project's `openspec/config.yaml` rules prompt that task list to include updating the matching `docs/*.md` file
+
