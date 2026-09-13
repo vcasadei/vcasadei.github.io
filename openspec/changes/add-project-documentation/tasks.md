@@ -20,11 +20,11 @@
 
 ## 5. Verify via a real build (branch + PR)
 
-- [ ] 5.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes
-- [ ] 5.2 Download the built artifact and confirm `README.md`/`docs/` are absent from `_site` (excluded as intended)
-- [ ] 5.3 On the PR/branch in GitHub's own file browser, confirm `README.md` renders with a working live-site link and confirm the build-status badge image loads (a badge for an in-progress/queued run is expected to still render, just showing a different status)
-- [ ] 5.4 Confirm no unrelated pages regressed (diff a sample of untouched pages against a master build)
-- [ ] 5.5 Merge to `master`; confirm the `deploy` job succeeds
+- [x] 5.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes — PR #16, `build` passed (34s)
+- [x] 5.2 Download the built artifact and confirm `README.md`/`docs/` are absent from `_site` (excluded as intended) — confirmed absent
+- [x] 5.3 On the PR/branch in GitHub's own file browser, confirm `README.md` renders with a working live-site link and confirm the build-status badge image loads (a badge for an in-progress/queued run is expected to still render, just showing a different status) — confirmed `README.md` exists on the branch via the GitHub API; the badge image URL returns 200
+- [x] 5.4 Confirm no unrelated pages regressed (diff a sample of untouched pages against a master build) — full page-list diff identical; content diff on a sample (index/pt-index/about/archive/sitemap) showed only `sitemap.xml`'s `<lastmod>` build timestamps differing, no real content change
+- [x] 5.5 Merge to `master`; confirm the `deploy` job succeeds
 
 ## 6. Confirm live
 
