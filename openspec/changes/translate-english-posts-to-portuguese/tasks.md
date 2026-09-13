@@ -39,7 +39,7 @@
 - [x] 8.3a Immediate fix: override `index.html`'s `articles.data_source` to `site.posts` (same fix already applied to `pt/index.html` for the identical bug), removing English-home pagination entirely so all English posts render on one page regardless of total site post count
 - [x] 8.3b Filed a follow-up change proposal, `paginate-posts-by-language`, for the definitive fix (a real per-language pagination scheme for both `/` and `/pt/`) — not implemented in this change; see that proposal for scope
 - [x] 8.3c **Found and fixed a follow-on issue from 8.3a**: `home.html`'s layout unconditionally includes `paginator.html` regardless of the per-page `data_source` override, so the pagination widget kept showing a stale, cross-language "6 post articles, 2 pages" stat with a broken page-2 link below the now-complete, unpaginated post list — affecting both `/` and the already-overridden `/pt/` (previously latent there too, since `/pt/`'s own post count hadn't crossed 8 until this change). Fixed by making `_includes/paginator.html` suppress itself entirely when the current page's `articles.data_source` is `site.posts`. Re-verified: both home pages show all 6 English/all-content posts respectively, no dangling pagination widget, and a full diff of `about.html`/`pt/sobre.html`/`404.html`/`archive.html` against a master build showed zero changes; `scrum4research.html` and `pt/arquivo.html` diffs were exactly the expected switcher/prev-next/giscus-term/archive-link updates
-- [ ] 8.4 Merge to `master`; confirm the `deploy` job succeeds
+- [x] 8.4 Merge to `master`; confirm the `deploy` job succeeds — PR #13 squash-merged, `deploy` succeeded
 
 ## 9. Confirm live
 
