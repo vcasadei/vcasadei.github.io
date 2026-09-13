@@ -1,1 +1,18 @@
 <meta name="color-scheme" content="dark">
+
+{%- comment -%} Auto-redirect a returning visitor to their saved language
+preference, computed the same way as the header language switcher (see
+snippets/language-switch-context.html). Runs early in <head>, before body
+paint, to minimize a flash of wrong-language content. {%- endcomment -%}
+{%- include snippets/language-switch-context.html -%}
+<script>
+  (function () {
+    try {
+      if (/[?&]nolangredirect(?:=|&|$)/.test(window.location.search)) { return; }
+      var pref = window.localStorage.getItem('langPref');
+      if (pref && pref !== 'none' && pref === '{{ _other_lang_code }}' && pref !== '{{ _page_lang }}') {
+        window.location.replace('{{ _switch_href }}');
+      }
+    } catch (err) { /* localStorage unavailable - do nothing */ }
+  })();
+</script>

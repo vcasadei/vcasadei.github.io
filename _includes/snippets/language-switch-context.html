@@ -1,0 +1,43 @@
+{%- comment -%} Shared language-switch target resolution: given the
+current page, computes the effective language, the URL of its translated
+counterpart (matched via translation_key) or a language-section fallback,
+and flag/label strings for the "other" language. Used by both the header
+language switcher and the early auto-redirect check in head/custom.html,
+so both compute the same target consistently. Assigns: _page_lang,
+_switch_url, _switch_href, _current_flag, _current_lang_label,
+_other_flag, _other_lang_label, _other_lang_code, _switch_confirm.
+{%- endcomment -%}
+{%- assign _page_lang = page.lang | default: 'en' -%}
+{%- assign _switch_url = nil -%}
+{%- if page.translation_key -%}
+  {%- for _candidate in site.posts -%}
+    {%- assign _candidate_lang = _candidate.lang | default: 'en' -%}
+    {%- if _candidate.translation_key == page.translation_key and _candidate_lang != _page_lang -%}
+      {%- assign _switch_url = _candidate.url -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- unless _switch_url -%}
+  {%- if _page_lang == 'en' -%}
+    {%- assign _switch_url = '/pt/' -%}
+  {%- else -%}
+    {%- assign _switch_url = '/' -%}
+  {%- endif -%}
+{%- endunless -%}
+{%- if _page_lang == 'en' -%}
+  {%- assign _current_flag = '🇺🇸' -%}
+  {%- assign _current_lang_label = 'English' -%}
+  {%- assign _other_flag = '🇧🇷' -%}
+  {%- assign _other_lang_label = 'Português' -%}
+  {%- assign _other_lang_code = 'pt-BR' -%}
+  {%- assign _switch_confirm = 'Switch to Portuguese?' -%}
+{%- else -%}
+  {%- assign _current_flag = '🇧🇷' -%}
+  {%- assign _current_lang_label = 'Português' -%}
+  {%- assign _other_flag = '🇺🇸' -%}
+  {%- assign _other_lang_label = 'English' -%}
+  {%- assign _other_lang_code = 'en' -%}
+  {%- assign _switch_confirm = 'Switch to English?' -%}
+{%- endif -%}
+{%- include snippets/get-nav-url.html path=_switch_url -%}
+{%- assign _switch_href = __return -%}
