@@ -39,6 +39,10 @@ The site SHALL build using a pinned, version-locked set of gem dependencies, so 
 - **WHEN** the automated build installs gem dependencies
 - **THEN** it resolves them from a committed lockfile rather than re-resolving latest-compatible versions on every run
 
+#### Scenario: Build installs from this repository's own lockfile
+- **WHEN** the automated build runs
+- **THEN** it installs gems from this repository's own committed `Gemfile`/`Gemfile.lock`, rather than a fixed dependency set that ignores this repository's `Gemfile` and is bundled independently of it
+
 ### Requirement: No CI configuration targets an unrelated site config
 The repository SHALL NOT contain CI/CD configuration that builds or deploys a Jekyll config other than this blog's own (root `_config.yml`, or a config that is explicitly a variant of it).
 
