@@ -61,11 +61,16 @@ jobs:
             cwebp -quiet -q 78 "$thumb" -o "$dir/${base}-thumb.webp"
           done
 
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          source: ./
-          destination: ./_site
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Build with Jekyll
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --destination ./_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
