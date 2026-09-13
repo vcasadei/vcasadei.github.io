@@ -152,8 +152,20 @@
       color: rgba(255, 255, 255, 0.85);
       font-size: 0.9rem;
     }
+    .lang-suggest-banner[hidden] { display: none; }
     .lang-suggest-banner__actions { display: flex; align-items: center; gap: 0.5rem; }
-    .lang-suggest-banner__accept { text-decoration: none !important; }
+    .lang-suggest-banner__accept {
+      display: inline-block;
+      margin: 0.15rem 0;
+      padding: 0.4rem 0.9rem;
+      border-radius: 4px;
+      background: #ff9500;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      text-decoration: none !important;
+      white-space: nowrap;
+    }
+    .lang-suggest-banner__accept:hover { background: #e08600; }
     .lang-suggest-banner__dismiss {
       background: none;
       border: none;
@@ -230,6 +242,23 @@
       }
 
       document.querySelectorAll('.js-lang-suggest-banner').forEach(function (banner) {
+        var accept = banner.querySelector('.js-lang-suggest-accept');
+        var dismiss = banner.querySelector('.js-lang-suggest-dismiss');
+        // Listeners are always wired up (not gated behind the reveal check
+        // below) so a click always saves the preference correctly, even if
+        // the banner somehow ends up visible outside the expected case.
+        if (accept) {
+          accept.addEventListener('click', function () {
+            setLangPref(accept.getAttribute('data-lang'));
+          });
+        }
+        if (dismiss) {
+          dismiss.addEventListener('click', function () {
+            setLangPref('none');
+            banner.hidden = true;
+          });
+        }
+
         if (getLangPref()) { return; }
         var pageLang = banner.getAttribute('data-page-lang');
         var suggestLang = banner.getAttribute('data-suggest-lang');
@@ -242,19 +271,6 @@
         }
         if (!detected || detected === pageLang || detected !== suggestLang) { return; }
         banner.hidden = false;
-        var accept = banner.querySelector('.js-lang-suggest-accept');
-        var dismiss = banner.querySelector('.js-lang-suggest-dismiss');
-        if (accept) {
-          accept.addEventListener('click', function () {
-            setLangPref(accept.getAttribute('data-lang'));
-          });
-        }
-        if (dismiss) {
-          dismiss.addEventListener('click', function () {
-            setLangPref('none');
-            banner.hidden = true;
-          });
-        }
       });
     })();
   </script>
