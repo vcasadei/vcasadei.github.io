@@ -1,4 +1,10 @@
-{%- if paginator.total_pages > 1 -%}
+{%- comment -%} A page that overrides its own articles.data_source away from
+the default paginator.posts (e.g. a language-scoped home page rendering the
+full site.posts list on one page) has no real "pages" of its own - Jekyll's
+paginator object still reflects the raw, cross-language pagination, so its
+page-count/links would be misleading here. {%- endcomment -%}
+{%- assign _page_articles_source = page.articles.data_source | default: layout.articles.data_source -%}
+{%- if paginator.total_pages > 1 and _page_articles_source != 'site.posts' -%}
   <div class="pagination">
 
     {%- include snippets/get-locale-string.html key='STATISTICS' -%}

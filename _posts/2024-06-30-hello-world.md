@@ -4,6 +4,7 @@ title: Hello World!
 title_pt: Olá, Mundo!
 permalink: /page/hello-world.html
 key: hello-world
+translation_key: hello-world
 cover: /assets/images/hello-world.jpeg
 mode: immersive
 header:
