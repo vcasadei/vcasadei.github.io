@@ -23,3 +23,10 @@ The custom 404 page SHALL NOT cause the browser to load another copy of the 404 
 #### Scenario: No nested 404 inside the game iframe
 - **WHEN** a reader requests any non-existent URL and the 404 page renders
 - **THEN** the embedded game iframe loads the actual game content, not another instance of the 404 page
+
+### Requirement: 404 page is always shown to the visitor
+The custom 404 page SHALL render and remain visible to the visitor, regardless of any saved site preference (such as a remembered language preference) that might otherwise trigger a client-side redirect away from the current page.
+
+#### Scenario: Visitor with a saved language preference hits a non-existent URL
+- **WHEN** a visitor with a saved language preference different from the 404 page's default language requests a non-existent URL (e.g. under `/pt/`)
+- **THEN** the custom 404 page is displayed, and the visitor is not redirected to a language home page or any other page
