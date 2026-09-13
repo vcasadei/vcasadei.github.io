@@ -20,6 +20,8 @@ en: &EN
   EMAIL_ME                : "Send me an Email."
   EMAIL_US                : "Send us an Email."
   COPYRIGHT_DATES         : "2025"
+  PAGE_NOT_FOUND          : "404 - The page you look for doesn't exist :("
+  RELOAD_GAME             : "Reload Game"
 
 en-GB:
   <<: *EN
@@ -187,6 +189,8 @@ pt-BR: &PT_BR
   EMAIL_ME                : "Me envie um e-mail."
   EMAIL_US                : "Envie-nos um e-mail."
   COPYRIGHT_DATES         : "2025"
+  PAGE_NOT_FOUND          : "404 - A página que você procura não existe :("
+  RELOAD_GAME             : "Recarregar Jogo"
 
 pt:
   <<: *PT_BR
