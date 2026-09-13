@@ -26,7 +26,7 @@
 
 ## 5. Confirm live
 
-- [ ] 5.1 Load the home page live and confirm each post's thumbnail loads (check the network tab or response headers for the `.webp` thumbnail, not the full-size cover)
-- [ ] 5.2 Load the 3 affected English posts and their PT counterparts live and confirm every inline image renders correctly
-- [ ] 5.3 Spot-check that a recompressed image's live file size is meaningfully smaller than its git-committed original
-- [ ] 5.4 Confirm `openspec validate optimize-website-images --strict` passes
+- [x] 5.1 Load the home page live and confirm each post's thumbnail loads (check the network tab or response headers for the `.webp` thumbnail, not the full-size cover) — confirmed: live `<picture>` markup present, `hello-world-thumb.webp` returns 200 at 16KB
+- [x] 5.2 Load the 3 affected English posts and their PT counterparts live and confirm every inline image renders correctly — confirmed: all 6 home-security-ai images and the hacktown logo resolve 200 live on both language versions
+- [x] 5.3 Spot-check that a recompressed image's live file size is meaningfully smaller than its git-committed original — confirmed: `hello-world.jpeg` live (208,780 bytes) vs. git-committed original (352K); thumbnail is 16,480 bytes, a ~13x reduction over the full cover
+- [x] 5.4 Confirm `openspec validate optimize-website-images --strict` passes
