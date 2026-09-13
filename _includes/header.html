@@ -42,12 +42,29 @@
         {%- endif -%}
       {%- endunless -%}
       {%- if _page_lang == 'en' -%}
-        {%- assign _switch_label = 'PT' -%}
+        {%- assign _current_flag = '🇺🇸' -%}
+        {%- assign _current_lang_label = 'English' -%}
+        {%- assign _other_flag = '🇧🇷' -%}
+        {%- assign _other_lang_label = 'Português' -%}
+        {%- assign _switch_confirm = 'Switch to Portuguese?' -%}
       {%- else -%}
-        {%- assign _switch_label = 'EN' -%}
+        {%- assign _current_flag = '🇧🇷' -%}
+        {%- assign _current_lang_label = 'Português' -%}
+        {%- assign _other_flag = '🇺🇸' -%}
+        {%- assign _other_lang_label = 'English' -%}
+        {%- assign _switch_confirm = 'Switch to English?' -%}
       {%- endif -%}
       {%- include snippets/get-nav-url.html path=_switch_url -%}
       {%- assign _switch_href = __return -%}
+      {%- capture _language_switcher -%}
+        <li class="navigation__item language-switcher">
+          <button type="button" class="button button--secondary button--circle js-lang-toggle" aria-haspopup="true" aria-expanded="false" title="{{ _current_lang_label }}">{{ _current_flag }}</button>
+          <ul class="language-switcher__menu js-lang-menu" hidden>
+            <li><span class="language-switcher__current">{{ _current_flag }} {{ _current_lang_label }}</span></li>
+            <li><a href="{{ _switch_href }}" class="js-lang-confirm" data-confirm="{{ _switch_confirm }}">{{ _other_flag }} {{ _other_lang_label }}</a></li>
+          </ul>
+        </li>
+      {%- endcapture -%}
 
       {%- if site.data.navigation.header -%}
       <nav class="navigation">
@@ -55,7 +72,16 @@
           {%- for _item in site.data.navigation.header -%}
             {%- assign _item_url = _item.url -%}
             {%- if _page_lang != 'en' -%}
-              {%- assign _item_url = '/pt' | append: _item_url -%}
+              {%- comment -%} Portuguese nav paths use their own localized
+              slugs, not a plain /pt prefix of the English path - map each
+              known English nav path explicitly. {%- endcomment -%}
+              {%- if _item_url == '/archive.html' -%}
+                {%- assign _item_url = '/pt/arquivo.html' -%}
+              {%- elsif _item_url == '/about.html' -%}
+                {%- assign _item_url = '/pt/sobre.html' -%}
+              {%- else -%}
+                {%- assign _item_url = '/pt' | append: _item_url -%}
+              {%- endif -%}
             {%- endif -%}
             {%- include snippets/get-nav-url.html path=_item_url -%}
             {%- assign _nav_url = __return -%}
@@ -68,7 +94,7 @@
               <li class="navigation__item"><a href="{{ _nav_url }}">{%- if _item.title -%}{{ _item.title }}{%- else -%}{{ __return }}{%- endif -%}</a></li>
             {%- endif -%}
           {%- endfor -%}
-          <li class="navigation__item"><a class="language-switch" href="{{ _switch_href }}">{{ _switch_label }}</a></li>
+          {{ _language_switcher }}
           {%- if site.search.provider -%}
             <li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li>
           {%- endif -%}
@@ -77,7 +103,7 @@
       {%- else -%}
       <nav class="navigation">
         <ul>
-          <li class="navigation__item"><a class="language-switch" href="{{ _switch_href }}">{{ _switch_label }}</a></li>
+          {{ _language_switcher }}
           {%- if site.search.provider -%}
             <li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li>
           {%- endif -%}
@@ -86,3 +112,63 @@
       {%- endif -%}
     </div>
   </header>
+
+  <style>
+    .language-switcher { position: relative; }
+    .language-switcher .js-lang-toggle { font-size: 1.1rem; }
+    .language-switcher__menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 100;
+      margin: 0.25rem 0 0;
+      padding: 0.25rem 0;
+      list-style: none;
+      min-width: 150px;
+      background: #202020;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+    .language-switcher__menu li { padding: 0; }
+    .language-switcher__menu a,
+    .language-switcher__current {
+      display: block;
+      padding: 0.4rem 0.8rem;
+      white-space: nowrap;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none !important;
+    }
+    .language-switcher__current { opacity: 0.6; cursor: default; }
+    .language-switcher__menu a:hover { background: rgba(255, 255, 255, 0.08); }
+  </style>
+  <script>
+    (function () {
+      var toggles = document.querySelectorAll('.js-lang-toggle');
+      toggles.forEach(function (toggle) {
+        var menu = toggle.nextElementSibling;
+        toggle.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var isOpen = !menu.hidden;
+          menu.hidden = isOpen;
+          toggle.setAttribute('aria-expanded', String(!isOpen));
+        });
+      });
+      document.addEventListener('click', function (e) {
+        document.querySelectorAll('.js-lang-menu').forEach(function (menu) {
+          if (!menu.hidden && !menu.contains(e.target) && !menu.previousElementSibling.contains(e.target)) {
+            menu.hidden = true;
+            menu.previousElementSibling.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+      document.querySelectorAll('.js-lang-confirm').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          var message = link.getAttribute('data-confirm');
+          if (!window.confirm(message)) {
+            e.preventDefault();
+          }
+        });
+      });
+    })();
+  </script>

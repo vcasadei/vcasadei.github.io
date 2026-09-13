@@ -4,7 +4,7 @@ title: Sobre
 lang: pt-BR
 key: page-about-pt
 comment: false
-permalink: /pt/about.html
+permalink: /pt/sobre.html
 ---
 **Olá! Meu nome é Vitor Casadei.**
 Sou Especialista em Inteligência Artificial e Machine Learning, com mais de 10 anos de experiência atuando na vanguarda da tecnologia e da inovação. Atualmente, sou *Senior Data Science Manager* no CESAR e Professor de Pós-Graduação em IA, Deep Learning e Data Science na CESAR School.
