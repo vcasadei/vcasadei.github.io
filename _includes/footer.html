@@ -22,13 +22,16 @@
         {%- include author-links.html author=_site_author -%}
       </div>
     </div>
-    {%- include snippets/get-locale-string.html key='COPYRIGHT_DATES' -%}
-    {%- assign _locale_copyright_dates = __return -%}
+    {%- assign _copyright_start_year = '2024' -%}
+    {%- assign _copyright_end_year = site.time | date: '%Y' -%}
+    {%- if _copyright_end_year == _copyright_start_year -%}
+      {%- assign _copyright_dates = _copyright_start_year -%}
+    {%- else -%}
+      {%- assign _copyright_dates = _copyright_start_year | append: '-' | append: _copyright_end_year -%}
+    {%- endif -%}
     <div class="site-info mt-2">
       <div>
-        {%- include snippets/get-locale-string.html key='COPYRIGHT_DATES' -%}
-        {%- assign _locale_copyright_dates = __return -%}
-        © {{ site.title }} {{ _locale_copyright_dates }}
+        © {{ site.title }} {{ _copyright_dates }}
       </div>
     </div>
   </div>
