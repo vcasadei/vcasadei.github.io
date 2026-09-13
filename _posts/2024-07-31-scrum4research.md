@@ -4,6 +4,7 @@ title: Scrum for Applied Research
 title_pt: Scrum para Pesquisa Aplicada
 permalink: /scrum4research.html
 key: scrum4research
+translation_key: scrum-for-applied-research
 cover: /assets/images/scrum4research.jpeg
 show_excerpt: false
 mode: immersive
