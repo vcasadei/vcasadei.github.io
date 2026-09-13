@@ -38,3 +38,41 @@ Since existing Gitalk-era comments (stored as GitHub issues) are not migrated to
 #### Scenario: Old Gitalk comment thread no longer renders
 - **WHEN** a reader opens a post that previously had Gitalk comments
 - **THEN** the page shows the new (empty, until readers post) giscus thread rather than an error, a broken widget, or the old Gitalk UI
+
+### Requirement: Comments are scoped to blog posts only
+The comments system SHALL render only on blog post pages. Non-post pages (including the Home page, the Archive page, the About page, and the 404 page) SHALL NOT render a comment thread, regardless of the theme's page-level default.
+
+#### Scenario: Blog post shows comments
+- **WHEN** a reader opens a published blog post
+- **THEN** the giscus comment widget loads for that post
+
+#### Scenario: Home page shows no comments
+- **WHEN** a reader opens the Home page
+- **THEN** no comment widget or section renders
+
+#### Scenario: Archive page shows no comments
+- **WHEN** a reader opens the Archive page
+- **THEN** no comment widget or section renders
+
+#### Scenario: About page shows no comments
+- **WHEN** a reader opens the About page
+- **THEN** no comment widget or section renders
+
+#### Scenario: 404 page shows no comments
+- **WHEN** a reader is shown the custom 404 page
+- **THEN** no comment widget or section renders
+
+### Requirement: Individual posts can opt out of comments
+Blog posts SHALL support comments by default. A post author SHALL be able to disable comments for one specific post via a documented front-matter key, without affecting any other post.
+
+#### Scenario: Post with no override shows comments
+- **WHEN** a reader opens a published post that does not set the comment front-matter key
+- **THEN** the giscus comment widget loads for that post
+
+#### Scenario: Post explicitly disables comments
+- **WHEN** a post's front matter sets `comment: false`
+- **THEN** no comment widget or section renders on that post, while other posts are unaffected
+
+#### Scenario: Documented for authors
+- **WHEN** an author consults the site's post-authoring documentation
+- **THEN** the documentation describes the `comment: false` front-matter key as the supported way to disable comments on a single post

@@ -92,6 +92,10 @@ Every post already gets a floating table of contents (`aside: { toc: true }` is 
 
 `VIDEO_ID` is the part after `v=` in a YouTube URL.
 
+## Comments
+
+Every post gets a giscus comment thread by default — no front matter needed. To disable comments on one specific post, add `comment: false` to its front matter (see [writing-posts.md](writing-posts.md)); every other post is unaffected.
+
 ## Images
 
 - **Cover image** (`cover:` front matter, used as the post's hero background and its listing thumbnail): just point it at a file under `assets/images/`. The build automatically recompresses it, generates a `.webp` version, and generates a small `-thumb` variant in both formats for listing use — you don't create any of those yourself (see [architecture.md](architecture.md)).
