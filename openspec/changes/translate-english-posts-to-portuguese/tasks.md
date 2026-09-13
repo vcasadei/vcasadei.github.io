@@ -33,9 +33,11 @@
 
 ## 8. Verify via a real build (branch + PR)
 
-- [ ] 8.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes
-- [ ] 8.2 Download the built artifact and check: all 5 new `/pt/...` post pages exist and render; each pair now appears only once (as its Portuguese member) in the Portuguese archive/home listing per the existing dedup logic; the English archive/home is unaffected; each pair's giscus embed now computes the same `data-term`
-- [ ] 8.3 Confirm no unrelated pages regressed (diff a sample of untouched pages against a master build)
+- [x] 8.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes — PR #13, `build` passed
+- [x] 8.2 Download the built artifact and check: all 5 new `/pt/...` post pages exist and render; each pair now appears only once (as its Portuguese member) in the Portuguese archive/home listing per the existing dedup logic; the English archive/home is unaffected; each pair's giscus embed now computes the same `data-term` — all confirmed; also confirmed the language switcher on two pairs links directly to the counterpart in both directions
+- [x] 8.3 Confirm no unrelated pages regressed (diff a sample of untouched pages against a master build) — **found a real regression**: going from 7 total posts to 12 pushed the English home page's classic `jekyll-paginate` (which paginates across *all* posts, both languages, before the `lang == 'en'` filter in `article-list.html` ever runs) past its `paginate: 8` threshold, silently dropping 2 English posts (Scrum for Applied Research, Hello World!) onto an unlinked "page 2". This is the same jekyll-paginate cross-language limitation noted in `add-bilingual-pt-support`'s design.md, previously latent since total post count stayed under 8. Surfaced to the owner; fixed per their direction (see 8.3a/8.3b) and re-verified clean
+- [x] 8.3a Immediate fix: override `index.html`'s `articles.data_source` to `site.posts` (same fix already applied to `pt/index.html` for the identical bug), removing English-home pagination entirely so all English posts render on one page regardless of total site post count
+- [x] 8.3b Filed a follow-up change proposal, `paginate-posts-by-language`, for the definitive fix (a real per-language pagination scheme for both `/` and `/pt/`) — not implemented in this change; see that proposal for scope
 - [ ] 8.4 Merge to `master`; confirm the `deploy` job succeeds
 
 ## 9. Confirm live
