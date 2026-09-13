@@ -19,10 +19,10 @@
 
 ## 4. Verify via a real build (branch + PR)
 
-- [ ] 4.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes, and that its logs show the image-processing step actually running (not skipped)
-- [ ] 4.2 Download the built artifact and check: recompressed images are present and smaller than their git-committed originals; every processed image has a `.webp` sibling; every cover image has both `-thumb` variants; the home page's `<picture>` markup for a sample post points at real, existing thumbnail files in the artifact; the rewritten inline post images resolve to real files in the artifact
-- [ ] 4.3 Confirm no unrelated pages regressed (diff a sample of untouched pages against a master build)
-- [ ] 4.4 Merge to `master`; confirm the `deploy` job succeeds
+- [x] 4.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes, and that its logs show the image-processing step actually running (not skipped) — PR #14, `build` passed (47s, vs. ~25s before); logs show every image actually processed ("Optimizing ..."/"Generating thumbnail ..." lines) for all 16 source images + 6 thumbnails
+- [x] 4.2 Download the built artifact and check: recompressed images are present and smaller than their git-committed originals; every processed image has a `.webp` sibling; every cover image has both `-thumb` variants; the home page's `<picture>` markup for a sample post points at real, existing thumbnail files in the artifact; the rewritten inline post images resolve to real files in the artifact — all confirmed. Sample sizes: `hello-world.jpeg` 352K→204K (thumb 28K, webp 104K); `local-personal-assistant-hacktown-2026.jpeg` 2.9M→532K (thumb 68K). All 6 inline home-security-ai images resolve to real `.webp` files in the artifact
+- [x] 4.3 Confirm no unrelated pages regressed (diff a sample of untouched pages against a master build) — `about.html`/`pt/sobre.html`/`404.html`/`archive.html`/`pt/arquivo.html`/`scrum4research-lessons-learned.html` identical; every other diff was exactly the expected thumbnail markup or inline-link rewrite. **Finding**: `pt/index.html` (and, on closer look, English `index.html` too) were *already* rendering full-size, uncompressed cover images before this change — the proposal's premise ("home pages show no covers today, `show_cover` defaults false") was wrong; something resolves `show_cover` to effectively `true` by default already (likely a site-wide data default overriding the layout's own `false`, not investigated further since it doesn't change the fix). This is very plausibly the actual "images... too big... loading slow" the user originally reported. Net effect: this change's `<picture>`/thumbnail fix is unconditional on `show_cover`'s resolved value, so it correctly improves *both* home pages, not just English — a bonus fix, not a regression
+- [x] 4.4 Merge to `master`; confirm the `deploy` job succeeds
 
 ## 5. Confirm live
 
