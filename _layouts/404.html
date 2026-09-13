@@ -4,9 +4,18 @@ title: 404
 show_title: false
 comment: false
 ---
+{%- assign _nav_archive_pt = nil -%}
+{%- assign _nav_about_pt = nil -%}
+{%- for _item in site.data.navigation.header -%}
+  {%- if _item.url == '/archive.html' -%}
+    {%- assign _nav_archive_pt = _item.titles['pt-BR'] -%}
+  {%- elsif _item.url == '/about.html' -%}
+    {%- assign _nav_about_pt = _item.titles['pt-BR'] -%}
+  {%- endif -%}
+{%- endfor -%}
 <div class="layout--404">
   <div class="sign">
-    <p style="text-align: center;">404 - The page you look for doesn't exist :(</p>
+    <p style="text-align: center;" id="404-heading" data-i18n-pt="{{ site.data.locale['pt-BR'].PAGE_NOT_FOUND }}">{{ site.data.locale.en.PAGE_NOT_FOUND }}</p>
     <div class="grid-container">
       <div class="grid grid--py-2">
         <div class="cell cell--12" style="text-align: center;">
@@ -14,20 +23,49 @@ comment: false
           width="512" height="500" scrolling="no" frameborder="0"></iframe>
         </div>
         <div class="cell cell--12" style="text-align: center;">
-          <div class="button button--outline-warning button--pill my-2" id="reload-game"><i class="fas fa-space-shuttle"></i> Reload Game</div>
+          <div class="button button--outline-warning button--pill my-2" id="reload-game"><i class="fas fa-space-shuttle"></i> <span id="404-reload-label" data-i18n-pt="{{ site.data.locale['pt-BR'].RELOAD_GAME }}">{{ site.data.locale.en.RELOAD_GAME }}</span></div>
         </div>
       </div>
     </div>
 
-    
 
-        
+
+
 
         <script>
           var element = document.getElementById("reload-game"); //grab the element
           element.onclick = function() { //asign a function
             document.getElementById("404-game").contentWindow.location.reload();
           }
+      </script>
+
+      {%- comment -%} GitHub Pages serves this same static 404 page for every
+      broken URL on the site regardless of path, so there's no build-time way
+      to know whether the visitor was under /pt/ - detect it client-side and
+      swap the heading, reload-button label, and primary nav to Portuguese.
+      The embedded game itself is left untouched. {%- endcomment -%}
+      <script>
+        (function () {
+          if (window.location.pathname.indexOf('/pt/') !== 0) { return; }
+
+          var heading = document.getElementById('404-heading');
+          if (heading) { heading.textContent = heading.getAttribute('data-i18n-pt'); }
+
+          var reloadLabel = document.getElementById('404-reload-label');
+          if (reloadLabel) { reloadLabel.textContent = reloadLabel.getAttribute('data-i18n-pt'); }
+
+          var navSwaps = [
+            { href: '{{ site.baseurl }}/archive.html', newHref: '{{ site.baseurl }}/pt/arquivo.html', label: '{{ _nav_archive_pt }}' },
+            { href: '{{ site.baseurl }}/about.html', newHref: '{{ site.baseurl }}/pt/sobre.html', label: '{{ _nav_about_pt }}' }
+          ];
+          navSwaps.forEach(function (swap) {
+            var link = document.querySelector('nav.navigation a[href="' + swap.href + '"]');
+            if (link) {
+              link.setAttribute('href', swap.newHref);
+              link.textContent = swap.label;
+            }
+          });
+        })();
       </script>
   </div>
 </div>

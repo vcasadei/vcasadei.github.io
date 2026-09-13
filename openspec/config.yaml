@@ -4,6 +4,14 @@ rules:
   tasks:
     - "If this change alters the site's architecture, dependencies, or the post-authoring workflow/features, include a task to update the matching file under docs/ (architecture.md, dependencies.md, writing-posts.md, post-features.md)."
 
+operations:
+  apply:
+    guidance:
+      - "Never commit directly to main/master. Before implementing, create a new git branch dedicated to this change (e.g. named after the change), and commit implementation work there instead."
+  archive:
+    guidance:
+      - "Do not push or merge to main/master as part of archiving. Push the change's branch and open a pull request for review instead."
+
 # Project context (optional)
 # This is shown to AI when creating artifacts.
 # Add your tech stack, conventions, style guides, domain knowledge, etc.
