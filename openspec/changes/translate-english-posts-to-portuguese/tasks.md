@@ -1,35 +1,35 @@
 ## 1. Hello World!
 
-- [ ] 1.1 Add `translation_key: hello-world` to `_posts/2024-06-30-hello-world.md`'s front matter
-- [ ] 1.2 Create `_posts/pt/2024-06-30-ola-mundo.md`: AI-drafted full Portuguese translation of the body, front matter per design.md (`title: Olá, Mundo!`, `lang` via defaults, `translation_key: hello-world`, `key: hello-world-pt`, `cover` copied unchanged); verify the file exists with all required front-matter fields present
+- [x] 1.1 Add `translation_key: hello-world` to `_posts/2024-06-30-hello-world.md`'s front matter
+- [x] 1.2 Create `_posts/pt/2024-06-30-ola-mundo.md`: AI-drafted full Portuguese translation of the body, front matter per design.md (`title: Olá, Mundo!`, `lang` via defaults, `translation_key: hello-world`, `key: hello-world-pt`, `cover` copied unchanged); verify the file exists with all required front-matter fields present — done; kept the body's `[About](#about)` link's target as-is (translated only its visible text to "Sobre"), matching the English original's own pre-existing fragment link rather than fixing it as part of a translation task
 
 ## 2. Scrum for Applied Research
 
-- [ ] 2.1 Add `translation_key: scrum-for-applied-research` to `_posts/2024-07-31-scrum4research.md`'s front matter
-- [ ] 2.2 Create `_posts/pt/2024-07-31-scrum-para-pesquisa-aplicada.md`: AI-drafted full Portuguese translation (code blocks/technical terms left untranslated per design.md), matching front-matter pattern; verify the file exists with all required front-matter fields present
+- [x] 2.1 Add `translation_key: scrum-for-applied-research` to `_posts/2024-07-31-scrum4research.md`'s front matter
+- [x] 2.2 Create `_posts/pt/2024-07-31-scrum-para-pesquisa-aplicada.md`: AI-drafted full Portuguese translation (code blocks/technical terms left untranslated per design.md), matching front-matter pattern; verify the file exists with all required front-matter fields present — done; kept Scrum-framework terms untranslated (Sprint, Sprint Planning/Review/Retrospective, Backlog, Increment, Definition of Done, Owner, Researchers, Scrum Team), matching standard Brazilian Scrum practice and the design's guidance on proper nouns; footnote citation left in its original English form
 
 ## 3. Upgrading Network and Security Cameras on a Rural Property (on a budget)
 
-- [ ] 3.1 Add `translation_key: upgrading-network-and-security-cameras` to `_posts/2024-09-13-upgrading-network-and-security-cameras.md`'s front matter
-- [ ] 3.2 Create `_posts/pt/2024-09-13-atualizando-rede-e-cameras-de-seguranca.md`: AI-drafted full Portuguese translation, matching front-matter pattern; verify the file exists with all required front-matter fields present
+- [x] 3.1 Add `translation_key: upgrading-network-and-security-cameras` to `_posts/2024-09-13-upgrading-network-and-security-cameras.md`'s front matter
+- [x] 3.2 Create `_posts/pt/2024-09-13-atualizando-rede-e-cameras-de-seguranca.md`: AI-drafted full Portuguese translation, matching front-matter pattern; verify the file exists with all required front-matter fields present — done; product/model names, links, and image URLs kept unchanged; image captions translated
 
 ## 4. Improving Home Security using AI
 
-- [ ] 4.1 Add `translation_key: improving-home-security-using-ai` to `_posts/2024-09-20-improving-home-security-using-ai copy.md`'s front matter
-- [ ] 4.2 Create `_posts/pt/2024-09-20-melhorando-a-seguranca-residencial-com-ia.md`: AI-drafted full Portuguese translation (embedded YouTube include, image references, and code blocks left untouched per design.md; image captions/alt text translated), matching front-matter pattern; verify the file exists with all required front-matter fields present
+- [x] 4.1 Add `translation_key: improving-home-security-using-ai` to `_posts/2024-09-20-improving-home-security-using-ai copy.md`'s front matter
+- [x] 4.2 Create `_posts/pt/2024-09-20-melhorando-a-seguranca-residencial-com-ia.md`: AI-drafted full Portuguese translation (embedded YouTube include, image references, and code blocks left untouched per design.md; image captions/alt text translated), matching front-matter pattern; verify the file exists with all required front-matter fields present — done; diffed both fenced code blocks (docker-compose YAML, Frigate config YAML) against the English original byte-for-byte to confirm they weren't altered; the "line 7/11/15" prose references still point at the same unchanged lines
 
 ## 5. SCRUM4Research - Lessons Learned and Tips on Sprint Planning
 
-- [ ] 5.1 Add `translation_key: scrum4research-lessons-learned` to `_posts/2024-09-27-scrum4research-lessons-learned.md`'s front matter
-- [ ] 5.2 Create `_posts/pt/2024-09-27-scrum4research-licoes-aprendidas.md`: AI-drafted full Portuguese translation, matching front-matter pattern; verify the file exists with all required front-matter fields present
+- [x] 5.1 Add `translation_key: scrum4research-lessons-learned` to `_posts/2024-09-27-scrum4research-lessons-learned.md`'s front matter
+- [x] 5.2 Create `_posts/pt/2024-09-27-scrum4research-licoes-aprendidas.md`: AI-drafted full Portuguese translation, matching front-matter pattern; verify the file exists with all required front-matter fields present — done; preserved the `<ins>` emphasis tags and kept Scrum-framework terms (Sprint, Sprint Planning, Sprint Backlog, Sprint Goal, Sprint Review, Definition of Done, Scrum Master, Project Owner) untranslated, matching the other Scrum post's convention
 
 ## 6. Cross-check the pairs
 
-- [ ] 6.1 For each of the 5 pairs, confirm: the English and Portuguese posts share the same `translation_key`; the Portuguese post's `cover` and any other copied styling front matter matches its English original; no `translation_key` value collides with another pair (all 5 values distinct, and distinct from `local-personal-assistant-hacktown-2026`)
+- [x] 6.1 For each of the 5 pairs, confirm: the English and Portuguese posts share the same `translation_key`; the Portuguese post's `cover` and any other copied styling front matter matches its English original; no `translation_key` value collides with another pair (all 5 values distinct, and distinct from `local-personal-assistant-hacktown-2026`) — confirmed programmatically: each of the 6 `translation_key` values (5 new + the existing HackTown one) appears exactly twice across all posts; front matter diffed field-by-field per pair (excluding `title`/`key`/`translation_key`/`permalink`) with zero substantive differences
 
 ## 7. Owner review
 
-- [ ] 7.1 Site owner reviews all 5 drafted translations and edits to their satisfaction (tone, technical accuracy, anything to add/remove) — a real content-authorship step, not a rubber stamp
+- [x] 7.1 Site owner reviews all 5 drafted translations and edits to their satisfaction (tone, technical accuracy, anything to add/remove) — a real content-authorship step, not a rubber stamp — owner reviewed the drafts and approved proceeding as-is
 
 ## 8. Verify via a real build (branch + PR)
 
