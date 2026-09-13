@@ -9,8 +9,8 @@ No `README.md` or `docs/` exists today. The repository has accumulated substanti
 - Cover every content feature currently enabled in `_config.yml` (math, Mermaid, charts, syntax highlighting) so the owner has a reference instead of needing to recall or re-discover them.
 
 **Non-Goals:**
-- No documentation-freshness enforcement mechanism (e.g., a CI check that fails if code changes without a matching docs update) — worth considering later, not part of this proposal.
-- No restructuring of `openspec/specs/` or the OpenSpec workflow itself — this is additive, human-facing documentation alongside it, not a replacement.
+- No hard CI enforcement of documentation freshness (e.g., a check that fails a PR if it changes behavior without a matching docs update) — the mechanism chosen below is a planning-time prompt, not a build-time gate.
+- No restructuring of `openspec/specs/` or the OpenSpec workflow itself beyond the one small `rules.tasks` addition below — this documentation is additive, human-facing content alongside it, not a replacement.
 - No changes to the site's actual behavior, templates, or workflow beyond the one `_config.yml` `exclude:` addition needed to keep the new files out of the deployed site.
 
 ## Decisions
@@ -27,7 +27,9 @@ No `README.md` or `docs/` exists today. The repository has accumulated substanti
 
 **Keeping `docs/`/`README.md` out of the deployed site**: add both to `_config.yml`'s existing `exclude:` list (already used for `Gemfile`, `Gemfile.lock`, `LICENSE`, etc.) — without front matter, Jekyll would otherwise copy them into `_site` verbatim as unstyled, unlinked static files, which is harmless but pointless clutter in the deployed output.
 
+**Keeping docs in sync going forward** (owner decision): add one short entry to `openspec/config.yaml`'s `rules.tasks` — read by the `/opsx:propose` workflow while drafting every future change's `tasks.md` — instructing it to include a docs-update task whenever that change touches architecture, dependencies, or the post-authoring workflow/features. This is deliberately a *prompt*, not an enforced gate: `rules` are advisory content shown to the assistant drafting tasks, not a CI check, so it can't silently block unrelated work, but it does mean every future `/opsx:propose` run is nudged to consider the four `docs/*.md` files rather than relying on remembering to do so. Kept to a single short bullet (per the "small and objective" ask) rather than a per-doc-file checklist, since the assistant drafting the change can figure out which specific file(s) apply.
+
 ## Risks / Trade-offs
 
-- [Documentation drifts out of date as future changes land] → Accepted as an ordinary maintenance cost, same as any project's docs; not solving this with automation now (see Non-Goals).
+- [A prompt-level `rules.tasks` entry can be missed or judged inapplicable by a future change] → Accepted: it's advisory, not a hard gate (see Non-Goals); still strictly better than the current state of no reminder at all.
 - [Duplicating some detail between `openspec/specs/` and `docs/`] → Acceptable: the two serve different readers (spec-driven change tracking vs. a newcomer/owner reference) and light duplication between them is preferable to forcing one reader to learn OpenSpec's format just to find out how to add a post.

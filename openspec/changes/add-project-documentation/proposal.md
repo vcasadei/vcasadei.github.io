@@ -10,6 +10,7 @@ This repository has no `README.md` and no project documentation at all today, de
   - `docs/dependencies.md` — the Gemfile's gems and why each is there (including the `jekyll-paginate` load-only dependency quirk), the OS-level image-optimization tools (`imagemagick`, `webp`), and the Ruby version pinned in CI.
   - `docs/writing-posts.md` — how to add a new post: file naming/location convention (English in `_posts/`, Portuguese in `_posts/pt/`), the front-matter fields actually in use across existing posts (`layout`, `title`, `title_pt`, `key`, `cover`, `mode`, `header`, `article_header`, `show_excerpt`, `translation_key`), the `<!--more-->` excerpt marker, and how to pair a translation.
   - `docs/post-features.md` — what can be used inside a post body: Markdown/kramdown basics, math via MathJax (`mathjax: true` is already enabled in `_config.yml`), Mermaid diagrams and Chart.js charts (both enabled in `_config.yml`), fenced code blocks with Rouge syntax highlighting (including `linenos`/`mark_lines`), footnotes, tables, a table of contents (`aside.toc`), embedding a YouTube video, and images (cover/thumbnail behavior from the image-optimization pipeline, and using local relative paths rather than absolute GitHub URLs).
+- Update `openspec/config.yaml` with a short, per-artifact `rules.tasks` entry so that future OpenSpec changes are prompted, while their own `tasks.md` is being written, to include a task updating the relevant `docs/*.md` file whenever the change touches architecture, dependencies, or the post-authoring workflow/features — keeping this documentation from silently going stale the way the rest of the project's history did before this change.
 - No code or behavior changes — this is a pure documentation addition.
 
 ## Capabilities
@@ -22,6 +23,6 @@ This repository has no `README.md` and no project documentation at all today, de
 
 ## Impact
 
-- **Affected files**: new `README.md`; new `docs/architecture.md`, `docs/dependencies.md`, `docs/writing-posts.md`, `docs/post-features.md`; `_config.yml` gains `README.md` and `docs/` in its existing `exclude:` list, so Jekyll doesn't copy these front-matter-less files into the deployed `_site` output (they're meant to be read on GitHub, not served as pages on the live site).
+- **Affected files**: new `README.md`; new `docs/architecture.md`, `docs/dependencies.md`, `docs/writing-posts.md`, `docs/post-features.md`; `_config.yml` gains `README.md` and `docs/` in its existing `exclude:` list, so Jekyll doesn't copy these front-matter-less files into the deployed `_site` output (they're meant to be read on GitHub, not served as pages on the live site); `openspec/config.yaml` gains a short `rules.tasks` entry.
 - **Affected systems**: none beyond that one `exclude:` addition — no template or workflow change, no change to any existing page or post.
 - **No impact** to the live site's rendered content, the build pipeline's behavior, or any existing content.
