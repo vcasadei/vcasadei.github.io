@@ -29,43 +29,25 @@
       counterpart when one exists (matched via translation_key); otherwise fall
       back to the site's Portuguese landing page (from an English page) or the
       English home page (from a Portuguese page). {%- endcomment -%}
-      {%- assign _switch_url = nil -%}
-      {%- if page.translation_key -%}
-        {%- for _candidate in site.posts -%}
-          {%- assign _candidate_lang = _candidate.lang | default: 'en' -%}
-          {%- if _candidate.translation_key == page.translation_key and _candidate_lang != _page_lang -%}
-            {%- assign _switch_url = _candidate.url -%}
-          {%- endif -%}
-        {%- endfor -%}
-      {%- endif -%}
-      {%- unless _switch_url -%}
-        {%- if _page_lang == 'en' -%}
-          {%- assign _switch_url = '/pt/' -%}
-        {%- else -%}
-          {%- assign _switch_url = '/' -%}
-        {%- endif -%}
-      {%- endunless -%}
+      {%- include snippets/language-switch-context.html -%}
+      {%- comment -%} Suggestion banner text is written in the *other*
+      language (the one being suggested), since that's presumably the
+      language the visitor understands. {%- endcomment -%}
       {%- if _page_lang == 'en' -%}
-        {%- assign _current_flag = '🇺🇸' -%}
-        {%- assign _current_lang_label = 'English' -%}
-        {%- assign _other_flag = '🇧🇷' -%}
-        {%- assign _other_lang_label = 'Português' -%}
-        {%- assign _switch_confirm = 'Switch to Portuguese?' -%}
+        {%- assign _banner_message = 'Parece que você prefere português. Deseja ver esta página em português?' -%}
+        {%- assign _banner_accept_label = 'Mudar para Português' -%}
+        {%- assign _banner_dismiss_label = 'Não, obrigado' -%}
       {%- else -%}
-        {%- assign _current_flag = '🇧🇷' -%}
-        {%- assign _current_lang_label = 'Português' -%}
-        {%- assign _other_flag = '🇺🇸' -%}
-        {%- assign _other_lang_label = 'English' -%}
-        {%- assign _switch_confirm = 'Switch to English?' -%}
+        {%- assign _banner_message = 'It looks like you prefer English. Would you like to view this page in English?' -%}
+        {%- assign _banner_accept_label = 'Switch to English' -%}
+        {%- assign _banner_dismiss_label = 'No, thanks' -%}
       {%- endif -%}
-      {%- include snippets/get-nav-url.html path=_switch_url -%}
-      {%- assign _switch_href = __return -%}
       {%- capture _language_switcher -%}
         <li class="navigation__item language-switcher">
           <button type="button" class="button button--secondary button--circle js-lang-toggle" aria-haspopup="true" aria-expanded="false" title="{{ _current_lang_label }}">{{ _current_flag }}</button>
           <ul class="language-switcher__menu js-lang-menu" hidden>
             <li><span class="language-switcher__current">{{ _current_flag }} {{ _current_lang_label }}</span></li>
-            <li><a href="{{ _switch_href }}" class="js-lang-confirm" data-confirm="{{ _switch_confirm }}">{{ _other_flag }} {{ _other_lang_label }}</a></li>
+            <li><a href="{{ _switch_href }}" class="js-lang-confirm" data-confirm="{{ _switch_confirm }}" data-lang="{{ _other_lang_code }}">{{ _other_flag }} {{ _other_lang_label }}</a></li>
           </ul>
         </li>
       {%- endcapture -%}
@@ -117,6 +99,14 @@
     </div>
   </header>
 
+  <div class="lang-suggest-banner js-lang-suggest-banner" hidden data-page-lang="{{ _page_lang }}" data-suggest-lang="{{ _other_lang_code }}">
+    <span class="lang-suggest-banner__text">{{ _other_flag }} {{ _banner_message }}</span>
+    <span class="lang-suggest-banner__actions">
+      <a href="{{ _switch_href }}" class="button button--primary lang-suggest-banner__accept js-lang-suggest-accept" data-lang="{{ _other_lang_code }}">{{ _banner_accept_label }}</a>
+      <button type="button" class="lang-suggest-banner__dismiss js-lang-suggest-dismiss" aria-label="{{ _banner_dismiss_label }}">×</button>
+    </span>
+  </div>
+
   <style>
     .language-switcher { position: relative; }
     .language-switcher .js-lang-toggle { font-size: 1.1rem; }
@@ -143,6 +133,37 @@
     }
     .language-switcher__current { opacity: 0.6; cursor: default; }
     .language-switcher__menu a:hover { background: rgba(255, 255, 255, 0.08); }
+
+    .lang-suggest-banner {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1000;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: #202020;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.4);
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
+    }
+    .lang-suggest-banner__actions { display: flex; align-items: center; gap: 0.5rem; }
+    .lang-suggest-banner__accept { text-decoration: none !important; }
+    .lang-suggest-banner__dismiss {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+    }
+    .lang-suggest-banner__dismiss:hover { color: rgba(255, 255, 255, 0.9); }
   </style>
   <script>
     (function () {
@@ -193,8 +214,47 @@
           var message = link.getAttribute('data-confirm');
           if (!window.confirm(message)) {
             e.preventDefault();
+            return;
           }
+          try {
+            window.localStorage.setItem('langPref', link.getAttribute('data-lang'));
+          } catch (err) { /* localStorage unavailable - proceed without saving */ }
         });
+      });
+
+      function getLangPref() {
+        try { return window.localStorage.getItem('langPref'); } catch (err) { return null; }
+      }
+      function setLangPref(value) {
+        try { window.localStorage.setItem('langPref', value); } catch (err) { /* no-op */ }
+      }
+
+      document.querySelectorAll('.js-lang-suggest-banner').forEach(function (banner) {
+        if (getLangPref()) { return; }
+        var pageLang = banner.getAttribute('data-page-lang');
+        var suggestLang = banner.getAttribute('data-suggest-lang');
+        var browserLang = ((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase();
+        var detected = null;
+        if (browserLang.indexOf('pt') === 0) {
+          detected = 'pt-BR';
+        } else if (browserLang.indexOf('en') === 0) {
+          detected = 'en';
+        }
+        if (!detected || detected === pageLang || detected !== suggestLang) { return; }
+        banner.hidden = false;
+        var accept = banner.querySelector('.js-lang-suggest-accept');
+        var dismiss = banner.querySelector('.js-lang-suggest-dismiss');
+        if (accept) {
+          accept.addEventListener('click', function () {
+            setLangPref(accept.getAttribute('data-lang'));
+          });
+        }
+        if (dismiss) {
+          dismiss.addEventListener('click', function () {
+            setLangPref('none');
+            banner.hidden = true;
+          });
+        }
       });
     })();
   </script>
