@@ -1,37 +1,13 @@
-{%- comment -%} A page that overrides its own articles.data_source away from
-the default paginator.posts (e.g. a language-scoped home page rendering the
-full site.posts list on one page) has no real "pages" of its own - Jekyll's
-paginator object still reflects the raw, cross-language pagination, so its
-page-count/links would be misleading here. {%- endcomment -%}
-{%- assign _page_articles_source = page.articles.data_source | default: layout.articles.data_source -%}
-{%- if paginator.total_pages > 1 and _page_articles_source != 'site.posts' -%}
+{%- if paginator.total_pages > 1 -%}
   <div class="pagination">
 
     {%- include snippets/get-locale-string.html key='STATISTICS' -%}
     {%- assign _locale_statistics = __return -%}
 
-    {%- assign _page_lang = page.lang | default: 'en' -%}
-    {%- assign _post_count = 0 -%}
-    {%- for _post in site.posts -%}
-      {%- assign _post_lang = _post.lang | default: 'en' -%}
-      {%- if _page_lang == 'en' -%}
-        {%- if _post_lang == 'en' -%}
-          {%- assign _post_count = _post_count | plus: 1 -%}
-        {%- endif -%}
-      {%- else -%}
-        {%- assign _count_it = true -%}
-        {%- if _post_lang == 'en' and _post.translation_key -%}
-          {%- for _candidate in site.posts -%}
-            {%- if _candidate.lang == _page_lang and _candidate.translation_key == _post.translation_key -%}
-              {%- assign _count_it = false -%}
-            {%- endif -%}
-          {%- endfor -%}
-        {%- endif -%}
-        {%- if _count_it -%}
-          {%- assign _post_count = _post_count | plus: 1 -%}
-        {%- endif -%}
-      {%- endif -%}
-    {%- endfor -%}
+    {%- comment -%} jekyll-paginate-v2 scopes paginator.total_posts to
+    whatever locale/category filter this page's own `pagination:` front
+    matter declares, so it's already correct per listing language. {%- endcomment -%}
+    {%- assign _post_count = paginator.total_posts -%}
     {%- assign _page_count = paginator.total_pages -%}
     <p>{{ _locale_statistics | replace: '[POST_COUNT]', _post_count | replace: '[PAGE_COUNT]', _page_count }}</p>
     <div class="pagination__menu">
