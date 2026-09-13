@@ -7,7 +7,7 @@ Defines how this repository's Jekyll source is built and published: publishing S
 ## Requirements
 
 ### Requirement: Pushing to master automatically builds and deploys the site
-Pushing a commit to `master` SHALL trigger an automated build of the Jekyll site and, on success, deploy the built output to GitHub Pages, with no manual local build or upload step required.
+Pushing a commit to `master` SHALL trigger an automated build of the Jekyll site and, on success, deploy the built output to GitHub Pages, with no manual local build or upload step required. The automated build SHALL include optimizing the site's image assets before the Jekyll build runs.
 
 #### Scenario: Push to master triggers a deploy
 - **WHEN** a commit is pushed to `master`
@@ -16,6 +16,10 @@ Pushing a commit to `master` SHALL trigger an automated build of the Jekyll site
 #### Scenario: Successful deploy is reflected live
 - **WHEN** the automated build for a `master` push completes successfully
 - **THEN** the deployed site at the site's live URL reflects that commit's content
+
+#### Scenario: Image optimization runs before the Jekyll build
+- **WHEN** the automated build runs
+- **THEN** it recompresses, WebP-converts, and thumbnails the site's raster images (per the `image-asset-pipeline` capability) before invoking the Jekyll build, so the build step deploys the already-optimized image files like any other static asset
 
 ### Requirement: A broken build is caught before publishing
 The build SHALL run and be validated on proposed changes (pull requests) as well as on `master`, so a change that fails to build is visible before it can reach the live site.
