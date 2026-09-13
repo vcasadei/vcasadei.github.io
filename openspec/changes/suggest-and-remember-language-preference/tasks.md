@@ -27,7 +27,7 @@
 - [x] 6.1 Push to a branch and open a PR; confirm the `build` GitHub Actions check passes — done; PR #17, `build` passed (31s)
 - [x] 6.2 Download the built artifact and confirm `head/custom.html`'s output includes the redirect script and `header.html`'s output includes the banner markup on a sample of built pages — done; downloaded PR #17's `github-pages` artifact, confirmed `lang-suggest-banner` markup and `window.location.replace` redirect script present in the built `index.html`
 - [x] 6.3 Confirm no unrelated pages regressed (diff a sample of untouched pages against a master build) — done; full-site diff against the latest master build artifact showed HTML differences only on pages that include `header.html`/`head/custom.html` (the intended additions: redirect script, `data-lang` attribute, banner markup/styles/script), image/CSS-map diffs from non-deterministic build artifacts, and `sitemap.xml` differing only in `<lastmod>` timestamps
-- [ ] 6.4 Merge to `master`; confirm the `deploy` job succeeds
+- [x] 6.4 Merge to `master`; confirm the `deploy` job succeeds — done; PR #17 squash-merged (686aa22), `deploy` succeeded; a follow-up direct commit to master (e20915d, recording 6.1-6.3 completion — see note below) also deployed successfully
 
 ## 7. Confirm live
 
