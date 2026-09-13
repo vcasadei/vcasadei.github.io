@@ -25,5 +25,5 @@
 
 ## 5. Confirm live
 
-- [ ] 5.1 Load `/`, `/page2`, `/pt/`, and `/pt/page2` (if generated) live and confirm each shows the correct, language-scoped set of posts
-- [ ] 5.2 Confirm `openspec validate paginate-posts-by-language --strict` passes
+- [x] 5.1 Load `/`, `/page2`, `/pt/`, and `/pt/page2` (if generated) live and confirm each shows the correct, language-scoped set of posts — confirmed: both home pages show correctly-scoped titles and 6 correctly-scoped posts each; `/page2` and `/pt/page2` both correctly 404 (no second page needed with only 6 posts per listing, vs. master's orphaned mixed-language `page2`); giscus comments confirmed still rendering live on both home pages and a sample post; the long-standing "github-pages gem can't satisfy your Gemfile's dependencies" build warning is gone for good, since the build no longer uses that action at all
+- [x] 5.2 Confirm `openspec validate paginate-posts-by-language --strict` passes
