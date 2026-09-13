@@ -23,7 +23,7 @@ Continuing the Discussion from the HackTown 2026 Talk.
 
 This article aims to provide a candid account of my personal experience and practical efforts in creating a personal assistant pipeline powered by local, independent AI—something I have been developing and refining over the past few years for both my daily workflow and professional life.
 
-![Image](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/local-personal-assistant-hacktown-2026/hacktown-2026-logo-10anos-branco.png "Hacktown 10 years"){:.rounded}
+![Image](/assets/images/local-personal-assistant-hacktown-2026/hacktown-2026-logo-10anos-branco.webp "Hacktown 10 years"){:.rounded}
 
 Recently, I was in Santa Rita do Sapucaí for [HackTown 2026](https://hacktown.com.br/). It was a milestone edition: the event celebrated its 10th anniversary, and it marked my 8th consecutive year speaking there. In previous years, I always had full rooms and rich discussions, but this time was truly special. My talk was scheduled for a Friday before the September 7th holiday at 1:00 PM—a day and time that usually sees lighter foot traffic, given that the festival's traditional peak is on Saturday. Even so, the room was completely packed, with people standing up to pay attention, dozens of great questions, and, unfortunately, many people who couldn't get in and were left outside.
 

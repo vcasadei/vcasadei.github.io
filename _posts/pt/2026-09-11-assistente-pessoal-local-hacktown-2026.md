@@ -23,7 +23,7 @@ Continuando o assunto da palestra do HackTown 2026.
 
 Este artigo busca trazer um relato sincero sobre a minha experiência pessoal e sobre os meus esforços práticos para a criação de uma pipeline de assistente pessoal com IA local e independente — algo que venho desenvolvendo e refinando nos últimos anos, tanto para o meu fluxo de trabalho cotidiano quanto para a minha vida profissional.
 
-![Imagem](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/local-personal-assistant-hacktown-2026/hacktown-2026-logo-10anos-branco.png "10 anos do Hacktown"){:.rounded}
+![Imagem](/assets/images/local-personal-assistant-hacktown-2026/hacktown-2026-logo-10anos-branco.webp "10 anos do Hacktown"){:.rounded}
 
 Recentemente, estive em Santa Rita do Sapucaí para o [HackTown 2026](https://hacktown.com.br/). Foi uma edição marcante: o evento comemorou 10 anos de história, e foi o meu 8º ano consecutivo palestrando por lá. Nos anos anteriores sempre tive salas cheias e discussões ricas, mas desta vez foi algo especial. Minha fala foi agendada para uma sexta-feira antes do feriado de 7 de setembro, às 13h — um dia e horário que costumam ter menos movimento, já que o pico tradicional do festival é no sábado. Ainda assim, a sala lotou completamente, com pessoas em pé prestando atenção, dezenas de perguntas excelentes e, infelizmente, muita gente que não conseguiu entrar e acabou ficando do lado de fora.
 

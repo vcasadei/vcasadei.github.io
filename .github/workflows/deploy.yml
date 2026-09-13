@@ -26,6 +26,41 @@ jobs:
         id: pages
         uses: actions/configure-pages@v6
 
+      - name: Optimize images
+        run: |
+          set -euo pipefail
+          sudo apt-get update -y
+          sudo apt-get install -y imagemagick webp
+
+          # Cover images that also get a small thumbnail variant for listing use.
+          COVERS=(
+            "assets/images/hello-world.jpeg"
+            "assets/images/scrum4research.jpeg"
+            "assets/images/upgrade-network.jpeg"
+            "assets/images/improving-home-security-using-ai.jpeg"
+            "assets/images/local-personal-assistant-hacktown-2026/local-personal-assistant-hacktown-2026.jpeg"
+            "assets/images/scrum4research-lessons-learned/man-white-board.jpeg"
+          )
+
+          mapfile -d '' -t IMAGES < <(find assets/images -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) -print0)
+
+          for f in "${IMAGES[@]}"; do
+            echo "Optimizing $f"
+            convert "$f" -resize '1600x1600>' -quality 82 "$f"
+            cwebp -quiet -q 80 "$f" -o "${f%.*}.webp"
+          done
+
+          for f in "${COVERS[@]}"; do
+            dir=$(dirname "$f")
+            base=$(basename "$f")
+            base="${base%.*}"
+            ext="${f##*.}"
+            thumb="$dir/${base}-thumb.${ext}"
+            echo "Generating thumbnail $thumb"
+            convert "$f" -resize '480x' -quality 78 "$thumb"
+            cwebp -quiet -q 78 "$thumb" -o "$dir/${base}-thumb.webp"
+          done
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:

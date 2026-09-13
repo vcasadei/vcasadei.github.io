@@ -32,7 +32,7 @@ Por fim, eu tinha 3 [Câmeras IP WiFi HD 5MP genéricas chinesas com o aplicativ
 
 Você pode ver a disposição geral das câmeras, roteador e repetidores em uma captura de tela do Google Maps:
 
-![Imagem](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/d1d3b31f-67a9-4bfd-9a4d-a00463d7fbe5_813x1902.webp "Vista aérea com a configuração anterior")
+![Imagem](/assets/images/d1d3b31f-67a9-4bfd-9a4d-a00463d7fbe5_813x1902.webp "Vista aérea com a configuração anterior")
 
 Essa configuração era barata e funcionou de forma confiável por anos (nos últimos 6 anos precisei substituir algumas coisas, principalmente uma ou duas câmeras e cartões SD que deram defeito). Além disso, conseguíamos monitorar a casa quando estávamos fora e também gravar alguns eventos para conferir depois.
 
@@ -49,6 +49,6 @@ Agora, tenho mais câmeras, elas são extremamente confiáveis, também tenho bo
 
 Também fui um passo além e adicionei um servidor Frigate para gravar eventos baseados em Detecção de Objetos. Vou falar sobre isso em um próximo post.
 
-![Imagem](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/e176889e-6c2a-43f5-94a7-f250ea22f3aa_840x1896.webp "Vista aérea com a nova configuração")
+![Imagem](/assets/images/e176889e-6c2a-43f5-94a7-f250ea22f3aa_840x1896.webp "Vista aérea com a nova configuração")
 
 Se você tiver alguma dúvida ou sugestão, por favor, deixe um comentário abaixo.
