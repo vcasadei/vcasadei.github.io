@@ -1,5 +1,9 @@
 schema: spec-driven
 
+rules:
+  tasks:
+    - "If this change alters the site's architecture, dependencies, or the post-authoring workflow/features, include a task to update the matching file under docs/ (architecture.md, dependencies.md, writing-posts.md, post-features.md)."
+
 # Project context (optional)
 # This is shown to AI when creating artifacts.
 # Add your tech stack, conventions, style guides, domain knowledge, etc.
