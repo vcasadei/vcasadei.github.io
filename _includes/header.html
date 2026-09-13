@@ -6,10 +6,15 @@
   <header class="header" {%- if include.background -%} style="background: {{ include.background }};" {%- endif -%}>
 {%- endif -%}
     <div class="main">
+      {%- assign _page_lang = page.lang | default: 'en' -%}
       <div class="header__title">
         <div class="header__brand">
           {%- include svg/logo.svg -%}
-          {%- assign _paths_root = site.paths.root | default: site.data.variables.default.paths.root  -%}
+          {%- if _page_lang == 'en' -%}
+            {%- assign _paths_root = site.paths.root | default: site.data.variables.default.paths.root -%}
+          {%- else -%}
+            {%- assign _paths_root = '/pt/' -%}
+          {%- endif -%}
           {%- include snippets/get-nav-url.html path=_paths_root -%}
           {%- if site.title -%}
             <a title="{%- if site.description -%}{{ site.description }}{%- endif -%}" href="{{ __return }}">{{ site.title }}</a>
@@ -19,7 +24,6 @@
           <button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button>
         {%- endif -%}
       </div>
-      {%- assign _page_lang = page.lang | default: 'en' -%}
 
       {%- comment -%} Language switcher: link to the current post's translated
       counterpart when one exists (matched via translation_key); otherwise fall
