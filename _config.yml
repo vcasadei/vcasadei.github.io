@@ -207,9 +207,11 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - LICENSE
+  - README.md
   - gulpfile.js
   - package-lock.json
   - package.json
+  - /docs
   - /node_modules
   - /openspec
   - /vendor
