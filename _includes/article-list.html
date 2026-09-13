@@ -63,6 +63,20 @@
     {%- if _article.cover -%}
       {%- include snippets/get-nav-url.html path=_article.cover -%}
       {%- assign _article_cover = __return -%}
+
+      {%- comment -%} Thumbnail variants (generated at build time by the
+      image-optimization pipeline) for listing use, so a listing never has to
+      load the full-size cover image. {%- endcomment -%}
+      {%- assign _cover_ext = _article.cover | split: '.' | last -%}
+      {%- assign _cover_ext_len = _cover_ext.size | plus: 1 -%}
+      {%- assign _cover_base_len = _article.cover.size | minus: _cover_ext_len -%}
+      {%- assign _cover_base = _article.cover | slice: 0, _cover_base_len -%}
+      {%- assign _cover_thumb = _cover_base | append: '-thumb.' | append: _cover_ext -%}
+      {%- assign _cover_thumb_webp = _cover_base | append: '-thumb.webp' -%}
+      {%- include snippets/get-nav-url.html path=_cover_thumb -%}
+      {%- assign _article_cover_thumb = __return -%}
+      {%- include snippets/get-nav-url.html path=_cover_thumb_webp -%}
+      {%- assign _article_cover_thumb_webp = __return -%}
     {%- endif -%}
 
     {%- if include.type == 'item' -%}
@@ -72,16 +86,18 @@
         <article class="item">
       {%- endif -%}
         {%- if _article.cover and include.show_cover-%}
-          {%- include snippets/get-nav-url.html path=_article.cover -%}
-          {%- assign _article_cover = __return -%}
-          <div class="item__image">
           {%- if include.cover_size == 'lg' -%}
-            <img class="image image--lg" src="{{ _article_cover }}" />
+            {%- assign _cover_img_class = 'image image--lg' -%}
           {%- elsif include.cover_size == 'sm' -%}
-            <img class="image image--sm" src="{{ _article_cover }}" />
+            {%- assign _cover_img_class = 'image image--sm' -%}
           {%- else -%}
-            <img class="image" src="{{ _article_cover }}" />
+            {%- assign _cover_img_class = 'image' -%}
           {%- endif -%}
+          <div class="item__image">
+            <picture>
+              <source type="image/webp" srcset="{{ _article_cover_thumb_webp }}">
+              <img class="{{ _cover_img_class }}" src="{{ _article_cover_thumb }}" />
+            </picture>
           </div>
         {%- endif -%}
         <div class="item__content">

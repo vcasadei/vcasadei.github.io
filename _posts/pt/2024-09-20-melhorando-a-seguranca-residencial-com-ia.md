@@ -160,8 +160,8 @@ Como você pode ver, o computador fica bem ocupado, porém eu poderia mudar algu
 
 Para quem tiver curiosidade de ver mais, também estou adicionando algumas capturas de tela com métricas de Sistema e Armazenamento, além de uma visão simples dos eventos e câmeras.
 
-| ![Imagem](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/home-security-ai/1.jpg "Imagem 1"){:.rounded} | ![Imagem](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/home-security-ai/2.jpg "Imagem 2"){:.rounded} |
-| ![Imagem](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/home-security-ai/3.png "Imagem 3"){:.rounded} | ![Imagem](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/home-security-ai/4.png "Imagem 4"){:.rounded} |
+| ![Imagem](/assets/images/home-security-ai/1.webp "Imagem 1"){:.rounded} | ![Imagem](/assets/images/home-security-ai/2.webp "Imagem 2"){:.rounded} |
+| ![Imagem](/assets/images/home-security-ai/3.webp "Imagem 3"){:.rounded} | ![Imagem](/assets/images/home-security-ai/4.webp "Imagem 4"){:.rounded} |
 
 # Monitor de CFTV em Tempo Real
 
@@ -173,13 +173,13 @@ Para isso, comprei um [monitor barato de 11"](https://s.click.aliexpress.com/e/_
 
 Além disso, eu queria ter um layout personalizado, com uma câmera principal e outras câmeras em seções menores, como na imagem abaixo. Isso me levou a uma verdadeira jornada tentando encontrar o software perfeito que rodasse em uma [Raspberry Pi 3B+](https://s.click.aliexpress.com/e/_DDs3cCb) que eu tinha guardada e que exibisse streams RTSP com diferentes codificações.
 
-![Imagem](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/home-security-ai\camera-grid.png "Grade para 5 câmeras"){:.rounded}
+![Imagem](/assets/images/home-security-ai/camera-grid.webp "Grade para 5 câmeras"){:.rounded}
 
 Acabei testando várias opções (VLC, Moonfire NVR, RPISurv, CamPlayer, Motion, Frigate Birdseye, Camera.ui e mais), porém, ou elas não ofereciam a opção de rodar o layout que eu queria, ou rodavam em uma versão mais antiga do Debian, ou não eram otimizadas o suficiente para rodar vários streams em uma Pi 3B+.
 
 Por fim, a solução veio com um software chamado Agent DVR. Essa solução tem a possibilidade de gravar e visualizar câmeras ao vivo, e até tem alguns recursos de IA, porém desabilitei tudo, exceto a visualização ao vivo, e ela me permitiu criar um layout personalizado e rodar 5 câmeras na Pi.
 
-![Imagem](https://raw.githubusercontent.com/vcasadei/vcasadei.github.io/refs/heads/master/assets/images/home-security-ai\cctv-grid.jpeg "Interface do Agent DVR com feeds de câmeras em uma grade de 5 câmeras"){:.rounded}
+![Imagem](/assets/images/home-security-ai/cctv-grid.webp "Interface do Agent DVR com feeds de câmeras em uma grade de 5 câmeras"){:.rounded}
 
 No final, a Pi consegue rodar os 5 feeds, mas só isso. Cheguei a tentar 6, mas começava a perder frames ou streams. Mas estou satisfeito com apenas 5 feeds, e se algum dia eu quiser mais, posso simplesmente usar uma Pi 4 ou 5.
 
