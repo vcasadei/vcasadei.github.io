@@ -19,7 +19,6 @@ en: &EN
   FOLLOW_US               : "Follow us on [NAME]."
   EMAIL_ME                : "Send me an Email."
   EMAIL_US                : "Send us an Email."
-  COPYRIGHT_DATES         : "2025"
   PAGE_NOT_FOUND          : "404 - The page you look for doesn't exist :("
   RELOAD_GAME             : "Reload Game"
 
@@ -52,7 +51,6 @@ zh-Hans: &ZH_HANS
   FOLLOW_US               : "在 [NAME] 上关注我们。"
   EMAIL_ME                : "给我发邮件。"
   EMAIL_US                : "给我们发邮件。"
-  COPYRIGHT_DATES         : "2025"
 
 zh:
   <<: *ZH_HANS
@@ -81,7 +79,6 @@ zh-Hant: &ZH_HANT
   FOLLOW_US               : "在 [NAME] 上關注我們。"
   EMAIL_ME                : "給我發郵件。"
   EMAIL_US                : "給我們發郵件。"
-  COPYRIGHT_DATES         : "2025"
 
 zh-TW:
   <<: *ZH_HANT
@@ -108,7 +105,6 @@ ko: &KO
   FOLLOW_US               : "[NAME]에서 팔로우하기"
   EMAIL_ME                : "이메일 보내기"
   EMAIL_US                : "이메일 보내기"
-  COPYRIGHT_DATES         : "2025"
 
 ko-KR:
   <<: *KO
@@ -133,7 +129,6 @@ fr: &FR
   FOLLOW_US               : "Suivez-nous sur [NAME]."
   EMAIL_ME                : "Envoyez-moi un courriel."
   EMAIL_US                : "Envoyez-nous un courriel"
-  COPYRIGHT_DATES         : "2025"
   DONATE                  : "Faites un don de [NAME]."
 
 fr-BE:
@@ -166,7 +161,6 @@ tr: &TR
   FOLLOW_US               : "Bizi [NAME] üzerinden takip edin."
   EMAIL_ME                : "Bana email ile ulaşın."
   EMAIL_US                : "Bize email ile ulaşın."
-  COPYRIGHT_DATES         : "2025"
 
 ## => Brazilian Portuguese
 ########################
@@ -188,7 +182,6 @@ pt-BR: &PT_BR
   FOLLOW_US               : "Siga-nos no [NAME]."
   EMAIL_ME                : "Me envie um e-mail."
   EMAIL_US                : "Envie-nos um e-mail."
-  COPYRIGHT_DATES         : "2025"
   PAGE_NOT_FOUND          : "404 - A página que você procura não existe :("
   RELOAD_GAME             : "Recarregar Jogo"
 
