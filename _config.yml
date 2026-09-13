@@ -96,8 +96,20 @@ chart: true # false (default), true
 
 ## => Paginate
 ##############################
-paginate: 8
+# jekyll-paginate-v2 (classic jekyll-paginate is only installed to satisfy
+# the theme's own gemspec dependency; it reads none of this and is inert).
+# NOTE: `paginate` (the legacy per-page count key) must NOT be set here -
+# jekyll-paginate-v2 refuses to run ("legacy compatibility mode has expired")
+# if it is. `paginate_path` alone is safe to keep: it's only read by the
+# theme's own paginator.html for a couple of jump-to-page links, unrelated
+# to jekyll-paginate-v2's own config below.
 paginate_path: /page:num # don't change this unless for special need
+pagination:
+  enabled: true
+  per_page: 8
+  permalink: '/page:num'
+  sort_field: 'date'
+  sort_reverse: true
 
 
 ## => Sources
@@ -215,19 +227,21 @@ defaults:
       show_edit_on_github: false
       show_subscribe: true
       pageview: true
+      locale: en
   - scope:
       path: "_posts/pt"
       type: posts
     values:
       lang: pt-BR
       permalink: /pt/:year/:month/:day/:title.html
+      locale: pt-BR
 
 
 ## => Plugins
 ##############################
 plugins:
   - jekyll-feed
-  - jekyll-paginate
+  - jekyll-paginate-v2
   - jekyll-remote-theme
   - jekyll-sitemap
   - jemoji
