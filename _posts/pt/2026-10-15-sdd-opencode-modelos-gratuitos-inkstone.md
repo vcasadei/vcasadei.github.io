@@ -1,9 +1,9 @@
 ---
 layout: article
-title: "Spec-Driven Development sem Claude: OpenSpec, opencode e modelos gratuitos"
-key: sdd-sem-claude-opencode-modelos-gratuitos
-translation_key: sdd-without-claude-opencode-free-models
-cover: /assets/images/sdd-without-claude/sdd-without-claude.jpeg
+title: "Spec-Driven Development com opencode e modelos gratuitos do InkStone"
+key: sdd-opencode-modelos-gratuitos-inkstone
+translation_key: sdd-opencode-inkstone-free-models
+cover: /assets/images/sdd-opencode-inkstone/sdd-opencode-inkstone.jpeg
 show_excerpt: false
 mode: immersive
 header:
@@ -14,35 +14,49 @@ article_header:
   background_color: '#0b1020'
   background_image:
     gradient: 'linear-gradient(135deg, rgba(11, 16, 32, 0.85), rgba(194, 65, 12, 0.40))'
-    src: /assets/images/sdd-without-claude/sdd-without-claude.jpeg
+    src: /assets/images/sdd-opencode-inkstone/sdd-opencode-inkstone.jpeg
 ---
 
-Um passo a passo, do zero, para praticar spec-driven development com ferramentas gratuitas.
+Um passo a passo, do zero, para praticar spec-driven development com o opencode e os modelos gratuitos do InkStone.
 
 <!--more-->
 
-Nos últimos meses eu tenho usado (e ensinado) **Spec-Driven Development** com o [OpenSpec](https://github.com/Fission-AI/OpenSpec) e o [Claude Code](https://claude.com/claude-code). A ideia é simples e, para mim, mudou a forma de trabalhar com agentes de código: antes de qualquer linha de código, a gente escreve e revisa o que vai ser feito. Proposta, requisitos, design e tarefas viram arquivos Markdown versionados, e só depois o agente implementa.
+Nos últimos meses eu tenho usado (e ensinado) **Spec-Driven Development** com o [OpenSpec](https://github.com/Fission-AI/OpenSpec). A ideia é simples e, para mim, mudou a forma de trabalhar com agentes de código: antes de qualquer linha de código, a gente escreve e revisa o que vai ser feito. Proposta, requisitos, design e tarefas viram arquivos Markdown versionados, e só depois o agente implementa.
 
-Uma pergunta apareceu várias vezes: *"e quem não tem acesso ao Claude?"*. Seja por custo, por política da empresa ou simplesmente porque a pessoa quer estudar em casa, no seu ritmo, fazia falta um caminho gratuito. Este artigo é esse caminho: o mesmo fluxo de SDD, com o mesmo OpenSpec, mas rodando com o [opencode](https://opencode.ai) (um agente de código open source) e modelos gratuitos como o DeepSeek V4 Pro, servidos pela plataforma [Intern Discovery (InkStone)](https://discovery.intern-ai.org.cn).
+Uma pergunta que eu sempre recebo é: *"como praticar isso em casa, sem gastar nada?"*. Este artigo é a minha resposta: o fluxo completo de SDD com o OpenSpec, rodando com o [opencode](https://opencode.ai), um agente de código open source, e modelos gratuitos como o DeepSeek V4 Pro, servidos pela plataforma [InkStone (Intern Discovery)](https://discovery.intern-ai.org.cn).
 
 Eu gravei cada passo. Os vídeos estão acelerados nas esperas, e embaixo de cada um eu deixo quanto tempo aquilo levou de verdade. Isso é importante: **o serviço é gratuito, mas não é rápido.**
 
 # O que vamos montar
 
 * **Uma WSL dedicada, chamada `sdd-lab`:** um Ubuntu rodando dentro do Windows só para este estudo. Se algo der errado, você apaga e recria sem afetar mais nada. (No Linux ou no macOS, pule esta parte e siga do Node.js em diante.)
-* **[opencode](https://opencode.ai):** agente de código open source, que roda no terminal e faz o papel do Claude Code.
-* **[Intern Discovery / InkStone](https://discovery.intern-ai.org.cn):** plataforma de pesquisa do Shanghai AI Laboratory que oferece acesso gratuito, com cota, a modelos como DeepSeek V4 Pro, DeepSeek V4 Flash, GLM 5.3 e Kimi K2.6, por uma API compatível com a da OpenAI.
+* **[opencode](https://opencode.ai):** agente de código open source, que roda no terminal e conversa com qualquer provedor compatível com a API da OpenAI.
+* **[Intern Discovery / InkStone](https://discovery.intern-ai.org.cn):** a fonte dos modelos gratuitos (mais detalhes na próxima seção).
 * **[OpenSpec](https://openspec.dev/docs):** o framework de spec-driven development, com o meu schema público [openspec-casadei](https://github.com/vcasadei/openspec-casadei) por cima.
 * **Um primeiro spec de verdade:** um CLI chamado `wordcount`, em Node.js, que conta linhas, palavras e caracteres de um arquivo. Simples o bastante para caber num artigo, completo o bastante para passar pelo ciclo inteiro.
 
 O ciclo do OpenSpec que vamos rodar é este:
 
-```mermaid
-graph LR;
-    A["/opsx-propose<br/>proposta, specs,<br/>design e tarefas"] --> B["Revisão humana"];
-    B --> C["/opsx-apply<br/>implementa seguindo<br/>as tarefas"];
-    C --> D["/opsx-archive<br/>a spec vira<br/>documentação oficial"];
-```
+<style>
+.sdd-flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin:1.6em 0 2em}
+.sdd-flow .step{flex:1 1 160px;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px 16px;
+  background:linear-gradient(160deg,rgba(255,138,61,.16),rgba(255,255,255,.02))}
+.sdd-flow .step.human{background:linear-gradient(160deg,rgba(121,192,255,.16),rgba(255,255,255,.02))}
+.sdd-flow .n{font-size:.72em;letter-spacing:.08em;text-transform:uppercase;color:#ff8a3d;font-weight:700}
+.sdd-flow .step.human .n{color:#79c0ff}
+.sdd-flow .t{font-family:Consolas,Menlo,monospace;font-weight:700;font-size:1.02em;margin:.25em 0 .35em;color:#f0f0f0}
+.sdd-flow .d{font-size:.86em;line-height:1.45;color:rgba(255,255,255,.7)}
+.sdd-flow .arrow{align-self:center;color:#ff8a3d;font-size:1.5em;font-weight:700}
+@media (max-width:760px){.sdd-flow{flex-direction:column}.sdd-flow .arrow{transform:rotate(90deg);text-align:center}}
+.sdd-wrap{white-space:pre-wrap !important;word-break:break-word;overflow:visible !important;max-height:none !important}
+</style>
+<div class="sdd-flow"><div class="step "><div class="n">1 · Propose</div><div class="t">/opsx-propose</div><div class="d">proposta, specs, design e tarefas</div></div><div class="arrow">→</div><div class="step human"><div class="n">2 · Revisão</div><div class="t">você</div><div class="d">lê, discute e ajusta antes de qualquer código</div></div><div class="arrow">→</div><div class="step "><div class="n">3 · Apply</div><div class="t">/opsx-apply</div><div class="d">implementa seguindo as tarefas, com testes</div></div><div class="arrow">→</div><div class="step "><div class="n">4 · Archive</div><div class="t">/opsx-archive</div><div class="d">a spec vira documentação oficial do projeto</div></div></div>
+
+# O que é o InkStone (e por que é gratuito, por enquanto)
+
+O [Intern Discovery](https://discovery.intern-ai.org.cn), também chamado de InkStone (书生·端砚), é uma plataforma do Shanghai AI Laboratory voltada para pesquisa científica: ferramentas para artigos, espaços por tema, aplicações de pesquisa, dados e computação científica. No meio disso tudo, no menu **Research Models**, ela oferece acesso por API a modelos de linguagem como DeepSeek V4 Pro, DeepSeek V4 Flash, GLM 5.3, Kimi K2.6 e Qwen, com endpoints compatíveis com a API da OpenAI e com a da Anthropic.
+
+**No momento em que escrevo, esse acesso está gratuito**, com cota por janela de tempo, e o menu aparece com a etiqueta *Free*. Eu não sei por quanto tempo isso vai durar: não encontrei nenhuma data ou política pública sobre o fim da gratuidade. Então trate como uma oportunidade temporária para estudar. Se um dia deixar de ser gratuito, nada do que você montou se perde: o opencode aceita qualquer provedor compatível com a API da OpenAI, e trocar de provedor é mudar a URL e a chave no `opencode.json`. O próprio opencode também lista alguns modelos gratuitos dele no `/models`.
 
 # Antes de começar: segurança e expectativas
 
@@ -56,7 +70,7 @@ Duas regras a mais:
 
 ## Gratuito, mas não é rápido
 
-O ciclo completo do `wordcount` levou, no relógio, cerca de **10 minutos no propose, 6 minutos no apply e 5 minutos no archive**. Com Claude Code, o mesmo exercício leva uma fração disso. Para estudar, funciona muito bem; para o dia a dia de trabalho, a velocidade pesa.
+O ciclo completo do `wordcount` levou, no relógio, cerca de **10 minutos no propose, 6 minutos no apply e 5 minutos no archive**. Com modelos pagos e mais rápidos, o mesmo exercício leva uma fração disso. Para estudar, funciona muito bem; para o dia a dia de trabalho, a velocidade pesa.
 
 E a cota dá conta: o exercício inteiro, do cadastro ao archive, consumiu cerca de **30% do limite de 5 horas** e **6% do limite semanal** da conta gratuita.
 
@@ -68,31 +82,31 @@ E a cota dá conta: o exercício inteiro, do cadastro ao archive, consumiu cerca
 
 A página inicial abre em chinês, mas tem a opção de inglês no canto superior direito (o tradutor do navegador também resolve).
 
-![Página inicial do InkStone](/assets/images/sdd-without-claude/inkstone-home.png "Página inicial do Intern Discovery / InkStone"){:.rounded}
+![Página inicial do InkStone](/assets/images/sdd-opencode-inkstone/inkstone-home.png "Página inicial do Intern Discovery / InkStone"){:.rounded}
 
 **Um aviso que vai te poupar tempo:** a plataforma oferece cadastro por e-mail, mas o firewall do site bloqueia esse cadastro. O botão simplesmente não faz nada, e o console do navegador mostra um erro `405 Method Not Allowed`, com uma página de bloqueio do firewall da Alibaba Cloud. Eu testei com outros navegadores, janela anônima, outra rede e VPN, e o bloqueio continuou. O login com GitHub funciona, então vá direto por ele, em **More login options → GitHub**.
 
-![Login com GitHub](/assets/images/sdd-without-claude/inkstone-login-github.png "Use o login com GitHub (de preferência com uma conta descartável)"){:.rounded}
+![Login com GitHub](/assets/images/sdd-opencode-inkstone/inkstone-login-github.png "Use o login com GitHub (de preferência com uma conta descartável)"){:.rounded}
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/01-login-github.jpg"><source src="/assets/videos/sdd-without-claude/01-login-github.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/01-login-github.jpg"><source src="/assets/videos/sdd-opencode-inkstone/01-login-github.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 39 s.*
 
 ## Gerando a API key
 
 Depois do login, o menu lateral tem a opção **Research Models**, com a etiqueta *Free*. É lá que ficam a URL da API, os limites da conta e as chaves.
 
-![Research Models](/assets/images/sdd-without-claude/inkstone-research-models.png "Menu Research Models"){:.rounded}
+![Research Models](/assets/images/sdd-opencode-inkstone/inkstone-research-models.png "Menu Research Models"){:.rounded}
 
 Os limites da conta gratuita, no momento em que escrevi:
 * **50 requisições por minuto** para modelos de geração e **200** para modelos de decisão;
 * **2 milhões de tokens por minuto**;
 * **Créditos** com janela de 5 horas (10) e janela semanal (50). Segundo a própria plataforma, 1 crédito cobre até 50 milhões de tokens, usando o DeepSeek V4 Flash como exemplo.
 
-![Limites e API key](/assets/images/sdd-without-claude/inkstone-api-key-limits.png "Limites da conta e criação de API key"){:.rounded}
+![Limites e API key](/assets/images/sdd-opencode-inkstone/inkstone-api-key-limits.png "Limites da conta e criação de API key"){:.rounded}
 
 Clique em **Create API Key**, dê um nome e **copie a chave na hora**: ela só aparece inteira nesse diálogo. Depois de fechar, a lista mostra apenas o valor mascarado.
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/02-create-api-key.jpg"><source src="/assets/videos/sdd-without-claude/02-create-api-key.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/02-create-api-key.jpg"><source src="/assets/videos/sdd-opencode-inkstone/02-create-api-key.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 24 s (vídeo acelerado). A chave que aparece no vídeo já foi apagada.*
 
 ---
@@ -113,7 +127,7 @@ mkdir workspace
 cd workspace/
 ```
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/03-create-wsl.jpg"><source src="/assets/videos/sdd-without-claude/03-create-wsl.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/03-create-wsl.jpg"><source src="/assets/videos/sdd-opencode-inkstone/03-create-wsl.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 1 min 22 s (vídeo acelerado).*
 
 E atualizamos o Ubuntu:
@@ -123,7 +137,7 @@ sudo apt update
 sudo apt upgrade
 ```
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/04-update-ubuntu.jpg"><source src="/assets/videos/sdd-without-claude/04-update-ubuntu.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/04-update-ubuntu.jpg"><source src="/assets/videos/sdd-opencode-inkstone/04-update-ubuntu.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 1 min 17 s (vídeo acelerado).*
 
 ---
@@ -143,7 +157,7 @@ node -v && npm -v
 
 Aqui saiu o Node.js v24.22.0 com npm 11.19.1. Confira a versão mais recente do script no repositório do nvm.
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/05-install-node.jpg"><source src="/assets/videos/sdd-without-claude/05-install-node.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/05-install-node.jpg"><source src="/assets/videos/sdd-opencode-inkstone/05-install-node.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 44 s (vídeo acelerado).*
 
 ## opencode e OpenSpec
@@ -158,7 +172,7 @@ openspec --version
 
 O instalador do [opencode](https://opencode.ai/docs/) coloca o binário no PATH pelo `~/.bashrc`. O [OpenSpec](https://github.com/Fission-AI/OpenSpec) vem pelo npm. Na gravação, saíram o opencode 1.19.1 (atualizamos para a 2.0 mais adiante) e o OpenSpec 1.14.2.
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/06-install-opencode-openspec.jpg"><source src="/assets/videos/sdd-without-claude/06-install-opencode-openspec.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/06-install-opencode-openspec.jpg"><source src="/assets/videos/sdd-opencode-inkstone/06-install-opencode-openspec.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 1 min 05 s (vídeo acelerado).*
 
 ---
@@ -181,7 +195,7 @@ echo ${#INKSTONE_API_KEY}
 
 O último comando mostra só o **tamanho** da chave, nunca o valor. É um jeito simples de conferir que a variável foi carregada sem expor o segredo na tela. O `tr` remove espaços e a quebra de linha final, que costumam vir junto quando se cola a chave.
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/07-store-api-key.jpg"><source src="/assets/videos/sdd-without-claude/07-store-api-key.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/07-store-api-key.jpg"><source src="/assets/videos/sdd-opencode-inkstone/07-store-api-key.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 56 s.*
 
 ## Testando a API
@@ -197,7 +211,7 @@ curl -s https://discovery-api.intern-ai.org.cn/v1/chat/completions \
 
 A resposta veio com o texto do modelo e o uso de tokens (17 de entrada, 224 de saída, sendo 160 de raciocínio).
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/08-test-api.jpg"><source src="/assets/videos/sdd-without-claude/08-test-api.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/08-test-api.jpg"><source src="/assets/videos/sdd-opencode-inkstone/08-test-api.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 14 s (vídeo acelerado).*
 
 ## Configurando o opencode
@@ -234,7 +248,7 @@ cat ~/.config/opencode/opencode.json
 
 Repare no `"apiKey": "{env:INKSTONE_API_KEY}"`: o arquivo não guarda segredo nenhum, só aponta para a variável de ambiente. O `small_model` é usado pelo opencode em tarefas leves, como gerar títulos de sessão.
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/09-configure-opencode.jpg"><source src="/assets/videos/sdd-without-claude/09-configure-opencode.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/09-configure-opencode.jpg"><source src="/assets/videos/sdd-opencode-inkstone/09-configure-opencode.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 31 s.*
 
 ---
@@ -253,7 +267,7 @@ exec bash
 
 O `openspec init --tools opencode` cria a estrutura `openspec/` e instala no opencode os comandos do fluxo (`/opsx-propose`, `/opsx-apply`, `/opsx-archive` e outros). O `completion install` ativa o autocompletar com Tab, e o `exec bash` recarrega o shell.
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/10-openspec-init.jpg"><source src="/assets/videos/sdd-without-claude/10-openspec-init.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/10-openspec-init.jpg"><source src="/assets/videos/sdd-opencode-inkstone/10-openspec-init.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 30 s.*
 
 ## Instalando o schema openspec-casadei
@@ -271,7 +285,7 @@ openspec schema which casadei
 
 O instalador copia o schema para dentro do projeto e troca `schema: spec-driven` por `schema: casadei` no `openspec/config.yaml`. Se preferir o schema padrão do OpenSpec, pule este passo: o resto do artigo funciona igual.
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/11-install-casadei-schema.jpg"><source src="/assets/videos/sdd-without-claude/11-install-casadei-schema.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/11-install-casadei-schema.jpg"><source src="/assets/videos/sdd-opencode-inkstone/11-install-casadei-schema.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 30 s (vídeo acelerado).*
 
 ## Atualizando o opencode para a 2.0
@@ -282,7 +296,7 @@ Na primeira vez que abri o opencode dentro do projeto, ele já reconheceu o prov
 /update
 ```
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/12-update-opencode.jpg"><source src="/assets/videos/sdd-without-claude/12-update-opencode.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/12-update-opencode.jpg"><source src="/assets/videos/sdd-opencode-inkstone/12-update-opencode.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 26 s (vídeo acelerado).*
 
 ## Escolhendo o modelo
@@ -293,26 +307,24 @@ Com o opencode 2.0 aberto, `/models` lista os modelos gratuitos do próprio open
 /models
 ```
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/13-choose-model.jpg"><source src="/assets/videos/sdd-without-claude/13-choose-model.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/13-choose-model.jpg"><source src="/assets/videos/sdd-opencode-inkstone/13-choose-model.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 33 s (vídeo acelerado).*
 
 ---
 
-# Parte 6 — O primeiro spec: `wordcount`
+# Parte 6 — O primeiro spec: wordcount
 
 ## Propose
 
 Este é o pedido que eu enviei, exatamente como digitei:
 
-```
-/opsx-propose Criar uma CLI em Node.js chamado wordcount que recebe o caminho de um arquivo de texto e mostra quantas linhas, palavras, caracteres ele tem. Sem dependências externas. Arquivo inexistente deve gerar uma mensagem clara e código de saída 1. Incluir testes com node:test e coverage de 90%+
-```
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight sdd-wrap"><code>/opsx-propose Criar uma CLI em Node.js chamado wordcount que recebe o caminho de um arquivo de texto e mostra quantas linhas, palavras, caracteres ele tem. Sem dependências externas. Arquivo inexistente deve gerar uma mensagem clara e código de saída 1. Incluir testes com node:test e coverage de 90%+</code></pre></div></div>
 
-O comportamento foi o mesmo que eu vejo com o Claude Code: antes de escrever qualquer artefato, o modelo leu o schema e as instruções do OpenSpec e **fez perguntas** sobre o que estava ambíguo no meu pedido.
+O comportamento foi exatamente o que o fluxo do OpenSpec pede: antes de escrever qualquer artefato, o modelo leu o schema e as instruções do OpenSpec e **fez perguntas** sobre o que estava ambíguo no meu pedido.
 
-![Pergunta sobre o formato de saída](/assets/images/sdd-without-claude/propose-question-output.png "Primeira pergunta: como imprimir o resultado"){:.rounded}
+![Pergunta sobre o formato de saída](/assets/images/sdd-opencode-inkstone/propose-question-output.png "Primeira pergunta: como imprimir o resultado"){:.rounded}
 
-![Pergunta sobre o que conta como caractere](/assets/images/sdd-without-claude/propose-question-characters.png "Segunda pergunta: o que conta como caractere"){:.rounded}
+![Pergunta sobre o que conta como caractere](/assets/images/sdd-opencode-inkstone/propose-question-characters.png "Segunda pergunta: o que conta como caractere"){:.rounded}
 
 As duas perguntas valem a discussão:
 1. **Formato da saída:** escolhi o estilo do `wc` (`linhas palavras caracteres` numa linha só), que era a opção recomendada. É a convenção que todo mundo conhece e fica fácil de usar em scripts.
@@ -324,7 +336,7 @@ Com as respostas, ele escreveu os quatro artefatos em `openspec/changes/add-word
 * **`design.md`:** leitura do arquivo como `Buffer`, uma função pura `count(buf)` e um CLI fino por cima, CommonJS sem etapa de build e testes com [`node:test`](https://nodejs.org/api/test.html).
 * **`tasks.md`:** 8 tarefas em 3 grupos (lógica de contagem, CLI e portões de qualidade), cada uma com um comando de verificação.
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/14-propose.jpg"><source src="/assets/videos/sdd-without-claude/14-propose.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/14-propose.jpg"><source src="/assets/videos/sdd-opencode-inkstone/14-propose.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 11 min 21 s (vídeo acelerado). O opencode mediu 10 min 13 s do envio do pedido ao resumo final.*
 
 Esse é o momento de revisar com calma, antes do apply. Nada foi implementado ainda: se algo estiver errado, corrigir agora custa um parágrafo, não um refactor.
@@ -339,7 +351,7 @@ O agente leu os artefatos, conferiu o ambiente (Node.js, git, as opções de cob
 
 O momento mais interessante veio no final. A primeira rodada de `npm run test:coverage` **falhou**: a cobertura de branches ficou em 87,5%, abaixo dos 90% que eu pedi, porque o caminho de sucesso do CLI não tinha teste automático. O agente **não baixou o limite**. Ele escreveu o teste que faltava, rodou de novo, chegou a 100% e ainda registrou no resumo que tinha feito algo além do texto das tarefas. É exatamente o comportamento que a gente quer: a regra veio da spec, não da boa vontade do modelo.
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/15-apply.jpg"><source src="/assets/videos/sdd-without-claude/15-apply.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/15-apply.jpg"><source src="/assets/videos/sdd-opencode-inkstone/15-apply.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 6 min 17 s (vídeo acelerado).*
 
 **O apply em números:**
@@ -369,7 +381,7 @@ npm run test:coverage
 
 O exemplo devolveu `2 5 27`, o arquivo inexistente gerou `wordcount: file not found: nao-existe.txt` com código de saída 1, e os 8 testes passaram com 100% de cobertura.
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/16-result.jpg"><source src="/assets/videos/sdd-without-claude/16-result.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/16-result.jpg"><source src="/assets/videos/sdd-opencode-inkstone/16-result.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 1 min 01 s (vídeo acelerado).*
 
 Quer conferir a decisão dos bytes? Rode `printf "ação\n" > acentos.txt`, depois `node bin/wordcount.js acentos.txt` e `wc acentos.txt`. Os dois devem mostrar `1 1 7`.
@@ -382,7 +394,7 @@ Quer conferir a decisão dos bytes? Rode `printf "ação\n" > acentos.txt`, depo
 
 O archive faz duas coisas: **sincroniza** a spec da change com as specs principais do projeto (em `openspec/specs/`) e **move** a change para `openspec/changes/archive/`, como histórico. Como era a primeira capability do projeto, o agente perguntou se devia sincronizar antes de arquivar. Escolhi **Sync now**: sem isso, a spec do `wordcount` ficaria só no histórico, e a próxima change não teria onde se apoiar. Ele criou `openspec/specs/wordcount/spec.md`, validou com `openspec validate --specs --strict` e moveu a change para `openspec/changes/archive/2026-10-15-add-wordcount-cli/`.
 
-<video controls preload="none" width="100%" poster="/assets/videos/sdd-without-claude/17-archive.jpg"><source src="/assets/videos/sdd-without-claude/17-archive.mp4" type="video/mp4"></video>
+<video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/17-archive.jpg"><source src="/assets/videos/sdd-opencode-inkstone/17-archive.mp4" type="video/mp4"></video>
 *⏱ Tempo real: 5 min 20 s (vídeo acelerado).*
 
 Para conferir pelo terminal: `openspec list --specs`.
@@ -391,7 +403,7 @@ Para conferir pelo terminal: `openspec list --specs`.
 
 No fim do exercício inteiro, do cadastro ao archive, a conta ainda tinha 70% do limite de 5 horas e 94% do limite semanal.
 
-![Saldo depois do exercício](/assets/images/sdd-without-claude/inkstone-balance-after.png "Saldo da conta depois do ciclo completo"){:.rounded}
+![Saldo depois do exercício](/assets/images/sdd-opencode-inkstone/inkstone-balance-after.png "Saldo da conta depois do ciclo completo"){:.rounded}
 
 ---
 
@@ -410,7 +422,7 @@ A documentação do opencode tem uma página específica sobre o uso no Windows 
 
 # Limitações honestas
 
-* **Velocidade.** Já falei, mas vale repetir: um ciclo que leva poucos minutos com Claude Code levou mais de 20 aqui. Para estudar, é ótimo. Para trabalhar, pesa.
+* **Velocidade.** Já falei, mas vale repetir: um ciclo que leva poucos minutos com modelos pagos mais rápidos levou mais de 20 aqui. Para estudar, é ótimo. Para trabalhar, pesa.
 * **Cota e limites.** 50 requisições por minuto e créditos por janela de tempo bastam para estudar, mas uma sessão longa de apply pode bater no limite.
 * **Dados.** É um serviço gratuito, hospedado fora do Brasil, sob outras leis. Nada de dados pessoais de terceiros, código da empresa ou segredos.
 * **Disponibilidade.** Serviços gratuitos mudam de regra, de cota ou saem do ar. A boa notícia é que o opencode aceita qualquer provedor compatível com a API da OpenAI: se o Intern Discovery mudar, você troca a URL e a chave no `opencode.json` e o resto do ambiente continua igual.
@@ -442,8 +454,6 @@ Se você não tinha como praticar SDD por falta de acesso a uma ferramenta paga,
 * **Ambiente**
   * [Instalar a WSL](https://learn.microsoft.com/windows/wsl/install)
   * [nvm](https://github.com/nvm-sh/nvm) · [Node.js](https://nodejs.org) · [Executor de testes `node:test`](https://nodejs.org/api/test.html)
-* **Para comparar**
-  * [Claude Code](https://claude.com/claude-code)
 
 ---
 
