@@ -13,7 +13,7 @@ article_header:
   theme: dark
   background_color: '#0b1020'
   background_image:
-    gradient: 'linear-gradient(135deg, rgba(11, 16, 32, 0.78), rgba(194, 65, 12, 0.45))'
+    gradient: 'linear-gradient(135deg, rgba(11, 16, 32, 0.85), rgba(194, 65, 12, 0.40))'
     src: /assets/images/sdd-without-claude/sdd-without-claude.jpeg
 ---
 
