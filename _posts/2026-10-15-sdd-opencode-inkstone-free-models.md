@@ -107,7 +107,7 @@ The free account limits, at the time of writing:
 Click **Create API Key**, give it a name and **copy the key right away**: it is only shown in full in that dialog. After you close it, the list only shows the masked value.
 
 <video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/02-create-api-key.jpg"><source src="/assets/videos/sdd-opencode-inkstone/02-create-api-key.mp4" type="video/mp4"></video>
-*⏱ Real time: 24 s (video sped up). The key shown in the video has already been deleted.*
+*⏱ Real time: 24 s (video sped up). The key is blurred in the video.*
 
 ---
 
