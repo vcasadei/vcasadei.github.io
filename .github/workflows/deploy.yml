@@ -40,6 +40,7 @@ jobs:
             "assets/images/improving-home-security-using-ai.jpeg"
             "assets/images/local-personal-assistant-hacktown-2026/local-personal-assistant-hacktown-2026.jpeg"
             "assets/images/scrum4research-lessons-learned/man-white-board.jpeg"
+            "assets/images/sdd-opencode-inkstone/sdd-opencode-inkstone.jpeg"
           )
 
           mapfile -d '' -t IMAGES < <(find assets/images -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) -print0)
