@@ -25,16 +25,16 @@ _other_flag, _other_lang_label, _other_lang_code, _switch_confirm.
   {%- endif -%}
 {%- endunless -%}
 {%- if _page_lang == 'en' -%}
-  {%- assign _current_flag = '🇺🇸' -%}
+  {%- assign _current_flag = '<img class="flag-icon" src="/assets/images/flags/us.svg" alt="" width="20" height="13">' -%}
   {%- assign _current_lang_label = 'English' -%}
-  {%- assign _other_flag = '🇧🇷' -%}
+  {%- assign _other_flag = '<img class="flag-icon" src="/assets/images/flags/br.svg" alt="" width="20" height="14">' -%}
   {%- assign _other_lang_label = 'Português' -%}
   {%- assign _other_lang_code = 'pt-BR' -%}
   {%- assign _switch_confirm = 'Switch to Portuguese?' -%}
 {%- else -%}
-  {%- assign _current_flag = '🇧🇷' -%}
+  {%- assign _current_flag = '<img class="flag-icon" src="/assets/images/flags/br.svg" alt="" width="20" height="14">' -%}
   {%- assign _current_lang_label = 'Português' -%}
-  {%- assign _other_flag = '🇺🇸' -%}
+  {%- assign _other_flag = '<img class="flag-icon" src="/assets/images/flags/us.svg" alt="" width="20" height="13">' -%}
   {%- assign _other_lang_label = 'English' -%}
   {%- assign _other_lang_code = 'en' -%}
   {%- assign _switch_confirm = 'Switch to English?' -%}
