@@ -107,7 +107,7 @@ Os limites da conta gratuita, no momento em que escrevi:
 Clique em **Create API Key**, dê um nome e **copie a chave na hora**: ela só aparece inteira nesse diálogo. Depois de fechar, a lista mostra apenas o valor mascarado.
 
 <video controls preload="none" width="100%" poster="/assets/videos/sdd-opencode-inkstone/02-create-api-key.jpg"><source src="/assets/videos/sdd-opencode-inkstone/02-create-api-key.mp4" type="video/mp4"></video>
-*⏱ Tempo real: 24 s (vídeo acelerado). A chave que aparece no vídeo já foi apagada.*
+*⏱ Tempo real: 24 s (vídeo acelerado). A chave aparece desfocada no vídeo.*
 
 ---
 
