@@ -1,4 +1,7 @@
 <meta name="color-scheme" content="dark">
+{%- if page.article_header.background_image.src %}
+<link rel="preload" as="image" href="{{ page.article_header.background_image.src | relative_url }}" fetchpriority="high">
+{%- endif %}
 
 {%- comment -%} Auto-redirect a returning visitor to their saved language
 preference, computed the same way as the header language switcher (see

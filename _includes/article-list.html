@@ -96,7 +96,7 @@
           <div class="item__image">
             <picture>
               <source type="image/webp" srcset="{{ _article_cover_thumb_webp }}">
-              <img class="{{ _cover_img_class }}" src="{{ _article_cover_thumb }}" />
+              <img class="{{ _cover_img_class }}" src="{{ _article_cover_thumb }}" onerror="this.onerror=null;var s=this.parentNode.querySelector('source');if(s){s.remove();}this.src='{{ _article_cover }}';" />
             </picture>
           </div>
         {%- endif -%}
