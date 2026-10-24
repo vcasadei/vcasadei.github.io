@@ -41,6 +41,11 @@ jobs:
             "assets/images/local-personal-assistant-hacktown-2026/local-personal-assistant-hacktown-2026.jpeg"
             "assets/images/scrum4research-lessons-learned/man-white-board.jpeg"
             "assets/images/sdd-opencode-inkstone/sdd-opencode-inkstone.jpeg"
+            "assets/images/sdd-openspec-1/sdd-openspec-1.jpeg"
+            "assets/images/sdd-openspec-2/sdd-openspec-2.jpeg"
+            "assets/images/sdd-openspec-3/sdd-openspec-3.jpeg"
+            "assets/images/sdd-openspec-4/sdd-openspec-4.jpeg"
+            "assets/images/sdd-openspec-5/sdd-openspec-5.jpeg"
           )
 
           mapfile -d '' -t IMAGES < <(find assets/images -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) -print0)
@@ -52,6 +57,8 @@ jobs:
           done
 
           for f in "${COVERS[@]}"; do
+            # Series covers can land in separate PRs; skip the ones not merged yet.
+            [ -f "$f" ] || continue
             dir=$(dirname "$f")
             base=$(basename "$f")
             base="${base%.*}"
