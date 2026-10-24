@@ -2,7 +2,7 @@
 
 ## What this is
 
-This repository is Vitor Casadei's personal blog, published at **https://www.vcasadei.com** (custom domain via `CNAME`) and hosted on **GitHub Pages**. The blog covers AI, Computer Vision, and Accessibility, with early posts also touching on home networking/security and Scrum for R&D teams (per `_config.yml`'s `description` and the actual post content).
+This repository is Vitor Casadei's personal blog, published at **https://vcasadei.com** (custom domain via `CNAME`) and hosted on **GitHub Pages**. The blog covers AI, Computer Vision, and Accessibility, with early posts also touching on home networking/security and Scrum for R&D teams (per `_config.yml`'s `description` and the actual post content).
 
 Notably, the repository *is* a fork of the **[jekyll-TeXt-theme](https://github.com/kitian616/jekyll-TeXt-theme)** project rather than a site that merely depends on the theme as a gem. The full theme source (layouts, includes, Sass, docs, tests, build tooling) lives directly in this repo alongside the actual blog content. This means the site's own content (posts, `_config.yml`, `about.md`, images) is intermixed with a complete copy of the upstream theme's codebase and its documentation/demo site (`docs/`) and test fixtures (`test/`).
 
