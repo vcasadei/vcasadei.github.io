@@ -1,0 +1,49 @@
+{%- comment -%} Open Graph and Twitter card tags, so shared links show the
+post's title, excerpt and cover. Written by hand instead of using
+jekyll-seo-tag, which would duplicate the <title> and description that the
+theme's head.html already emits. {%- endcomment -%}
+{%- include snippets/get-article-title.html article=page -%}
+{%- assign _og_title = __return | default: site.title -%}
+{%- if page.layout == 'home' -%}{%- assign _og_title = site.title -%}{%- endif -%}
+{%- if page.excerpt -%}
+  {%- assign _og_description = page.excerpt | strip_html | strip_newlines | strip | truncate: 200 -%}
+{%- else -%}
+  {%- assign _og_description = site.description | strip_newlines | strip -%}
+{%- endif -%}
+{%- assign _og_image = page.cover | default: page.article_header.background_image.src -%}
+{%- if _og_image -%}
+  {%- unless _og_image contains '://' -%}{%- assign _og_image = _og_image | absolute_url -%}{%- endunless -%}
+{%- endif -%}
+{%- assign _og_lang = page.lang | default: site.lang | default: 'en' -%}
+{%- if _og_lang contains 'pt' -%}
+  {%- assign _og_locale = 'pt_BR' -%}{%- assign _og_locale_alt = 'en_US' -%}
+{%- else -%}
+  {%- assign _og_locale = 'en_US' -%}{%- assign _og_locale_alt = 'pt_BR' -%}
+{%- endif %}
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:title" content="{{ _og_title | escape }}">
+<meta property="og:description" content="{{ _og_description | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:locale" content="{{ _og_locale }}">
+<meta property="og:locale:alternate" content="{{ _og_locale_alt }}">
+{%- if page.date and page.collection == 'posts' %}
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+<meta property="article:author" content="{{ site.author.name | escape }}">
+{%- else %}
+<meta property="og:type" content="website">
+{%- endif %}
+{%- if _og_image %}
+<meta property="og:image" content="{{ _og_image }}">
+<meta property="og:image:alt" content="{{ _og_title | escape }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ _og_image }}">
+{%- else %}
+<meta name="twitter:card" content="summary">
+{%- endif %}
+<meta name="twitter:title" content="{{ _og_title | escape }}">
+<meta name="twitter:description" content="{{ _og_description | escape }}">
+{%- if site.author.twitter %}
+<meta name="twitter:site" content="@{{ site.author.twitter }}">
+<meta name="twitter:creator" content="@{{ site.author.twitter }}">
+{%- endif %}
