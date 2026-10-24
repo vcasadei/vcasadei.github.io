@@ -7,6 +7,10 @@
     {%- comment -%} jekyll-paginate-v2 scopes paginator.total_posts to
     whatever locale/category filter this page's own `pagination:` front
     matter declares, so it's already correct per listing language. {%- endcomment -%}
+    {%- comment -%} Numbered links are built from this listing's own first page
+    (e.g. "/" or "/pt/") so the Portuguese listing does not link into the
+    English one; matches `pagination.permalink` ("/page:num/"). {%- endcomment -%}
+    {%- assign _page_path_tpl = paginator.first_page_path | append: '/' | replace: '//', '/' | append: 'page:num/' -%}
     {%- assign _post_count = paginator.total_posts -%}
     {%- assign _page_count = paginator.total_pages -%}
     <p>{{ _locale_statistics | replace: '[POST_COUNT]', _post_count | replace: '[PAGE_COUNT]', _page_count }}</p>
@@ -54,8 +58,7 @@
             </li>
 
           {%- elsif page == 1 -%}
-            {%- assign _home_path = site.paths.home | default: site.data.variables.default.paths.home -%}
-            {%- include snippets/prepend-baseurl.html path=_home_path -%}
+            {%- include snippets/prepend-baseurl.html path=paginator.first_page_path -%}
             {%- assign _href = __return -%}
             <li>
               <a class="button button--secondary button--circle" href="{{ _href }}"><span>{{ page }}</span></a>
@@ -68,14 +71,14 @@
               {%- elsif page > _n1 and page < _length -%}
                 {%- if page == _length_mimus_one -%}<li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li>{%- endif -%}
               {%- else -%}
-                {%- include snippets/prepend-baseurl.html path=site.paginate_path -%}
+                {%- include snippets/prepend-baseurl.html path=_page_path_tpl -%}
                 {%- assign _href = __return -%}
                 <li>
                   <a class="button button--secondary button--circle" href="{{ _href | replace: ':num', page }}"><span>{{ page }}</span></a>
                 </li>
               {%- endif -%}
             {%- else -%}
-              {%- include snippets/prepend-baseurl.html path=site.paginate_path -%}
+              {%- include snippets/prepend-baseurl.html path=_page_path_tpl -%}
               {%- assign _href = __return -%}
               <li>
                 <a class="button button--secondary button--circle" href="{{ _href | replace: ':num', page }}"><span>{{ page }}</span></a>
