@@ -18,7 +18,7 @@
 ##############################
 text_skin: dark # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
 highlight_theme: tomorrow-night # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
-url     : https://www.vcasadei.com
+url     : https://vcasadei.com
 baseurl : # does not include hostname
 title   : Vitor Casadei's Blog
 description: > # this means to ignore newlines until "Language & timezone"
@@ -36,7 +36,7 @@ timezone: America/Sao_Paulo
 author:
   type      : # "person" (default), "organization"
   name      : Vitor Casadei
-  url       : www.vcasadei.com
+  url       : https://vcasadei.com
   avatar    : # path or url of avatar image (square)
   bio       : Machine Learning Specialist
   email     : vitor.casadei2@gmail.com
